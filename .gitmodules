@@ -1,0 +1,3 @@
+[submodule "src/styles/jupyter-themes"]
+	path = src/styles/jupyter-themes
+	url = git@github.com:dunovank/jupyter-themes.git

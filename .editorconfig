@@ -1,0 +1,6 @@
+[Makefile]
+indent_style = tab
+
+[*]
+charset = utf-8
+indent_size = 2
