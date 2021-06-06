@@ -28,4 +28,4 @@ jobs:
           make build
           make build_css
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
-          npm publish dist || true
+          npm publish || true
