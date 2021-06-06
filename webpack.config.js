@@ -11,6 +11,7 @@ module.exports = {
     home: './src/index.tsx',
   },
   output: {
+    libraryTarget: 'umd',
     filename: 'index.js',
     path: path.resolve(__dirname, 'dist')
   },
