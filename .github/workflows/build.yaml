@@ -24,6 +24,7 @@ jobs:
 
       - name: upload
         run: |
+          git submodule update --init --recursive
           make build
           make build_css
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
