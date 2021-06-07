@@ -12,8 +12,9 @@ module.exports = {
   },
   output: {
     libraryTarget: 'umd',
+    globalObject: 'this',
     filename: 'index.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
     new TypescriptDeclarationPlugin({
@@ -21,9 +22,7 @@ module.exports = {
   ],
   module: {
     rules: [
-      { test: /\.css$/, use: ['style-loader', 'css-loader'] },
-      { test: /\.less$/, use: ['style-loader', 'css-loader', 'less-loader'] },
-      { test: /\.ipynb$/, use: ['json-loader'] },
+      { test: /\.css$/, loader: 'css-loader', options: { modules: true } },
       {
         test: /\.(ts|tsx)$/, use: ["ts-loader?configFile=tsconfig.json"],
         exclude: [/node_modules/, /.examples/],
