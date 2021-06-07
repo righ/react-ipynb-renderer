@@ -151,14 +151,16 @@ export const vscDarkPlus = () => {
 };
 
 
+
 export const xonokai = () => {
   return (
     <>
-      <IpynbRenderer ipynb={matrix} syntaxTheme="atomDark" />
+      <IpynbRenderer ipynb={matrix} syntaxTheme="xonokai" />
 
     </>
   );
 };
+
 
 
 

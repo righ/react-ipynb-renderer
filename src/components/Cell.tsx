@@ -9,16 +9,16 @@ type Props = {
   cell: CellType;
   syntaxTheme: SyntaxThemeType;
   language: LanguageType;
-  codeTransparent: boolean;
+  bgTransparent: boolean;
 };
 
-export const Cell: React.FC<Props> = ({ cell, syntaxTheme, language, codeTransparent = true }) => {
+export const Cell: React.FC<Props> = ({ cell, syntaxTheme, language, bgTransparent = true }) => {
   const prismStyle = PrismStyles[syntaxTheme];
   const styleOverridden = {
     "code[class*=\"language-\"]": { ...prismStyle["code[class*=\"language-\"]"], boxShadow: "none" },
     "pre[class*=\"language-\"]": { ...prismStyle["pre[class*=\"language-\"]"], border: "none", boxShadow: "none" },
   };
-  if (codeTransparent) {
+  if (bgTransparent) {
     styleOverridden["code[class*=\"language-\"]"] = { ...styleOverridden["code[class*=\"language-\"]"], background: "transparent" };
     styleOverridden["pre[class*=\"language-\"]"] = { ...styleOverridden["pre[class*=\"language-\"]"], background: "transparent" };
   }

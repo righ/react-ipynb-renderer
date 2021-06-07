@@ -6,14 +6,14 @@ type Props = {
   ipynb: { cells: CellType[] };
   syntaxTheme?: SyntaxThemeType;
   language?: LanguageType;
-  codeTransparent?: boolean;
+  bgTransparent?: boolean;
 }
 
 export const IpynbRenderer: React.FC<Props> = React.memo(({
   ipynb,
   syntaxTheme = "xonokai",
   language = "python",
-  codeTransparent = true,
+  bgTransparent = true,
 }) => {
 
   return (<div className="container ipynb-renderer-root">
@@ -23,7 +23,7 @@ export const IpynbRenderer: React.FC<Props> = React.memo(({
         cell={cell}
         syntaxTheme={syntaxTheme}
         language={language}
-        codeTransparent={codeTransparent}
+        bgTransparent={bgTransparent}
       />)
     }
   </div>);
