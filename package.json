@@ -1,6 +1,6 @@
 {
   "name": "react-ipynb-renderer",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "description": "A react component that displays an ipynb file.",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -24,7 +24,9 @@
   "keywords": [
     "jupyter",
     "ipynb",
-    "notebook"
+    "notebook",
+    "ipython",
+    "jupyterlab"
   ],
   "devDependencies": {
     "@babel/cli": "^7.14.3",
