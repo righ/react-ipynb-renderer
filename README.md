@@ -1,5 +1,12 @@
 [![NPM](https://nodei.co/npm/react-ipynb-renderer.png?mini=true)](https://www.npmjs.com/package/react-ipynb-renderer)
 
+# Images
+
+| gruvbox and duotone forest themes                 | monokai and xonokai themes               |
+| ------------------------------------------------- | ---------------------------------------- |
+| ![gruvboxl](./images/gruvboxl-duotone_forest.png) | ![monokai](./images/monokai-xonokai.png) |
+
+
 # Install
 
 ```sh

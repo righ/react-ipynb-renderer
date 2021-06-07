@@ -83,16 +83,16 @@ export const Cell: React.FC<Props> = ({ cell, syntaxTheme, language, bgTranspare
                       >
                       </div>)
                     }
-                    if (output.data["text/plain"]) {
-                      return (<div className="output_text output_subarea output_execute_result">
-                        <pre>{output.data["text/plain"]}</pre>
-                      </div>)
-                    }
                     if (output.data["image/png"]) {
                       return (<div
                         className="output_png output_subarea"
                       >
                         <img src={`data:image/png;base64,${output.data["image/png"]}`} />
+                      </div>)
+                    }
+                    if (output.data["text/plain"]) {
+                      return (<div className="output_text output_subarea output_execute_result">
+                        <pre>{output.data["text/plain"]}</pre>
                       </div>)
                     }
                   })()
