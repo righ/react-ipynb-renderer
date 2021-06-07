@@ -21,6 +21,11 @@
   },
   "author": "righ",
   "license": "Apache-2.0",
+  "keywords": [
+    "jupyter",
+    "ipynb",
+    "notebook"
+  ],
   "devDependencies": {
     "@babel/cli": "^7.14.3",
     "@babel/core": "^7.14.3",
