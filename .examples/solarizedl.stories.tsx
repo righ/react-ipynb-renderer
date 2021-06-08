@@ -1,9 +1,10 @@
 import React from "react";
-import { IpynbRenderer } from "../src/index.tsx";
+import 'katex/dist/katex.min.css';
+import { IpynbRenderer } from "../src/index";
 import pca1 from "./pca1.ipynb";
 import matrix from "./matrix-3.ipynb";
 
-import "../src/styles/solarizedl.less";
+import "../dist/styles/solarizedl.css";
 
 export default {
   title: "solarizedl",
