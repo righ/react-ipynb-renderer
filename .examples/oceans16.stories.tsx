@@ -1,9 +1,11 @@
 import React from "react";
-import { IpynbRenderer } from "../src";
+import { IpynbRenderer } from "../src/index.tsx";
 import pca1 from "./pca1.ipynb";
 import matrix from "./matrix-3.ipynb";
 
 import "../src/styles/oceans16.less";
+
+console.log(IpynbRenderer)
 
 export default {
   title: "oceans16",

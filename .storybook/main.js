@@ -17,7 +17,7 @@ module.exports = {
     // Make whatever fine-grained changes you need
     config.module.rules.push({
       test: /\.less$/,
-      use: ['css-loader', 'less-loader'],
+      use: ['style-loader', 'css-loader', 'less-loader'],
       include: path.resolve(__dirname, '../'),
     });
     config.module.rules.push({

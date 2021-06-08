@@ -2,9 +2,9 @@
 
 # Images
 
-| gruvbox and duotone forest themes                                                                       | monokai and xonokai themes                                                                     |
-| ------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| ![gruvboxl](https://github.com/righ/react-ipynb-renderer/raw/master/images/gruvboxl-duotone_forest.png) | ![monokai](https://github.com/righ/react-ipynb-renderer/raw/master/images/monokai-xonokai.png) |
+| gruvbox and duotone forest themes                                                                                             | monokai and xonokai themes                                                                                  |
+| ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| ![solarizedl with duotone_earth](https://github.com/righ/react-ipynb-renderer/raw/master/images/solarizedl-duotone_earth.png) | ![monokai with xonokai](https://github.com/righ/react-ipynb-renderer/raw/master/images/monokai-xonokai.png) |
 
 
 # Install
