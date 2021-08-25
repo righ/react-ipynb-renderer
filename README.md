@@ -55,7 +55,7 @@ export const Component: React.FC = () => {
 
 # Themes
 ## Jupyter themes
-If you do not want to style the notebook style yourself, you can use one of the following themes.
+If you do not want to style the notebook yourself, you can use one of the following themes.
 
 - chesterish
 - grade3
