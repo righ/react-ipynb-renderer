@@ -4,7 +4,7 @@ import { IpynbRenderer } from "../src/index";
 import pca1 from "./pca1.ipynb";
 import matrix from "./matrix-3.ipynb";
 
-import "../dist/styles/solarizedl.css";
+import "../src/styles/solarizedl.less";
 
 export default {
   title: "solarizedl",

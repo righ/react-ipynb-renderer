@@ -2,7 +2,7 @@
 
 # Images
 
-| gruvbox and duotone forest themes                                                                                             | monokai and xonokai themes                                                                                  |
+| solarizedl and duotone forest themes                                                                                          | monokai and xonokai themes                                                                                  |
 | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
 | ![solarizedl with duotone_earth](https://github.com/righ/react-ipynb-renderer/raw/master/images/solarizedl-duotone_earth.png) | ![monokai with xonokai](https://github.com/righ/react-ipynb-renderer/raw/master/images/monokai-xonokai.png) |
 
@@ -47,6 +47,11 @@ export const Component: React.FC = () => {
   </>);
 };
 ```
+
+### supporting nbformat
+- 5?
+- 4
+- 3?
 
 ## 2 ways to get ipynb json.
 
