@@ -1,3 +1,6 @@
+import { MathJaxContextProps, MathJaxProps } from "better-react-mathjax";
+import { KatexOptions } from "katex";
+
 export type OutputType = {
   data?: {
     "text/plain"?: string[];
@@ -31,6 +34,17 @@ export type CellType = {
 export type SyntaxThemeType = "atomDark" | "cb" | "coy" | "darcula" | "dark" | "duotoneDark" | "duotoneEarth" | "duotoneForest" | "duotoneLight" | "duotoneSea" | "duotoneSpace" | "funky" | "ghcolors" | "hopscotch" | "okaidia" | "pojoaque" | "prism" | "solarizedlight" | "tomorrow" | "twilight" | "vscDarkPlus" | "xonokai";
 export type LanguageType = "python" | "r";
 
+export type FormulaOptions = {
+  renderer?: "mathjax" | "katex";
+  mathjaxContextProps?: MathJaxContextProps;
+  mathjaxProps?: MathJaxProps;
+  katex?: {
+    engine?: any;
+    dollars?: 'dollars' | 'brackets' | 'gitlab' | 'julia' | 'kramdown';
+    katexOptions?: KatexOptions;
+  };
+};
+
 export type Props = {
   ipynb: {
     cells: CellType[],
@@ -40,4 +54,5 @@ export type Props = {
   syntaxTheme?: SyntaxThemeType;
   language?: LanguageType;
   bgTransparent?: boolean;
+  formulaOptions?: FormulaOptions;
 };

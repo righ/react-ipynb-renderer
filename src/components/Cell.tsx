@@ -1,18 +1,56 @@
 import React from "react";
 import { Prism } from 'react-syntax-highlighter';
 import * as PrismStyles from "react-syntax-highlighter/dist/cjs/styles/prism";
+import katex from "katex";
 
-import { CellType, SyntaxThemeType, LanguageType } from "../types";
+import { CellType, SyntaxThemeType, LanguageType, FormulaOptions } from "../types";
 import { Markdown } from "./Markdown";
+
+import { MathJax, MathJaxContext } from "better-react-mathjax";
+import { replaceForKatex } from "../utils";
 
 type Props = {
   cell: CellType;
   syntaxTheme: SyntaxThemeType;
   language: LanguageType;
   bgTransparent: boolean;
+  formulaOptions?: FormulaOptions;
 };
 
-export const Cell: React.FC<Props> = ({ cell, syntaxTheme, language, bgTransparent = true }) => {
+export const defaultFormulaRenderer = "mathjax";
+const inlineMath = [['$', '$'], ['\\(', '\\)']];
+
+export const Cell: React.FC<Props> = ({ cell, syntaxTheme, language, bgTransparent = true, formulaOptions = {} }) => {
+  const { renderer = defaultFormulaRenderer } = formulaOptions;
+  if (typeof formulaOptions.mathjaxContextProps === "undefined") {
+    formulaOptions.mathjaxContextProps = {}
+  }
+  if (typeof formulaOptions.mathjaxContextProps.config === "undefined") {
+    formulaOptions.mathjaxContextProps.config = {};
+  }
+  if (renderer === "mathjax") {
+    if (formulaOptions.mathjaxContextProps.version === 2) {
+      // for mathjax v2
+      if (typeof formulaOptions.mathjaxContextProps.config.tex2jax === "undefined") {
+        formulaOptions.mathjaxContextProps.config.tex2jax = {};
+      }
+      if (typeof formulaOptions.mathjaxContextProps.config.tex2jax.inlineMath === "undefined") {
+        formulaOptions.mathjaxContextProps.config.tex2jax.inlineMath = inlineMath;
+      }
+    } else {
+      // for mathjax v3
+      // @ts-ignore
+      if (typeof formulaOptions.mathjaxContextProps.config.tex === "undefined") {
+        // @ts-ignore
+        formulaOptions.mathjaxContextProps.config.tex = {};
+      }
+      // @ts-ignore
+      if (typeof formulaOptions.mathjaxContextProps.config.tex.inlineMath === "undefined") {
+        // @ts-ignore
+        formulaOptions.mathjaxContextProps.config.tex.inlineMath = inlineMath;
+      }
+    }
+  }
   const prismStyle = PrismStyles[syntaxTheme];
   const styleOverridden = {
     "code[class*=\"language-\"]": { ...prismStyle["code[class*=\"language-\"]"], boxShadow: "none" },
@@ -40,7 +78,7 @@ export const Cell: React.FC<Props> = ({ cell, syntaxTheme, language, bgTranspare
               return (<div
                 className="text_cell_render border-box-sizing rendered_html"
               >
-                <Markdown text={replaceForKatex(source)} />
+                <Markdown text={source} formulaOptions={formulaOptions} />
               </div>)
             }
             if (cell.cell_type === "code") {
@@ -101,7 +139,17 @@ export const Cell: React.FC<Props> = ({ cell, syntaxTheme, language, bgTranspare
                     }
                     if (output.data["text/latex"]) {
                       return (<div className="output_latex output_subarea output_execute_result">
-                        <Markdown text={replaceForKatex(output.data["text/latex"].join(""))} />
+                        {
+                          renderer !== "mathjax" ? null : (<MathJaxContext {...formulaOptions.mathjaxContextProps}>
+                            <MathJax {...formulaOptions.mathjaxProps}>{output.data["text/latex"].join("")}</MathJax>
+                          </MathJaxContext>)
+                        }
+                        {
+                          renderer !== "katex" ? null : katex.renderToString(
+                            replaceForKatex(output.data["text/latex"].join("")),
+                            formulaOptions.katex?.katexOptions,
+                          )
+                        }
                       </div>);
                     }
                     if (output.data["text/html"]) {
@@ -150,8 +198,4 @@ export const Cell: React.FC<Props> = ({ cell, syntaxTheme, language, bgTranspare
   </div >
 };
 
-const replaceForKatex = (text: string) => {
-  return text
-    .replace("\\begin{eqnarray}", "\\begin{aligned}")
-    .replace("\\end{eqnarray}", "\\end{aligned}");
-};
+
