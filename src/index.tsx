@@ -7,6 +7,7 @@ export const IpynbRenderer: React.FC<Props> = React.memo(({
   syntaxTheme = "xonokai",
   language = "python",
   bgTransparent = true,
+  formulaOptions = {},
 }) => {
   const cells = ipynb.cells || (ipynb.worksheets && ipynb.worksheets[0].cells) || [];
   return (<div className="container ipynb-renderer-root">
@@ -17,6 +18,7 @@ export const IpynbRenderer: React.FC<Props> = React.memo(({
         syntaxTheme={syntaxTheme}
         language={language}
         bgTransparent={bgTransparent}
+        formulaOptions={formulaOptions}
       />)
     }
   </div>);

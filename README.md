@@ -31,8 +31,6 @@ import { IpynbRenderer } from "react-ipynb-renderer";
 
 // Jupyter theme
 import "react-ipynb-renderer/dist/styles/monokai.css";
-// Formula renderer
-import 'katex/dist/katex.min.css';
 // import ipynb file as json
 import ipynb from "./test.ipynb";
 
@@ -43,6 +41,17 @@ export const Component: React.FC = () => {
       syntaxTheme="xonokai"
       language="python"
       bgTransparent={true}
+      formulaOptions={{ // optional
+        renderer: "mathjax", // or katex
+        mathjaxContextProps: { version: 2 }, // mathjax3 by default
+        mathjaxProps: {dynamic: true},
+        katex: {
+          delimiters: "gitlab", // dollars by default
+          katexOptions: {
+            fleqn: false,
+          },
+        }
+      }}
     />
   </>);
 };
@@ -120,4 +129,9 @@ Pass the theme string to syntaxTheme prop.
 ### bgTransparent prop
 The background color of the code is transparent by default. For this reason, depending on the combination with jupyter theme, it may be difficult to see the text color.
 You pass `bgTransparent={false}`, code background color gets back to highlighting color.
+
+# Formula
+You can choose between mathjax and katex for the formula.
+
+
 
