@@ -40,7 +40,7 @@ export type FormulaOptions = {
   mathjaxProps?: MathJaxProps;
   katex?: {
     engine?: any;
-    dollars?: 'dollars' | 'brackets' | 'gitlab' | 'julia' | 'kramdown';
+    delimiters?: 'dollars' | 'brackets' | 'gitlab' | 'julia' | 'kramdown';
     katexOptions?: KatexOptions;
   };
 };
