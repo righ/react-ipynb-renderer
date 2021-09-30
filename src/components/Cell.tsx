@@ -6,6 +6,7 @@ import { CellType, SyntaxThemeType, LanguageType, FormulaOptions } from "../type
 import { Markdown } from "./Markdown";
 
 import { MathJax, MathJaxContext } from "better-react-mathjax";
+import { MarkdownForKatex } from "./MarkdownForKatex";
 
 type Props = {
   cell: CellType;
@@ -144,7 +145,7 @@ export const Cell: React.FC<Props> = ({ cell, syntaxTheme, language, bgTranspare
                         }
                         {
                           renderer !== "katex" ? null :
-                            (<Markdown
+                            (<MarkdownForKatex
                               text={output.data["text/latex"].join("")}
                               formulaOptions={formulaOptions}
                             />)

@@ -35,6 +35,16 @@ module.exports = {
         loader: 'file-loader?name=./font/[name].[ext]',
         exclude: [/.examples/],
       },
+      {
+        test: /\.css/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: { url: false }
+          }
+        ]
+      }
     ],
   },
 };
