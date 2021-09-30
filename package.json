@@ -75,6 +75,7 @@
     "katex": "^0.13.18",
     "markdown-it": "^12.0.6",
     "markdown-it-texmath": "^0.9.1",
+    "mathpix-markdown-it": "^1.0.66",
     "react-syntax-highlighter": "^15.4.3"
   },
   "files": [

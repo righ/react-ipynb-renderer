@@ -1,4 +1,6 @@
-import { MathJaxContextProps, MathJaxProps } from "better-react-mathjax";
+import {
+  optionsMathpixMarkdown,
+} from "mathpix-markdown-it/lib/mathpix-markdown-model";
 import { KatexOptions } from "katex";
 
 export type OutputType = {
@@ -37,8 +39,9 @@ export type LanguageType = "python" | "r";
 
 export type FormulaOptions = {
   renderer?: "mathjax" | "katex";
-  mathjaxContextProps?: MathJaxContextProps;
-  mathjaxProps?: MathJaxProps;
+  mathjax?: {
+    markdown?: optionsMathpixMarkdown;
+  };
   katex?: {
     engine?: any;
     delimiters?: 'dollars' | 'brackets' | 'gitlab' | 'julia' | 'kramdown';

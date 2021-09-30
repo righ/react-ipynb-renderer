@@ -11,8 +11,9 @@ type Props = {
   formulaOptions: FormulaOptions;
 };
 
+const mdi = new MarkdownIt();
+
 export const MarkdownForKatex: React.FC<Props> = ({ text, formulaOptions }) => {
-  const mdi = new MarkdownIt();
   mdi.use(mdit, { engine: require('katex'), delimiters: 'dollars', ...formulaOptions.katex });
   return (<div dangerouslySetInnerHTML={{ __html: mdi.render(replaceForKatex(text)) }}></div>);
 };
