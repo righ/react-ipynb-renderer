@@ -7,6 +7,10 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
   },
+  externals: {
+    react: "commonjs react",
+    "react-dom": "commonjs react-dom",
+  },
   entry: {
     home: './src/index.tsx',
   },
