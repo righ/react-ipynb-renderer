@@ -43,8 +43,6 @@ export const Component: React.FC = () => {
       bgTransparent={true}
       formulaOptions={{ // optional
         renderer: "mathjax", // katex by default
-        mathjaxContextProps: { version: 2 }, // mathjax3 by default
-        mathjaxProps: {dynamic: true},
         katex: {
           delimiters: "gitlab", // dollars by default
           katexOptions: {

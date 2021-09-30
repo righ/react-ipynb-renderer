@@ -1,6 +1,7 @@
 import React from "react";
+import 'katex/dist/katex.min.css';
 
-import { IpynbRenderer } from "../src/index.tsx";
+import { IpynbRenderer } from "../dist";
 import pca1 from "./pca1.ipynb";
 import matrix from "./matrix-3.ipynb";
 
