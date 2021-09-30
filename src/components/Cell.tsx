@@ -1,13 +1,11 @@
 import React from "react";
 import { Prism } from 'react-syntax-highlighter';
 import * as PrismStyles from "react-syntax-highlighter/dist/cjs/styles/prism";
-import katex from "katex";
 
 import { CellType, SyntaxThemeType, LanguageType, FormulaOptions } from "../types";
 import { Markdown } from "./Markdown";
 
 import { MathJax, MathJaxContext } from "better-react-mathjax";
-import { replaceForKatex } from "../utils";
 
 type Props = {
   cell: CellType;
@@ -17,7 +15,7 @@ type Props = {
   formulaOptions?: FormulaOptions;
 };
 
-export const defaultFormulaRenderer = "mathjax";
+export const defaultFormulaRenderer = "katex";
 const inlineMath = [['$', '$'], ['\\(', '\\)']];
 
 export const Cell: React.FC<Props> = ({ cell, syntaxTheme, language, bgTransparent = true, formulaOptions = {} }) => {
@@ -145,10 +143,11 @@ export const Cell: React.FC<Props> = ({ cell, syntaxTheme, language, bgTranspare
                           </MathJaxContext>)
                         }
                         {
-                          renderer !== "katex" ? null : katex.renderToString(
-                            replaceForKatex(output.data["text/latex"].join("")),
-                            formulaOptions.katex?.katexOptions,
-                          )
+                          renderer !== "katex" ? null :
+                            (<Markdown
+                              text={output.data["text/latex"].join("")}
+                              formulaOptions={formulaOptions}
+                            />)
                         }
                       </div>);
                     }
