@@ -12,14 +12,17 @@ export const IpynbRenderer: React.FC<Props> = React.memo(({
   const cells = ipynb.cells || (ipynb.worksheets && ipynb.worksheets[0].cells) || [];
   return (<div className="container ipynb-renderer-root">
     {
-      cells.map((cell, i) => <Cell
-        key={i}
-        cell={cell}
-        syntaxTheme={syntaxTheme}
-        language={language}
-        bgTransparent={bgTransparent}
-        formulaOptions={formulaOptions}
-      />)
+      cells.map((cell, i) => {
+        cell.auto_number = i + 1;
+        return (<Cell
+          key={i}
+          cell={cell}
+          syntaxTheme={syntaxTheme}
+          language={language}
+          bgTransparent={bgTransparent}
+          formulaOptions={formulaOptions}
+        />)
+      })
     }
   </div>);
 });

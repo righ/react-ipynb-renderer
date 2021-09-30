@@ -62,7 +62,7 @@ export const Cell: React.FC<Props> = ({ cell, syntaxTheme, language, bgTranspare
   return <div className="cell border-box-sizing code_cell rendered">
     <div className="input">
       <div className="prompt input_prompt">
-        {cell.cell_type === "code" ? <>In [{cell.execution_count || cell.prompt_number}]:</> : null}
+        {cell.cell_type === "code" ? <>In [{cell.execution_count || cell.prompt_number || cell.auto_number}]:</> : null}
       </div>
       <div className="inner_cell">
         {

@@ -26,9 +26,10 @@ export type CellType = {
   cell_type?: string;
   execution_count?: number | null;
   prompt_number?: number;
+  auto_number?: number;
   source?: string[];
-  outputs?: OutputType[],
-  input?: string[],
+  outputs?: OutputType[];
+  input?: string[];
 };
 
 export type SyntaxThemeType = "atomDark" | "cb" | "coy" | "darcula" | "dark" | "duotoneDark" | "duotoneEarth" | "duotoneForest" | "duotoneLight" | "duotoneSea" | "duotoneSpace" | "funky" | "ghcolors" | "hopscotch" | "okaidia" | "pojoaque" | "prism" | "solarizedlight" | "tomorrow" | "twilight" | "vscDarkPlus" | "xonokai";

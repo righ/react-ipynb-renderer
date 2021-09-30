@@ -42,7 +42,7 @@ export const Component: React.FC = () => {
       language="python"
       bgTransparent={true}
       formulaOptions={{ // optional
-        renderer: "mathjax", // or katex
+        renderer: "mathjax", // katex by default
         mathjaxContextProps: { version: 2 }, // mathjax3 by default
         mathjaxProps: {dynamic: true},
         katex: {
@@ -56,6 +56,9 @@ export const Component: React.FC = () => {
   </>);
 };
 ```
+
+## codesandbox
+https://codesandbox.io/s/react-ipynb-renderer-sample-kbu4z?file=/src/App.tsx
 
 ### supporting nbformat
 - 5?
@@ -119,7 +122,7 @@ You can select one of [prism](https://github.com/react-syntax-highlighter/react-
 
 Pass the theme string to syntaxTheme prop.
 
-```html
+```jsx
 <IpynbRenderer
   ipynb={ipynb}
   syntaxTheme="xonokai"
