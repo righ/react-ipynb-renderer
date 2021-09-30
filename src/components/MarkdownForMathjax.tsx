@@ -1,6 +1,8 @@
 import React from "react";
 
-import { MathpixMarkdown, MathpixLoader, } from 'mathpix-markdown-it';
+import MarkdownIt from 'markdown-it';
+// @ts-ignore
+import mdim from 'markdown-it-mathjax3';
 import { FormulaOptions } from "types";
 
 type Props = {
@@ -8,8 +10,10 @@ type Props = {
   formulaOptions: FormulaOptions;
 };
 
+const mdi = new MarkdownIt();
+mdi.use(mdim);
+
 export const MarkdownForMathjax: React.FC<Props> = ({ text, formulaOptions }) => {
-  return (<MathpixLoader>
-    <MathpixMarkdown {...formulaOptions?.mathjax?.markdown} text={text} />
-  </MathpixLoader>);
+
+  return (<div dangerouslySetInnerHTML={{ __html: mdi.render(text) }}></div>);
 };

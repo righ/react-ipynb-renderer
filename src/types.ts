@@ -1,6 +1,4 @@
-import {
-  optionsMathpixMarkdown,
-} from "mathpix-markdown-it/lib/mathpix-markdown-model";
+
 import { KatexOptions } from "katex";
 
 export type OutputType = {
@@ -39,9 +37,7 @@ export type LanguageType = "python" | "r";
 
 export type FormulaOptions = {
   renderer?: "mathjax" | "katex";
-  mathjax?: {
-    markdown?: optionsMathpixMarkdown;
-  };
+  mathjax?: {};
   katex?: {
     engine?: any;
     delimiters?: 'dollars' | 'brackets' | 'gitlab' | 'julia' | 'kramdown';
