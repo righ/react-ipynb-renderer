@@ -3,7 +3,9 @@ import React from "react";
 import MarkdownIt from 'markdown-it';
 // @ts-ignore
 import mdit from 'markdown-it-texmath';
-import { FormulaOptions } from "types";
+import { FormulaOptions } from "../types";
+
+import 'katex/dist/katex.min.css';
 
 type Props = {
   text: string;
