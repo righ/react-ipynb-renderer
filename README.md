@@ -25,7 +25,7 @@ Just pass an ipynb json object to `IpynbRenderer` component.
 
 ## Code example
 
-```jax
+```jsx
 import React from "react";
 import { IpynbRenderer } from "react-ipynb-renderer";
 
