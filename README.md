@@ -25,9 +25,12 @@ Just pass an ipynb json object to `IpynbRenderer` component.
 
 ## Code example
 
-```typescript
+```jax
 import React from "react";
 import { IpynbRenderer } from "react-ipynb-renderer";
+
+// Formula renderer for katex
+import 'katex/dist/katex.min.css';
 
 // Jupyter theme
 import "react-ipynb-renderer/dist/styles/monokai.css";
@@ -55,7 +58,7 @@ export const Component: React.FC = () => {
 };
 ```
 
-## codesandbox
+### sample
 https://codesandbox.io/s/react-ipynb-renderer-sample-kbu4z?file=/src/App.tsx
 
 ### supporting nbformat
@@ -132,7 +135,12 @@ The background color of the code is transparent by default. For this reason, dep
 You pass `bgTransparent={false}`, code background color gets back to highlighting color.
 
 # Formula
-You can choose between mathjax and katex for the formula.
+You can choose between katex and mathjax for the formula.
 
+Specify `"katex"` or `"mathjax"` to `formulaOptions.renderer`. (`katex` will be used by default)
+If you use `katex` renderer, import `katex/dist/katex.min.css` like the following:
 
+```typescript
+import 'katex/dist/katex.min.css';
+```
 
