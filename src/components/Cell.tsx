@@ -49,7 +49,7 @@ export const Cell: React.FC<Props> = ({ cell, syntaxTheme, language, bgTranspare
             if (cell.cell_type === "code") {
               return (<div className="input_area">
                 <div className="highlight hl-ipython3">
-                  {source && <Prism language={language} style={{ ...prismStyle, ...styleOverridden }} customeStyle={{
+                  {source && <Prism language={language} style={{ ...prismStyle, ...styleOverridden }} customStyle={{
                     backgroundColor: "transparent",
                   }}>
                     {source}
