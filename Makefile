@@ -19,6 +19,10 @@ minor:
 major:
 	npm version major
 
+.PHONY: analyze
+analyze:
+	yarn && yarn run analyze
+
 .PHONY: build
 build: build_js build_css
 

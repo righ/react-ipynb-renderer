@@ -7,6 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf ./dist && webpack",
+    "analyze": "rm -rf ./dist && webpack --analyze",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "build-chesterish-css": "lessc ./src/styles/chesterish.less ./dist/styles/chesterish.css",
@@ -59,9 +60,11 @@
     "react-dom": ">=16.9.0",
     "react-is": "^16.13.1",
     "require-context.macro": "^1.2.2",
+    "terser-webpack-plugin": "^5.2.4",
     "ts-loader": "8.2.0",
     "typescript": "^4.0.3",
     "typescript-declaration-webpack-plugin": "^0.2.2",
+    "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^4.7.0"
   },
   "peerDependencies": {
