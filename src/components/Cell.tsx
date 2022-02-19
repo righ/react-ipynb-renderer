@@ -43,7 +43,7 @@ export const Cell: React.FC<Props> = ({ cell, syntaxTheme, language, bgTranspare
               return (<div
                 className="text_cell_render border-box-sizing rendered_html"
               >
-                <Markdown text={source} formulaOptions={formulaOptions} />
+                <Markdown text={embedAttachments(source, cell.attachments)} formulaOptions={formulaOptions} />
               </div>)
             }
             if (cell.cell_type === "code") {
@@ -156,4 +156,15 @@ export const Cell: React.FC<Props> = ({ cell, syntaxTheme, language, bgTranspare
   </div >
 };
 
-
+const embedAttachments = (source: string, attachments: CellType["attachments"] = {}) => {
+  Object.entries(attachments).map(([name, mimes]) => {
+    const mime = [...Object.keys(mimes)][0];
+    if (mime == null) {
+      return;
+    }
+    const data = `data:${mime};base64,${mimes[mime]}`;
+    const re = new RegExp(`attachment:${name}`, "g");
+    source = source.replace(re, data);
+  });
+  return source;
+};

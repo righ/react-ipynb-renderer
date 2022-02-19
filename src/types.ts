@@ -23,6 +23,9 @@ export type OutputType = {
 };
 
 export type CellType = {
+  attachments?: {[s: string]: {
+    [s: string]: string;
+  }};
   cell_type?: string;
   execution_count?: number | null;
   prompt_number?: number;
