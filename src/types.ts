@@ -1,5 +1,5 @@
-
 import { KatexOptions } from "katex";
+import { Options as MarkdownItOptions } from "markdown-it";
 
 export type OutputType = {
   data?: {
@@ -19,13 +19,15 @@ export type OutputType = {
   execution_count?: number;
   metadata?: {
     scrolled?: boolean;
-  },
+  };
 };
 
 export type CellType = {
-  attachments?: {[s: string]: {
-    [s: string]: string;
-  }};
+  attachments?: {
+    [s: string]: {
+      [s: string]: string;
+    };
+  };
   cell_type?: string;
   execution_count?: number | null;
   prompt_number?: number;
@@ -35,7 +37,29 @@ export type CellType = {
   input?: string[];
 };
 
-export type SyntaxThemeType = "atomDark" | "cb" | "coy" | "darcula" | "dark" | "duotoneDark" | "duotoneEarth" | "duotoneForest" | "duotoneLight" | "duotoneSea" | "duotoneSpace" | "funky" | "ghcolors" | "hopscotch" | "okaidia" | "pojoaque" | "prism" | "solarizedlight" | "tomorrow" | "twilight" | "vscDarkPlus" | "xonokai";
+export type SyntaxThemeType =
+  | "atomDark"
+  | "cb"
+  | "coy"
+  | "darcula"
+  | "dark"
+  | "duotoneDark"
+  | "duotoneEarth"
+  | "duotoneForest"
+  | "duotoneLight"
+  | "duotoneSea"
+  | "duotoneSpace"
+  | "funky"
+  | "ghcolors"
+  | "hopscotch"
+  | "okaidia"
+  | "pojoaque"
+  | "prism"
+  | "solarizedlight"
+  | "tomorrow"
+  | "twilight"
+  | "vscDarkPlus"
+  | "xonokai";
 export type LanguageType = "python" | "r";
 
 export type FormulaOptions = {
@@ -43,19 +67,20 @@ export type FormulaOptions = {
   mathjax?: {};
   katex?: {
     engine?: any;
-    delimiters?: 'dollars' | 'brackets' | 'gitlab' | 'julia' | 'kramdown';
+    delimiters?: "dollars" | "brackets" | "gitlab" | "julia" | "kramdown";
     katexOptions?: KatexOptions;
   };
 };
 
 export type Props = {
   ipynb: {
-    cells: CellType[],
-    nbformat: 3 | 4 | 5,
+    cells: CellType[];
+    nbformat: 3 | 4 | 5;
     worksheets?: { cells: CellType[] }[];
   };
   syntaxTheme?: SyntaxThemeType;
   language?: LanguageType;
   bgTransparent?: boolean;
   formulaOptions?: FormulaOptions;
+  mdiOptions?: MarkdownItOptions;
 };

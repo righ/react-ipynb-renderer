@@ -53,6 +53,10 @@ export const Component: React.FC = () => {
           },
         }
       }}
+      mdiOptions={{
+        html: true,
+        linkify: true,
+      }}
     />
   </>);
 };

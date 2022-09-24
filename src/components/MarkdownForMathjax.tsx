@@ -1,19 +1,23 @@
 import React from "react";
 
-import MarkdownIt from 'markdown-it';
+import MarkdownIt, { Options as MarkdownItOptions } from "markdown-it";
 // @ts-ignore
-import mdim from 'markdown-it-mathjax3';
+import mdim from "markdown-it-mathjax3";
 import { FormulaOptions } from "types";
 
 type Props = {
   text: string;
   formulaOptions: FormulaOptions;
+  mdiOptions: MarkdownItOptions;
 };
 
-const mdi = new MarkdownIt();
-mdi.use(mdim);
+export const MarkdownForMathjax: React.FC<Props> = ({
+  text,
+  formulaOptions,
+  mdiOptions,
+}) => {
+  const mdi = new MarkdownIt(mdiOptions);
+  mdi.use(mdim);
 
-export const MarkdownForMathjax: React.FC<Props> = ({ text, formulaOptions }) => {
-
-  return (<div dangerouslySetInnerHTML={{ __html: mdi.render(text) }}></div>);
+  return <div dangerouslySetInnerHTML={{ __html: mdi.render(text) }}></div>;
 };
