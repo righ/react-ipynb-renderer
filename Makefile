@@ -8,15 +8,15 @@ release_prerelease:
 	npm version prerelease
 
 .PHONY: release_patch
-patch:
+release_patch:
 	npm version patch
 
 .PHONY: release_minor
-minor:
+release_minor:
 	npm version minor
 
 .PHONY: release_major
-major:
+release_major:
 	npm version major
 
 .PHONY: analyze
