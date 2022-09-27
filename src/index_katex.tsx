@@ -6,7 +6,7 @@ import {
 } from "./components/MarkdownForKatex";
 import { Props as DefaultProps } from "./types";
 
-import pkg from "../package.json";
+import pkg from "../katex/package.json";
 
 console.debug(`react-ipynb-renderer-katex@${pkg.version} is working.`);
 
