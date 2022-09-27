@@ -26,6 +26,6 @@ jobs:
         run: |
           git submodule update --init --recursive
           make build
-          make build_css
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
           npm publish || true
+          cd katex && npm publish || true
