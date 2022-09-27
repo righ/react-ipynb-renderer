@@ -1,6 +1,5 @@
 import React from "react";
 import { KatexOptions } from "katex";
-import "katex/dist/katex.min.css";
 
 import MarkdownIt, { Options as MarkdownItOptions } from "markdown-it";
 // @ts-ignore
