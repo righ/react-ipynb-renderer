@@ -1,7 +1,7 @@
 import React from "react";
 import "katex/dist/katex.min.css";
 
-import { IpynbRenderer } from "../src";
+import { IpynbRenderer } from "../src/index";
 import pca1 from "./pca1.ipynb";
 import matrix from "./matrix-3.ipynb";
 
@@ -17,12 +17,6 @@ export const cb = () => {
       <IpynbRenderer
         ipynb={pca1}
         syntaxTheme="cb"
-        formulaOptions={{
-          renderer: "katex",
-          katex: {
-            delimiters: "doxygen",
-          },
-        }}
         mdiOptions={{ html: true, linkify: true }}
       />
     </>

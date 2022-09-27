@@ -1,17 +1,17 @@
 import React from "react";
 import { Cell } from "./components/Cell";
 import {
-  FormulaOptionsForMathjax,
-  MarkdownForMathjax,
-} from "./components/MarkdownForMathjax";
+  FormulaOptionsForKatex,
+  MarkdownForKatex,
+} from "./components/MarkdownForKatex";
 import { Props as DefaultProps } from "./types";
 
-import pkg from "../package.json";
+import pkg from "../katex/package.json";
 
-console.debug(`react-ipynb-renderer@${pkg.version} is working.`);
+console.debug(`react-ipynb-renderer-katex@${pkg.version} is working.`);
 
 type Props = DefaultProps & {
-  formulaOptions?: FormulaOptionsForMathjax;
+  formulaOptions?: FormulaOptionsForKatex;
 };
 
 export const IpynbRenderer: React.FC<Props> = React.memo(
@@ -26,7 +26,7 @@ export const IpynbRenderer: React.FC<Props> = React.memo(
     const cells =
       ipynb.cells || (ipynb.worksheets && ipynb.worksheets[0].cells) || [];
     return (
-      <div className="react-ipynb-renderer-mathjax react-ipynb-renderer ipynb-renderer-root container">
+      <div className="react-ipynb-renderer-katex react-ipynb-renderer ipynb-renderer-root container">
         {cells.map((cell, i) => {
           cell.auto_number = i + 1;
           return (
@@ -38,7 +38,7 @@ export const IpynbRenderer: React.FC<Props> = React.memo(
               bgTransparent={bgTransparent}
               formulaOptions={formulaOptions}
               mdiOptions={mdiOptions}
-              Markdown={MarkdownForMathjax}
+              Markdown={MarkdownForKatex}
             />
           );
         })}

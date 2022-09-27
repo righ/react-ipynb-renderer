@@ -12,7 +12,7 @@ module.exports = {
     "react-dom": "commonjs react-dom",
   },
   entry: {
-    home: "./src/index.tsx",
+    home: "../src/index_katex.tsx",
   },
   output: {
     libraryTarget: "umd",

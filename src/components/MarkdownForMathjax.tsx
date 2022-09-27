@@ -3,11 +3,12 @@ import React from "react";
 import MarkdownIt, { Options as MarkdownItOptions } from "markdown-it";
 // @ts-ignore
 import mdim from "markdown-it-mathjax3";
-import { FormulaOptions } from "types";
+
+export type FormulaOptionsForMathjax = {};
 
 type Props = {
   text: string;
-  formulaOptions: FormulaOptions;
+  formulaOptions: FormulaOptionsForMathjax;
   mdiOptions: MarkdownItOptions;
 };
 
