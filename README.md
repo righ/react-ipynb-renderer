@@ -166,7 +166,7 @@ Pass the theme string to syntaxTheme prop.
 
 ### bgTransparent prop
 The background color of the code is transparent by default. For this reason, depending on the combination with jupyter theme, it may be difficult to see the text color.
-You pass `bgTransparent={false}`, code background color gets back to highlighting color.
+If you pass `bgTransparent={false}`, code background color will get back to highlighting color.
 
 
 # Migrate for v1.0.0
@@ -174,23 +174,94 @@ You pass `bgTransparent={false}`, code background color gets back to highlightin
 ## If you were using renderer mathjax
 
 Remove the following code.
-- `katex.min.css` import.
+- `katex.min.css` import (if you wrote)
+  - Originally, it is not used in Mathjax.
 - formulaOption prop.
-
-## If you were using react-ipynb-renderer
-
-Rename `katex` to `texmath` in formulaOption.
 
 ### before
 
 ```jsx
+import { IpynbRenderer } from "react-ipynb-renderer";
+
+// Formula renderer for katex
+// import 'katex/dist/katex.min.css'; // Remove this
+
+// Jupyter theme
+import "react-ipynb-renderer-katex/dist/styles/monokai.css";
+// import ipynb file as json
+import ipynb from "./test.ipynb";
+
+export const Component = () => {
+  return (<>
+    <IpynbRenderer
+      ipynb={ipynb}
+      syntaxTheme="xonokai"
+      language="python"
+      bgTransparent={true}
+      formulaOptions={{ // Remove this
+        renderer: "mathjax",
+      }}
+      mdiOptions={{
+        html: true,
+        linkify: true,
+      }}
+    />
+  </>);
+};
+```
+
+### after
+```jsx
+import { IpynbRenderer } from "react-ipynb-renderer";
+
+// Jupyter theme
+import "react-ipynb-renderer-katex/dist/styles/monokai.css";
+// import ipynb file as json
+import ipynb from "./test.ipynb";
+
+export const Component = () => {
+  return (<>
+    <IpynbRenderer
+      ipynb={ipynb}
+      syntaxTheme="xonokai"
+      language="python"
+      bgTransparent={true}
+      mdiOptions={{
+        html: true,
+        linkify: true,
+      }}
+    />
+  </>);
+};
+```
+
+## If you were using renderer katex
+
+- Rename `katex` to `texmath` in formulaOption.
+- Change import name `react-ipynb-render` to `react-ipynb-renderer-katex`.
+
+### before
+
+```jsx
+import { IpynbRenderer } from "react-ipynb-renderer"; // Change
+
+// Formula renderer for katex
+import 'katex/dist/katex.min.css';
+
+// Jupyter theme
+import "react-ipynb-renderer-katex/dist/styles/monokai.css";
+// import ipynb file as json
+import ipynb from "./test.ipynb";
+
+export const Component = () => {
+  return (<>
     <IpynbRenderer
       ipynb={ipynb}
       syntaxTheme="xonokai"
       language="python"
       bgTransparent={true}
       formulaOptions={{
-        renderer: "mathjax", // Remove this
+        renderer: "katex", // Remove this
         katex: { // Rename this to texmath
           delimiters: "gitlab",
           katexOptions: {
@@ -203,18 +274,32 @@ Rename `katex` to `texmath` in formulaOption.
         linkify: true,
       }}
     />
+  </>);
+};
 ```
 
 ### after
 ```jsx
+import { IpynbRenderer } from "react-ipynb-renderer-katex";
+
+// Formula renderer for katex
+import 'katex/dist/katex.min.css';
+
+// Jupyter theme
+import "react-ipynb-renderer-katex/dist/styles/monokai.css";
+// import ipynb file as json
+import ipynb from "./test.ipynb";
+
+export const Component = () => {
+  return (<>
     <IpynbRenderer
       ipynb={ipynb}
       syntaxTheme="xonokai"
       language="python"
       bgTransparent={true}
-      formulaOptions={{ // optional
+      formulaOptions={{
         texmath: {
-          delimiters: "gitlab", // dollars by default
+          delimiters: "gitlab",
           katexOptions: {
             fleqn: false,
           },
@@ -225,4 +310,6 @@ Rename `katex` to `texmath` in formulaOption.
         linkify: true,
       }}
     />
+  </>);
+};
 ```
