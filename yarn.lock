@@ -6925,10 +6925,10 @@ markdown-it-mathjax3@^3.0.0-0:
     juice "^8.0.0"
     mathjax-full "^3.2.0"
 
-markdown-it-texmath@^0.9.1:
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/markdown-it-texmath/-/markdown-it-texmath-0.9.1.tgz#fdf1442afbca474e9170b9707b6155125384bae2"
-  integrity sha512-hRA5KQcgBJf5q3qDBcui4s/VkzjGC/l1ILviLNrdW22cT9JXHKdEA2ZTk1RRtFuiif2AbrbiMEoEwV6tBFwiEw==
+markdown-it-texmath@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/markdown-it-texmath/-/markdown-it-texmath-1.0.0.tgz#65703b235d07a8f96bc58cbf9d478af57154e5f0"
+  integrity sha512-4hhkiX8/gus+6e53PLCUmUrsa6ZWGgJW2XCW6O0ASvZUiezIK900ZicinTDtG3kAO2kon7oUA/ReWmpW2FByxg==
 
 markdown-it@^12.0.6:
   version "12.0.6"

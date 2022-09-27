@@ -17,6 +17,12 @@ export const cb = () => {
       <IpynbRenderer
         ipynb={pca1}
         syntaxTheme="cb"
+        formulaOptions={{
+          renderer: "katex",
+          katex: {
+            delimiters: "doxygen",
+          },
+        }}
         mdiOptions={{ html: true, linkify: true }}
       />
     </>

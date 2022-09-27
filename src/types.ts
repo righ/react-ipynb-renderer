@@ -67,7 +67,15 @@ export type FormulaOptions = {
   mathjax?: {};
   katex?: {
     engine?: any;
-    delimiters?: "dollars" | "brackets" | "gitlab" | "julia" | "kramdown";
+    // https://github.com/goessner/markdown-it-texmath#features
+    delimiters?:
+      | "dollars"
+      | "brackets"
+      | "doxygen"
+      | "gitlab"
+      | "julia"
+      | "kramdown"
+      | "beg_end";
     katexOptions?: KatexOptions;
   };
 };
