@@ -23,6 +23,10 @@ release_major:
 analyze:
 	yarn && yarn run analyze
 
+.PHONY: analyze_katex
+analyze_katex:
+	cd katex && yarn && yarn run analyze
+
 .PHONY: build
 build: build_js build_css
 
