@@ -167,3 +167,62 @@ Pass the theme string to syntaxTheme prop.
 ### bgTransparent prop
 The background color of the code is transparent by default. For this reason, depending on the combination with jupyter theme, it may be difficult to see the text color.
 You pass `bgTransparent={false}`, code background color gets back to highlighting color.
+
+
+# Migrate for v1.0.0
+
+## If you were using renderer mathjax
+
+Remove the following code.
+- `katex.min.css` import.
+- formulaOption prop.
+
+## If you were using react-ipynb-renderer
+
+Rename `katex` to `texmath` in formulaOption.
+
+### before
+
+```jsx
+    <IpynbRenderer
+      ipynb={ipynb}
+      syntaxTheme="xonokai"
+      language="python"
+      bgTransparent={true}
+      formulaOptions={{
+        renderer: "mathjax", // Remove this
+        katex: { // Rename this to texmath
+          delimiters: "gitlab",
+          katexOptions: {
+            fleqn: false,
+          },
+        }
+      }}
+      mdiOptions={{
+        html: true,
+        linkify: true,
+      }}
+    />
+```
+
+### after
+```jsx
+    <IpynbRenderer
+      ipynb={ipynb}
+      syntaxTheme="xonokai"
+      language="python"
+      bgTransparent={true}
+      formulaOptions={{ // optional
+        texmath: {
+          delimiters: "gitlab", // dollars by default
+          katexOptions: {
+            fleqn: false,
+          },
+        }
+      }}
+      mdiOptions={{
+        html: true,
+        linkify: true,
+      }}
+    />
+```
