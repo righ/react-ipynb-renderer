@@ -67,7 +67,7 @@ export type FormulaOptions = {
   mathjax?: {};
   katex?: {
     engine?: any;
-    delimiters?: "dollars" | "brackets" | "gitlab" | "kramdown";
+    delimiters?: "dollars" | "brackets" | "gitlab" | "julia" | "kramdown";
     katexOptions?: KatexOptions;
   };
 };
