@@ -3,21 +3,20 @@ import { Prism } from "react-syntax-highlighter";
 import * as PrismStyles from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { Options as MarkdownItOptions } from "markdown-it";
 
-import {
-  CellType,
-  SyntaxThemeType,
-  LanguageType,
-  FormulaOptions,
-} from "../types";
-import { Markdown } from "./Markdown";
+import { CellType, SyntaxThemeType, LanguageType } from "../types";
 
 type Props = {
   cell: CellType;
   syntaxTheme: SyntaxThemeType;
   language: LanguageType;
   bgTransparent: boolean;
-  formulaOptions?: FormulaOptions;
+  formulaOptions?: any;
   mdiOptions: MarkdownItOptions;
+  Markdown: React.FC<{
+    text: string;
+    formulaOptions: any;
+    mdiOptions: MarkdownItOptions;
+  }>;
 };
 
 export const defaultFormulaRenderer = "katex";
@@ -29,6 +28,7 @@ export const Cell: React.FC<Props> = ({
   bgTransparent = true,
   formulaOptions = {},
   mdiOptions,
+  Markdown,
 }) => {
   const prismStyle = PrismStyles[syntaxTheme];
   const styleOverridden = {

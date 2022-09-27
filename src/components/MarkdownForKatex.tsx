@@ -1,13 +1,30 @@
 import React from "react";
+import { KatexOptions } from "katex";
+import "katex/dist/katex.min.css";
 
 import MarkdownIt, { Options as MarkdownItOptions } from "markdown-it";
 // @ts-ignore
 import mdit from "markdown-it-texmath";
-import { FormulaOptions } from "types";
+
+export type FormulaOptionsForKatex = {
+  texmath: {
+    engine?: any;
+    // https://github.com/goessner/markdown-it-texmath#features
+    delimiters?:
+      | "dollars"
+      | "brackets"
+      | "doxygen"
+      | "gitlab"
+      | "julia"
+      | "kramdown"
+      | "beg_end";
+    katexOptions?: KatexOptions;
+  };
+};
 
 type Props = {
   text: string;
-  formulaOptions: FormulaOptions;
+  formulaOptions: FormulaOptionsForKatex;
   mdiOptions: MarkdownItOptions;
 };
 
@@ -20,7 +37,7 @@ export const MarkdownForKatex: React.FC<Props> = ({
   mdi.use(mdit, {
     engine: require("katex"),
     delimiters: "dollars",
-    ...formulaOptions.katex,
+    ...formulaOptions.texmath,
   });
   return (
     <div

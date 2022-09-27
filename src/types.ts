@@ -1,4 +1,3 @@
-import { KatexOptions } from "katex";
 import { Options as MarkdownItOptions } from "markdown-it";
 
 export type OutputType = {
@@ -62,24 +61,6 @@ export type SyntaxThemeType =
   | "xonokai";
 export type LanguageType = "python" | "r" | "julia";
 
-export type FormulaOptions = {
-  renderer?: "mathjax" | "katex";
-  mathjax?: {};
-  katex?: {
-    engine?: any;
-    // https://github.com/goessner/markdown-it-texmath#features
-    delimiters?:
-      | "dollars"
-      | "brackets"
-      | "doxygen"
-      | "gitlab"
-      | "julia"
-      | "kramdown"
-      | "beg_end";
-    katexOptions?: KatexOptions;
-  };
-};
-
 export type Props = {
   ipynb: {
     cells: CellType[];
@@ -89,6 +70,5 @@ export type Props = {
   syntaxTheme?: SyntaxThemeType;
   language?: LanguageType;
   bgTransparent?: boolean;
-  formulaOptions?: FormulaOptions;
   mdiOptions?: MarkdownItOptions;
 };

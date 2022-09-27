@@ -1,13 +1,13 @@
 {
-  "name": "react-ipynb-renderer",
+  "name": "react-ipynb-renderer-katex",
   "version": "0.3.3",
-  "description": "A react component that displays an ipynb file.",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "description": "A react component that displays an ipynb file",
+  "main": "dist/index_katex.js",
+  "module": "dist/index_katex.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm -rf ./dist && webpack",
-    "analyze": "rm -rf ./dist && webpack --analyze",
+    "build": "rm -rf ./dist && webpack --config ./webpack.config.katex.js",
+    "analyze": "rm -rf ./dist && webpack --analyze --config ./webpack.config.katex.js",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "build-chesterish-css": "lessc ./src/styles/chesterish.less ./dist/styles/chesterish.css",
@@ -22,13 +22,7 @@
   },
   "author": "righ",
   "license": "Apache-2.0",
-  "keywords": [
-    "jupyter",
-    "ipynb",
-    "notebook",
-    "ipython",
-    "jupyterlab"
-  ],
+  "keywords": ["jupyter", "ipynb", "notebook", "ipython", "jupyterlab"],
   "devDependencies": {
     "@babel/cli": "^7.14.3",
     "@babel/core": "^7.14.3",
@@ -43,7 +37,6 @@
     "@types/markdown-it": "^12.0.1",
     "@types/node": "^15.12.1",
     "@types/react": "^16.9.49",
-    "@types/react-syntax-highlighter": "^15.5.5",
     "@types/storybook__react": "^5.2.1",
     "@types/styled-components": "^5.1.7",
     "@typescript-eslint/eslint-plugin": "^4.14.2",
@@ -54,10 +47,8 @@
     "eslint-plugin-prettier": "^3.3.1",
     "file-loader": "^6.2.0",
     "json-loader": "^0.5.7",
-    "katex": "^0.13.18",
     "less": "^4.1.1",
     "less-loader": "7.3.0",
-    "markdown-it-texmath": "^1.0.0",
     "prettier": "2.2.1",
     "react": ">=16.9.0",
     "react-dom": ">=16.9.0",
@@ -75,14 +66,12 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
+    "katex": "^0.13.18",
     "markdown-it": "^12.0.6",
-    "markdown-it-mathjax3": "^3.0.0-0",
+    "markdown-it-texmath": "^1.0.0",
     "react-syntax-highlighter": "^15.4.3"
   },
-  "files": [
-    "dist/",
-    "package.json"
-  ],
+  "files": ["dist/", "package.json"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/righ/react-ipynb-renderer.git"
