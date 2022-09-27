@@ -60,7 +60,7 @@ export type SyntaxThemeType =
   | "twilight"
   | "vscDarkPlus"
   | "xonokai";
-export type LanguageType = "python" | "r";
+export type LanguageType = "python" | "r" | "julia";
 
 export type FormulaOptions = {
   renderer?: "mathjax" | "katex";
