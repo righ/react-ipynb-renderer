@@ -6,7 +6,7 @@ import MarkdownIt, { Options as MarkdownItOptions } from "markdown-it";
 import mdit from "markdown-it-texmath";
 
 export type FormulaOptionsForKatex = {
-  texmath: {
+  texmath?: {
     engine?: any;
     // https://github.com/goessner/markdown-it-texmath#features
     delimiters?:
