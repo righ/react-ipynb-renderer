@@ -11,7 +11,7 @@ import pkg from "../package.json";
 console.debug(`react-ipynb-renderer-katex@${pkg.version} is working.`);
 
 type Props = DefaultProps & {
-  formulaOptions: FormulaOptionsForKatex;
+  formulaOptions?: FormulaOptionsForKatex;
 };
 
 export const IpynbRenderer: React.FC<Props> = React.memo(

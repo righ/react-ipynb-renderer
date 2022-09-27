@@ -11,7 +11,7 @@ import pkg from "../package.json";
 console.debug(`react-ipynb-renderer@${pkg.version} is working.`);
 
 type Props = DefaultProps & {
-  formulaOptions: FormulaOptionsForMathjax;
+  formulaOptions?: FormulaOptionsForMathjax;
 };
 
 export const IpynbRenderer: React.FC<Props> = React.memo(
