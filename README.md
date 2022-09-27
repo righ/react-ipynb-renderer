@@ -174,7 +174,7 @@ If you pass `bgTransparent={false}`, code background color will get back to high
 ## If you were using renderer mathjax
 
 Remove the following code.
-- `katex.min.css` import (if you wrote)
+- `katex.min.css` import (if you have been written)
   - Originally, it is not used in Mathjax.
 - formulaOption prop.
 
