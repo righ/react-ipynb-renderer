@@ -32,7 +32,6 @@ Just pass an ipynb json object to `IpynbRenderer` component.
 ### Using react-ipynb-renderer
 
 ```jsx
-import React from "react";
 import { IpynbRenderer } from "react-ipynb-renderer";
 
 // Jupyter theme
@@ -40,7 +39,7 @@ import "react-ipynb-renderer/dist/styles/monokai.css";
 // import ipynb file as json
 import ipynb from "./test.ipynb";
 
-export const Component: React.FC = () => {
+export const Component = () => {
   return (<>
     <IpynbRenderer
       ipynb={ipynb}
@@ -59,7 +58,6 @@ export const Component: React.FC = () => {
 ### Using react-ipynb-renderer-katex
 
 ```jsx
-import React from "react";
 import { IpynbRenderer } from "react-ipynb-renderer-katex";
 
 // Formula renderer for katex
@@ -70,7 +68,7 @@ import "react-ipynb-renderer-katex/dist/styles/monokai.css";
 // import ipynb file as json
 import ipynb from "./test.ipynb";
 
-export const Component: React.FC = () => {
+export const Component = () => {
   return (<>
     <IpynbRenderer
       ipynb={ipynb}
@@ -78,10 +76,12 @@ export const Component: React.FC = () => {
       language="python"
       bgTransparent={true}
       formulaOptions={{ // optional
-        delimiters: "gitlab", // dollars by default
-        katexOptions: {
-          fleqn: false,
-        },
+        texmath: {
+          delimiters: "gitlab", // dollars by default
+          katexOptions: {
+            fleqn: false,
+          },
+        }
       }}
       mdiOptions={{
         html: true,
