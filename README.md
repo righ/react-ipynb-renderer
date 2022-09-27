@@ -187,7 +187,7 @@ import { IpynbRenderer } from "react-ipynb-renderer";
 // import 'katex/dist/katex.min.css'; // Remove this
 
 // Jupyter theme
-import "react-ipynb-renderer-katex/dist/styles/monokai.css";
+import "react-ipynb-renderer/dist/styles/monokai.css";
 // import ipynb file as json
 import ipynb from "./test.ipynb";
 
@@ -215,7 +215,7 @@ export const Component = () => {
 import { IpynbRenderer } from "react-ipynb-renderer";
 
 // Jupyter theme
-import "react-ipynb-renderer-katex/dist/styles/monokai.css";
+import "react-ipynb-renderer/dist/styles/monokai.css";
 // import ipynb file as json
 import ipynb from "./test.ipynb";
 
@@ -249,7 +249,7 @@ import { IpynbRenderer } from "react-ipynb-renderer"; // Change
 import 'katex/dist/katex.min.css';
 
 // Jupyter theme
-import "react-ipynb-renderer-katex/dist/styles/monokai.css";
+import "react-ipynb-renderer/dist/styles/monokai.css"; // Change
 // import ipynb file as json
 import ipynb from "./test.ipynb";
 
