@@ -4,13 +4,13 @@ import {
   FormulaOptionsForKatex,
   MarkdownForKatex,
 } from "./components/MarkdownForKatex";
-import { Props as DefaultProps } from "./types";
+import { BaseProps } from "./types";
 
 import pkg from "../katex/package.json";
 
 console.debug(`react-ipynb-renderer-katex@${pkg.version} is working.`);
 
-type Props = DefaultProps & {
+export type Props = BaseProps & {
   formulaOptions?: FormulaOptionsForKatex;
 };
 

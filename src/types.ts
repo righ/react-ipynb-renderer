@@ -61,7 +61,7 @@ export type SyntaxThemeType =
   | "xonokai";
 export type LanguageType = "python" | "r" | "julia";
 
-export type Props = {
+export type BaseProps = {
   ipynb: {
     cells: CellType[];
     nbformat: 3 | 4 | 5;

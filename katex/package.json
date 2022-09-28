@@ -1,6 +1,6 @@
 {
   "name": "react-ipynb-renderer-katex",
-  "version": "1.0.1-0",
+  "version": "1.0.1-1",
   "description": "A react component that displays an ipynb file for katex.",
   "main": "dist/index.js",
   "module": "dist/index.js",

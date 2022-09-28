@@ -4,13 +4,13 @@ import {
   FormulaOptionsForMathjax,
   MarkdownForMathjax,
 } from "./components/MarkdownForMathjax";
-import { Props as DefaultProps } from "./types";
+import { BaseProps } from "./types";
 
 import pkg from "../package.json";
 
 console.debug(`react-ipynb-renderer@${pkg.version} is working.`);
 
-type Props = DefaultProps & {
+export type Props = BaseProps & {
   formulaOptions?: FormulaOptionsForMathjax;
 };
 

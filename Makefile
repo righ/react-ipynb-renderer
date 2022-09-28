@@ -6,6 +6,10 @@ init:
 	git submodule update --init --recursive
 	npm install yarn -g
 
+.PHONY: audit_fix
+audit_fix:
+	yarn run yarn-audit-fix
+
 .PHONY: release_prerelease
 release_prerelease:
 	$(eval NEW_TAG := $(shell npm version prerelease))
