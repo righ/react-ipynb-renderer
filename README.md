@@ -93,6 +93,8 @@ export const Component = () => {
 ### sample
 https://codesandbox.io/s/react-ipynb-renderer-sample-kbu4z?file=/src/App.tsx
 
+https://codesandbox.io/s/react-ipynb-renderer-katex-sample-770np1?file=/src/App.tsx
+
 ### supporting nbformat
 - 5?
 - 4
