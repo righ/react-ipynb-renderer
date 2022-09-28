@@ -28,4 +28,5 @@ jobs:
           make build
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
           npm publish || true
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > katex/.npmrc
           cd katex && npm publish || true
