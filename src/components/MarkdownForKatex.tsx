@@ -21,13 +21,13 @@ export type FormulaOptionsForKatex = {
   };
 };
 
-type Props = {
+type MarkdownProps = {
   text: string;
   formulaOptions: FormulaOptionsForKatex;
   mdiOptions: MarkdownItOptions;
 };
 
-export const MarkdownForKatex: React.FC<Props> = ({
+export const MarkdownForKatex: React.FC<MarkdownProps> = ({
   text,
   formulaOptions,
   mdiOptions,

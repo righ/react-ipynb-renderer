@@ -46,7 +46,10 @@ export const Component = () => {
       bgTransparent={true}
       formulaOptions={{ // optional
         mathjax3: {
-          tags: 'ams',
+          // https://docs.mathjax.org/en/v3.0-latest/options/input/tex.html
+          tex: {
+            tags: 'ams',
+          },
         }
       }}
       mdiOptions={{

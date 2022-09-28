@@ -5,7 +5,7 @@ import { Options as MarkdownItOptions } from "markdown-it";
 
 import { CellType, SyntaxThemeType, LanguageType } from "../types";
 
-type Props = {
+type CellProps = {
   cell: CellType;
   syntaxTheme: SyntaxThemeType;
   language: LanguageType;
@@ -21,7 +21,7 @@ type Props = {
 
 export const defaultFormulaRenderer = "katex";
 
-export const Cell: React.FC<Props> = ({
+export const Cell: React.FC<CellProps> = ({
   cell,
   syntaxTheme,
   language,

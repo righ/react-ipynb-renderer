@@ -12,13 +12,13 @@ export type FormulaOptionsForMathjax = {
   };
 };
 
-type Props = {
+type MarkdownProps = {
   text: string;
   formulaOptions: FormulaOptionsForMathjax;
   mdiOptions: MarkdownItOptions;
 };
 
-export const MarkdownForMathjax: React.FC<Props> = ({
+export const MarkdownForMathjax: React.FC<MarkdownProps> = ({
   text,
   mdiOptions,
   formulaOptions,
