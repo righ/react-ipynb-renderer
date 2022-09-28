@@ -1,3 +1,6 @@
+TAG = $$(git describe --tags --abbrev=0)
+
+
 .PHONY: init
 init:
 	git submodule update --init --recursive
@@ -5,23 +8,31 @@ init:
 
 .PHONY: release_prerelease
 release_prerelease:
-	npm version prerelease
+	$(eval NEW_TAG := $(shell npm version prerelease))
+	git tag -d $(TAG)
 	cd katex && npm version prerelease
+	git reset HEAD^ && git add . && git commit -m $(NEW_TAG) && git tag $(NEW_TAG)
 
 .PHONY: release_patch
 release_patch:
-	npm version patch
+	$(eval NEW_TAG := $(shell npm version patch))
+	git tag -d $(TAG)
 	cd katex && npm version patch
+	git reset HEAD^ && git add . && git commit -m $(NEW_TAG) && git tag $(NEW_TAG)
 
 .PHONY: release_minor
 release_minor:
-	npm version minor
+	$(eval NEW_TAG := $(shell npm version minor))
+	git tag -d $(TAG)
 	cd katex && npm version minor
+	git reset HEAD^ && git add . && git commit -m $(NEW_TAG) && git tag $(NEW_TAG)
 
 .PHONY: release_major
 release_major:
-	npm version major
+	$(eval NEW_TAG := $(shell npm version major))
+	git tag -d $(TAG)
 	cd katex && npm version major
+	git reset HEAD^ && git add . && git commit -m $(NEW_TAG) && git tag $(NEW_TAG)
 
 .PHONY: analyze
 analyze:
