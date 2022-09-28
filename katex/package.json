@@ -1,15 +1,13 @@
 {
   "name": "react-ipynb-renderer-katex",
   "version": "1.0.0",
-  "description": "A react component that displays an ipynb file",
+  "description": "A react component that displays an ipynb file for katex.",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf ./dist && webpack",
     "analyze": "rm -rf ./dist && webpack --analyze",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
     "build-chesterish-css": "lessc ../src/styles/chesterish.less ./dist/styles/chesterish.css",
     "build-grade3-css": "lessc ../src/styles/grade3.less ./dist/styles/grade3.css",
     "build-gruvboxd-css": "lessc ../src/styles/gruvboxd.less ./dist/styles/gruvboxd.css",
@@ -27,7 +25,8 @@
     "ipynb",
     "notebook",
     "ipython",
-    "jupyterlab"
+    "jupyterlab",
+    "katex"
   ],
   "devDependencies": {
     "@babel/cli": "^7.14.3",
@@ -43,8 +42,6 @@
     "@types/markdown-it": "^12.0.1",
     "@types/node": "^15.12.1",
     "@types/react": "^16.9.49",
-    "@types/storybook__react": "^5.2.1",
-    "@types/styled-components": "^5.1.7",
     "@typescript-eslint/eslint-plugin": "^4.14.2",
     "@typescript-eslint/parser": "^4.14.2",
     "babel-loader": "^8.2.2",

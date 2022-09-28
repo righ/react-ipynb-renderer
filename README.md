@@ -44,6 +44,11 @@ export const Component = () => {
       syntaxTheme="xonokai"
       language="python"
       bgTransparent={true}
+      formulaOptions={{ // optional
+        mathjax3: {
+          tags: 'ams',
+        }
+      }}
       mdiOptions={{
         html: true,
         linkify: true,
@@ -169,7 +174,7 @@ The background color of the code is transparent by default. For this reason, dep
 If you pass `bgTransparent={false}`, code background color will get back to highlighting color.
 
 
-# Migrate for v1.0.0
+# Migrate for v1
 
 ## If you were using renderer mathjax
 

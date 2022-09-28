@@ -6924,10 +6924,10 @@ markdown-escapes@^1.0.0:
   resolved "https://registry.yarnpkg.com/markdown-escapes/-/markdown-escapes-1.0.4.tgz#c95415ef451499d7602b91095f3c8e8975f78535"
   integrity sha512-8z4efJYk43E0upd0NbVXwgSTQs6cT3T06etieCMEg7dRbzCbxUCK/GHlX8mhHRDcp+OLlHkPKsvqQTCvsRl2cg==
 
-markdown-it-mathjax3@^3.0.0-0:
-  version "3.0.0-0"
-  resolved "https://registry.yarnpkg.com/markdown-it-mathjax3/-/markdown-it-mathjax3-3.0.0-0.tgz#772198cebebe6a853f70ecd229863cea56bd2e5b"
-  integrity sha512-qeuSLT+8xiQSJ3yXG0KG7Pu4ClElGCNpZs16Kb0pbwYinKa6YPR6hBSQWsJVf7E4P+OgS2lhZyGX7cVkezMC/w==
+markdown-it-mathjax3@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/markdown-it-mathjax3/-/markdown-it-mathjax3-4.3.1.tgz#7ff1e79204074955d4dc38402a81f38f7030e614"
+  integrity sha512-IkM3Cuk4rtjy9VwLzWpgeitcwnEmK2eYJrztNRv1v7mwZaOLMTkgjJGT71GdJADrpvAEWhNn43EKtjynhEsaIQ==
   dependencies:
     juice "^8.0.0"
     mathjax-full "^3.2.0"
