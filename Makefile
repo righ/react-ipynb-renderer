@@ -11,28 +11,28 @@ release_prerelease:
 	$(eval NEW_TAG := $(shell npm version prerelease))
 	git tag -d $(TAG)
 	cd katex && npm version prerelease
-	git reset HEAD^ && git add . && git commit -m $(NEW_TAG) && git tag $(NEW_TAG)
+	git reset HEAD^ && git add . && git commit -m $(NEW_TAG) && git tag v$(NEW_TAG)
 
 .PHONY: release_patch
 release_patch:
 	$(eval NEW_TAG := $(shell npm version patch))
 	git tag -d $(TAG)
 	cd katex && npm version patch
-	git reset HEAD^ && git add . && git commit -m $(NEW_TAG) && git tag $(NEW_TAG)
+	git reset HEAD^ && git add . && git commit -m $(NEW_TAG) && git tag v$(NEW_TAG)
 
 .PHONY: release_minor
 release_minor:
 	$(eval NEW_TAG := $(shell npm version minor))
 	git tag -d $(TAG)
 	cd katex && npm version minor
-	git reset HEAD^ && git add . && git commit -m $(NEW_TAG) && git tag $(NEW_TAG)
+	git reset HEAD^ && git add . && git commit -m $(NEW_TAG) && git tag v$(NEW_TAG)
 
 .PHONY: release_major
 release_major:
 	$(eval NEW_TAG := $(shell npm version major))
 	git tag -d $(TAG)
 	cd katex && npm version major
-	git reset HEAD^ && git add . && git commit -m $(NEW_TAG) && git tag $(NEW_TAG)
+	git reset HEAD^ && git add . && git commit -m $(NEW_TAG) && git tag v$(NEW_TAG)
 
 .PHONY: analyze
 analyze:
