@@ -64,7 +64,6 @@ export type LanguageType = "python" | "r" | "julia";
 export type BaseProps = {
   ipynb: {
     cells: CellType[];
-    nbformat: 3 | 4 | 5;
     worksheets?: { cells: CellType[] }[];
   };
   syntaxTheme?: SyntaxThemeType;
