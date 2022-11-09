@@ -3,7 +3,6 @@ const TypescriptDeclarationPlugin = require("typescript-declaration-webpack-plug
 
 module.exports = {
   mode: "development",
-  devtool: "source-map",
   resolve: {
     extensions: [".js", ".ts", ".tsx"],
   },
