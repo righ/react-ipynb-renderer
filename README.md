@@ -56,6 +56,7 @@ export const Component = () => {
         html: true,
         linkify: true,
       }}
+      htmlFilter={sanitizeHtml} // Optionally provide a function to filter HTML before rendering.
     />
   </>);
 };

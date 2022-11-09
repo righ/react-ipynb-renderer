@@ -22,6 +22,7 @@ export const IpynbRenderer: React.FC<Props> = React.memo(
     bgTransparent = true,
     formulaOptions = {},
     mdiOptions = {},
+    htmlFilter = (input: string) => input,
   }) => {
     const cells =
       ipynb.cells || (ipynb.worksheets && ipynb.worksheets[0].cells) || [];
@@ -38,6 +39,7 @@ export const IpynbRenderer: React.FC<Props> = React.memo(
               bgTransparent={bgTransparent}
               formulaOptions={formulaOptions}
               mdiOptions={mdiOptions}
+              htmlFilter={htmlFilter}
               Markdown={MarkdownForMathjax}
             />
           );

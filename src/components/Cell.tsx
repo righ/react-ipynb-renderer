@@ -12,6 +12,7 @@ type CellProps = {
   bgTransparent: boolean;
   formulaOptions?: any;
   mdiOptions: MarkdownItOptions;
+  htmlFilter: (input: string) => string;
   Markdown: React.FC<{
     text: string;
     formulaOptions: any;
@@ -28,6 +29,7 @@ export const Cell: React.FC<CellProps> = ({
   bgTransparent = true,
   formulaOptions = {},
   mdiOptions,
+  htmlFilter,
   Markdown,
 }) => {
   const prismStyle = PrismStyles[syntaxTheme];
@@ -167,7 +169,7 @@ export const Cell: React.FC<CellProps> = ({
                       <div
                         className="output_html rendered_html output_subarea"
                         dangerouslySetInnerHTML={{
-                          __html: output.data["text/html"].join(""),
+                          __html: htmlFilter(output.data["text/html"].join("")),
                         }}
                       ></div>
                     );
