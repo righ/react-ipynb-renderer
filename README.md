@@ -56,6 +56,7 @@ export const Component = () => {
         html: true,
         linkify: true,
       }}
+      htmlFilter={(html) => html.replace(/<\/?script.*?>/gi, '')} // Optionally provide a function to filter HTML before rendering.
     />
   </>);
 };
