@@ -20,8 +20,6 @@ type CellProps = {
   }>;
 };
 
-export const defaultFormulaRenderer = "katex";
-
 export const Cell: React.FC<CellProps> = ({
   cell,
   syntaxTheme,
