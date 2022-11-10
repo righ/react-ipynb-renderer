@@ -70,5 +70,5 @@ export type BaseProps = {
   language?: LanguageType;
   bgTransparent?: boolean;
   mdiOptions?: MarkdownItOptions;
-  htmlFilter: (input: string) => string;
+  htmlFilter?: (input: string) => string;
 };

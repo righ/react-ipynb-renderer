@@ -12,7 +12,7 @@ type CellProps = {
   bgTransparent: boolean;
   formulaOptions?: any;
   mdiOptions: MarkdownItOptions;
-  htmlFilter: (input: string) => string;
+  htmlFilter?: (input: string) => string;
   Markdown: React.FC<{
     text: string;
     formulaOptions: any;
@@ -165,11 +165,12 @@ export const Cell: React.FC<CellProps> = ({
                     );
                   }
                   if (output.data["text/html"]) {
+                    const html = output.data["text/html"].join("");
                     return (
                       <div
                         className="output_html rendered_html output_subarea"
                         dangerouslySetInnerHTML={{
-                          __html: htmlFilter(output.data["text/html"].join("")),
+                          __html: htmlFilter ? htmlFilter(html) : html,
                         }}
                       ></div>
                     );
