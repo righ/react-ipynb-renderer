@@ -323,3 +323,20 @@ export const Component = () => {
   </>);
 };
 ```
+
+# History
+
+## v1.2.x
+
+- SVG support.
+  - `output.svg` and `output.data["image/svg+xml"]` in a cell will be rendered as img.
+
+- Added language literal type.
+  - haskell
+  - ruby
+
+## v1.1.x
+
+- Added htmlFilter prop.
+  - htmlFilter is a function to replaces `output.data["text/html"]`.
+  - It is mainly used to prevent vulnerabilities such as XSS.
