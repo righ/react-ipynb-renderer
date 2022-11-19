@@ -10,6 +10,13 @@ init:
 audit_fix:
 	yarn run yarn-audit-fix
 
+.PHONY: release_preminor
+release_preminor:
+	$(eval NEW_TAG := $(shell npm version preminor))
+	git tag -d $(TAG)
+	cd katex && npm version preminor
+	git reset HEAD^ && git add . && git commit -m $(NEW_TAG) && git tag $(NEW_TAG)
+
 .PHONY: release_prerelease
 release_prerelease:
 	$(eval NEW_TAG := $(shell npm version prerelease))
