@@ -122,21 +122,30 @@ export const Cell: React.FC<CellProps> = ({
                     if (output.png) {
                       return (
                         <div className="output_png output_subarea">
-                          <img src={`data:image/png;base64,${output.png}`} />
+                          <img src={`data:image/png;base64,${output.png}`} alt="output png" />
                         </div>
                       );
                     }
                     if (output.jpeg) {
                       return (
                         <div className="output_jpeg output_subarea">
-                          <img src={`data:image/jpeg;base64,${output.jpeg}`} />
+                          <img src={`data:image/jpeg;base64,${output.jpeg}`} alt="output jpeg"  />
                         </div>
                       );
                     }
                     if (output.gif) {
                       return (
                         <div className="output_gif output_subarea">
-                          <img src={`data:image/gif;base64,${output.gif}`} />
+                          <img src={`data:image/gif;base64,${output.gif}`} alt="output gif"  />
+                        </div>
+                      );
+                    }
+                    if (output.svg) {
+                      return (
+                        <div className="output_svg output_subarea">
+                          <img
+                            src={`data:image/svg+xml,${encodeURIComponent(output.svg)}`} alt="output svg"
+                          />
                         </div>
                       );
                     }
@@ -177,7 +186,7 @@ export const Cell: React.FC<CellProps> = ({
                     return (
                       <div className="output_png output_subarea">
                         <img
-                          src={`data:image/png;base64,${output.data["image/png"]}`}
+                          src={`data:image/png;base64,${output.data["image/png"]}`} alt="output png"
                         />
                       </div>
                     );
@@ -186,7 +195,7 @@ export const Cell: React.FC<CellProps> = ({
                     return (
                       <div className="output_jpeg output_subarea">
                         <img
-                          src={`data:image/jpeg;base64,${output.data["image/jpeg"]}`}
+                          src={`data:image/jpeg;base64,${output.data["image/jpeg"]}`} alt="output jpeg"
                         />
                       </div>
                     );
@@ -195,7 +204,16 @@ export const Cell: React.FC<CellProps> = ({
                     return (
                       <div className="output_gif output_subarea">
                         <img
-                          src={`data:image/gif;base64,${output.data["image/gif"]}`}
+                          src={`data:image/gif;base64,${output.data["image/gif"]}`} alt="output gif"
+                        />
+                      </div>
+                    );
+                  }
+                  if (output.data["image/svg+xml"]) {
+                    return (
+                      <div className="output_svg output_subarea">
+                        <img
+                          src={`data:image/svg+xml,${encodeURIComponent(output.data["image/svg+xml"])}`} alt="output svg"
                         />
                       </div>
                     );

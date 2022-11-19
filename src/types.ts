@@ -8,12 +8,14 @@ export type OutputType = {
     "image/png"?: string;
     "image/jpeg"?: string;
     "image/gif"?: string;
+    "image/svg+xml"?: string;
     "application/javascript"?: string[];
   };
   output_type?: string;
   png?: string;
   jpeg?: string;
   gif?: string;
+  svg?: string;
   text?: string[];
   execution_count?: number;
   metadata?: {
