@@ -3,7 +3,7 @@ import { Prism } from "react-syntax-highlighter";
 import * as PrismStyles from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { Options as MarkdownItOptions } from "markdown-it";
 
-import { CellType, SyntaxThemeType, LanguageType } from "../types";
+import { CellType, SyntaxThemeType, LanguageType, HtmlFilter } from "../types";
 
 type CellProps = {
   cell: CellType;
@@ -12,7 +12,7 @@ type CellProps = {
   bgTransparent: boolean;
   formulaOptions?: any;
   mdiOptions: MarkdownItOptions;
-  htmlFilter: (input: string) => string;
+  htmlFilter: HtmlFilter;
   Markdown: React.FC<{
     text: string;
     formulaOptions: any;

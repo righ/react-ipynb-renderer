@@ -61,7 +61,9 @@ export type SyntaxThemeType =
   | "twilight"
   | "vscDarkPlus"
   | "xonokai";
-export type LanguageType = "python" | "r" | "julia";
+export type LanguageType = "python" | "r" | "julia" | "haskell" | "ruby";
+
+export type HtmlFilter = (html: string) => string;
 
 export type BaseProps = {
   ipynb: {
@@ -72,5 +74,5 @@ export type BaseProps = {
   language?: LanguageType;
   bgTransparent?: boolean;
   mdiOptions?: MarkdownItOptions;
-  htmlFilter?: (input: string) => string;
+  htmlFilter?: HtmlFilter;
 };
