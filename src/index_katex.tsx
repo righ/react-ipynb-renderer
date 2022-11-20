@@ -7,6 +7,7 @@ import {
 import { BaseProps } from "./types";
 
 import pkg from "../katex/package.json";
+import {defaultHtmlFilter} from "./filters";
 
 console.debug(`react-ipynb-renderer-katex@${pkg.version} is working.`);
 
@@ -22,9 +23,9 @@ export const IpynbRenderer: React.FC<Props> = React.memo(
     bgTransparent = true,
     formulaOptions = {},
     mdiOptions = {},
-    htmlFilter = (html: string) => html,
-    htmlFilterForMarkdown = (html: string) => html,
-    htmlFilterForLatex = (html: string) => html,
+    htmlFilter = defaultHtmlFilter,
+    htmlFilterForMarkdown = defaultHtmlFilter,
+    htmlFilterForLatex = defaultHtmlFilter,
   }) => {
     const cells = ipynb.cells || ipynb.worksheets?.[0]?.cells || [];
     return (
