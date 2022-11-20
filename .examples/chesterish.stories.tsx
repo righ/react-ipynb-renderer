@@ -18,7 +18,7 @@ export const cb = () => {
         ipynb={pca1}
         syntaxTheme="cb"
         mdiOptions={{ html: true, linkify: true }}
-        htmlFilter={(html) => "filtered"}
+        // htmlFilter={(html) => "filtered"}
       />
     </>
   );

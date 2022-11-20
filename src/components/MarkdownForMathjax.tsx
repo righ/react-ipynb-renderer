@@ -3,7 +3,8 @@ import React from "react";
 import MarkdownIt, { Options as MarkdownItOptions } from "markdown-it";
 // @ts-ignore
 import mdim from "markdown-it-mathjax3";
-import { BaseMarkdownProps } from "../types";
+import { MarkdownProps } from "../types";
+import { Context } from "../context";
 
 export type FormulaOptionsForMathjax = {
   mathjax3?: {
@@ -13,17 +14,15 @@ export type FormulaOptionsForMathjax = {
   };
 };
 
-type MarkdownProps = BaseMarkdownProps & {
-  formulaOptions: FormulaOptionsForMathjax;
-};
-
 export const MarkdownForMathjax: React.FC<MarkdownProps> = ({
   className,
   text,
-  mdiOptions,
-  formulaOptions,
-  htmlFilter,
 }) => {
+  const {
+    formulaOptions,
+    mdiOptions,
+    htmlFilter,
+  } = React.useContext(Context);
   const mdi = new MarkdownIt(mdiOptions);
   mdi.use(mdim, {
     ...formulaOptions.mathjax3,

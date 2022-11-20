@@ -7,7 +7,8 @@ import {
 import { BaseProps } from "./types";
 
 import pkg from "../katex/package.json";
-import {defaultHtmlFilter} from "./filters";
+import { defaultHtmlFilter } from "./filters";
+import { Context } from "./context";
 
 console.debug(`react-ipynb-renderer-katex@${pkg.version} is working.`);
 
@@ -24,30 +25,28 @@ export const IpynbRenderer: React.FC<Props> = React.memo(
     formulaOptions = {},
     mdiOptions = {},
     htmlFilter = defaultHtmlFilter,
-    htmlFilterForMarkdown = defaultHtmlFilter,
-    htmlFilterForLatex = defaultHtmlFilter,
+    seqAsExecutionCount = false,
   }) => {
     const cells = ipynb.cells || ipynb.worksheets?.[0]?.cells || [];
     return (
       <div className="react-ipynb-renderer-katex react-ipynb-renderer ipynb-renderer-root container">
-        {cells.map((cell, i) => {
-          cell.auto_number = i + 1;
-          return (
-            <Cell
-              key={i}
-              cell={cell}
-              syntaxTheme={syntaxTheme}
-              language={language}
-              bgTransparent={bgTransparent}
-              formulaOptions={formulaOptions}
-              mdiOptions={mdiOptions}
-              htmlFilter={htmlFilter}
-              htmlFilterForMarkdown={htmlFilterForMarkdown}
-              htmlFilterForLatex={htmlFilterForLatex}
-              Markdown={MarkdownForKatex}
-            />
-          );
-        })}
+        <Context.Provider
+          value={{
+            syntaxTheme,
+            language,
+            bgTransparent,
+            mdiOptions,
+            formulaOptions,
+            seqAsExecutionCount,
+            htmlFilter,
+            Markdown: MarkdownForKatex,
+          }}
+        >
+          {cells.map((cell, i) => {
+            cell.auto_number = i + 1;
+            return <Cell key={i} cell={cell} seq={i + 1} />;
+          })}
+        </Context.Provider>
       </div>
     );
   }

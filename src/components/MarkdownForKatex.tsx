@@ -4,7 +4,8 @@ import { KatexOptions } from "katex";
 import MarkdownIt, { Options as MarkdownItOptions } from "markdown-it";
 // @ts-ignore
 import mdit from "markdown-it-texmath";
-import { BaseMarkdownProps } from "../types";
+import { MarkdownProps } from "../types";
+import { Context } from "../context";
 
 export type FormulaOptionsForKatex = {
   texmath?: {
@@ -22,17 +23,15 @@ export type FormulaOptionsForKatex = {
   };
 };
 
-type MarkdownProps = BaseMarkdownProps & {
-  formulaOptions: FormulaOptionsForKatex;
-};
-
 export const MarkdownForKatex: React.FC<MarkdownProps> = ({
   className,
   text,
-  formulaOptions,
-  mdiOptions,
-  htmlFilter,
 }) => {
+  const {
+    formulaOptions,
+    mdiOptions,
+    htmlFilter,
+  } = React.useContext(Context);
   const mdi = new MarkdownIt(mdiOptions);
   mdi.use(mdit, {
     engine: require("katex"),

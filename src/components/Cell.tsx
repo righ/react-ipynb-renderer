@@ -1,35 +1,26 @@
 import React from "react";
 import { Prism } from "react-syntax-highlighter";
 import * as PrismStyles from "react-syntax-highlighter/dist/cjs/styles/prism";
-import { Options as MarkdownItOptions } from "markdown-it";
 
-import {CellType, SyntaxThemeType, LanguageType, HtmlFilter, BaseMarkdownProps} from "../types";
+import {
+  CellType,
+} from "../types";
+import { Context } from "../context";
 
 type CellProps = {
   cell: CellType;
-  syntaxTheme: SyntaxThemeType;
-  language: LanguageType;
-  bgTransparent: boolean;
-  formulaOptions: any;
-  mdiOptions: MarkdownItOptions;
-  htmlFilter: HtmlFilter;
-  htmlFilterForMarkdown: HtmlFilter;
-  htmlFilterForLatex: HtmlFilter;
-  Markdown: React.FC<BaseMarkdownProps>;
+  seq: number;
 };
 
-export const Cell: React.FC<CellProps> = ({
-  cell,
-  syntaxTheme,
-  language,
-  bgTransparent = true,
-  formulaOptions = {},
-  mdiOptions,
-  htmlFilter,
-  htmlFilterForMarkdown,
-  htmlFilterForLatex,
-  Markdown,
-}) => {
+export const Cell: React.FC<CellProps> = ({ cell, seq }) => {
+  const {
+    syntaxTheme,
+    language,
+    bgTransparent,
+    htmlFilter,
+    seqAsExecutionCount,
+    Markdown,
+  } = React.useContext(Context);
   const prismStyle = PrismStyles[syntaxTheme];
   const styleOverridden = {
     'code[class*="language-"]': {
@@ -59,7 +50,10 @@ export const Cell: React.FC<CellProps> = ({
           {cell.cell_type === "code" ? (
             <>
               In [
-              {cell.execution_count || cell.prompt_number || cell.auto_number}]:
+              {seqAsExecutionCount
+                ? seq
+                : cell.execution_count || cell.prompt_number || " "}
+              ]:
             </>
           ) : null}
         </div>
@@ -76,9 +70,6 @@ export const Cell: React.FC<CellProps> = ({
                 <Markdown
                   className="text_cell_render border-box-sizing rendered_html"
                   text={embedAttachments(source, cell.attachments)}
-                  formulaOptions={formulaOptions}
-                  mdiOptions={mdiOptions}
-                  htmlFilter={htmlFilterForMarkdown}
                 />
               );
             }
@@ -122,21 +113,30 @@ export const Cell: React.FC<CellProps> = ({
                     if (output.png) {
                       return (
                         <div className="output_png output_subarea">
-                          <img src={`data:image/png;base64,${output.png}`} alt="output png" />
+                          <img
+                            src={`data:image/png;base64,${output.png}`}
+                            alt="output png"
+                          />
                         </div>
                       );
                     }
                     if (output.jpeg) {
                       return (
                         <div className="output_jpeg output_subarea">
-                          <img src={`data:image/jpeg;base64,${output.jpeg}`} alt="output jpeg"  />
+                          <img
+                            src={`data:image/jpeg;base64,${output.jpeg}`}
+                            alt="output jpeg"
+                          />
                         </div>
                       );
                     }
                     if (output.gif) {
                       return (
                         <div className="output_gif output_subarea">
-                          <img src={`data:image/gif;base64,${output.gif}`} alt="output gif"  />
+                          <img
+                            src={`data:image/gif;base64,${output.gif}`}
+                            alt="output gif"
+                          />
                         </div>
                       );
                     }
@@ -144,8 +144,10 @@ export const Cell: React.FC<CellProps> = ({
                       return (
                         <div
                           className="output_svg output_subarea"
-                          dangerouslySetInnerHTML={{__html: htmlFilter(output.svg)}}>
-                        </div>
+                          dangerouslySetInnerHTML={{
+                            __html: htmlFilter(output.svg),
+                          }}
+                        ></div>
                       );
                     }
                     if (output.text) {
@@ -164,9 +166,6 @@ export const Cell: React.FC<CellProps> = ({
                       <Markdown
                         className="output_latex output_subarea output_execute_result"
                         text={stringify(output.data["text/latex"])}
-                        formulaOptions={formulaOptions}
-                        mdiOptions={mdiOptions}
-                        htmlFilter={htmlFilterForLatex}
                       />
                     );
                   }
@@ -215,8 +214,10 @@ export const Cell: React.FC<CellProps> = ({
                     return (
                       <div
                         className="output_svg output_subarea"
-                        dangerouslySetInnerHTML={{__html: htmlFilter(output.data["image/svg+xml"])}}>
-                      </div>
+                        dangerouslySetInnerHTML={{
+                          __html: htmlFilter(output.data["image/svg+xml"]),
+                        }}
+                      ></div>
                     );
                   }
                   if (output.data["text/plain"]) {
@@ -257,4 +258,4 @@ const stringify = (output: string | string[]): string => {
     return output.join("");
   }
   return output;
-}
+};
