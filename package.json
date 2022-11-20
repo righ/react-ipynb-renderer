@@ -10,15 +10,15 @@
     "analyze": "rm -rf ./dist && webpack --analyze",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "build-chesterish-css": "lessc ./src/styles/chesterish.less ./dist/styles/chesterish.css",
-    "build-grade3-css": "lessc ./src/styles/grade3.less ./dist/styles/grade3.css",
-    "build-gruvboxd-css": "lessc ./src/styles/gruvboxd.less ./dist/styles/gruvboxd.css",
-    "build-gruvboxl-css": "lessc ./src/styles/gruvboxl.less ./dist/styles/gruvboxl.css",
-    "build-monokai-css": "lessc ./src/styles/monokai.less ./dist/styles/monokai.css",
-    "build-oceans16-css": "lessc ./src/styles/oceans16.less ./dist/styles/oceans16.css",
-    "build-onedork-css": "lessc ./src/styles/onedork.less ./dist/styles/onedork.css",
-    "build-solarizedd-css": "lessc ./src/styles/solarizedd.less ./dist/styles/solarizedd.css",
-    "build-solarizedl-css": "lessc ./src/styles/solarizedl.less ./dist/styles/solarizedl.css"
+    "build-chesterish-css": "lessc --clean-css ./src/styles/chesterish.less ./dist/styles/chesterish.css",
+    "build-grade3-css": "lessc --clean-css ./src/styles/grade3.less ./dist/styles/grade3.css",
+    "build-gruvboxd-css": "lessc --clean-css ./src/styles/gruvboxd.less ./dist/styles/gruvboxd.css",
+    "build-gruvboxl-css": "lessc --clean-css ./src/styles/gruvboxl.less ./dist/styles/gruvboxl.css",
+    "build-monokai-css": "lessc --clean-css ./src/styles/monokai.less ./dist/styles/monokai.css",
+    "build-oceans16-css": "lessc --clean-css ./src/styles/oceans16.less ./dist/styles/oceans16.css",
+    "build-onedork-css": "lessc --clean-css ./src/styles/onedork.less ./dist/styles/onedork.css",
+    "build-solarizedd-css": "lessc --clean-css ./src/styles/solarizedd.less ./dist/styles/solarizedd.css",
+    "build-solarizedl-css": "lessc --clean-css ./src/styles/solarizedl.less ./dist/styles/solarizedl.css"
   },
   "author": "righ",
   "license": "Apache-2.0",
@@ -40,6 +40,7 @@
     "@storybook/addon-essentials": "^6.0.21",
     "@storybook/addon-links": "^6.0.21",
     "@storybook/react": "^6.0.21",
+    "@types/dompurify": "^2.4.0",
     "@types/katex": "^0.11.1",
     "@types/markdown-it": "^12.0.1",
     "@types/node": "^15.12.1",
@@ -57,6 +58,7 @@
     "katex": "^0.13.18",
     "less": "^4.1.1",
     "less-loader": "7.3.0",
+    "less-plugin-clean-css": "^1.5.1",
     "markdown-it-texmath": "^1.0.0",
     "prettier": "2.2.1",
     "react": ">=16.9.0",
@@ -75,6 +77,7 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
+    "dompurify": "^2.4.1",
     "markdown-it": "^13.0.1",
     "markdown-it-mathjax3": "^4.3.1",
     "react-syntax-highlighter": "^15.5.0"

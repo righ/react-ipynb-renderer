@@ -1,35 +1,26 @@
 import React from "react";
 import { Prism } from "react-syntax-highlighter";
 import * as PrismStyles from "react-syntax-highlighter/dist/cjs/styles/prism";
-import { Options as MarkdownItOptions } from "markdown-it";
 
-import { CellType, SyntaxThemeType, LanguageType, HtmlFilter } from "../types";
+import {
+  CellType,
+} from "../types";
+import { Context } from "../context";
 
 type CellProps = {
   cell: CellType;
-  syntaxTheme: SyntaxThemeType;
-  language: LanguageType;
-  bgTransparent: boolean;
-  formulaOptions?: any;
-  mdiOptions: MarkdownItOptions;
-  htmlFilter: HtmlFilter;
-  Markdown: React.FC<{
-    text: string;
-    formulaOptions: any;
-    mdiOptions: MarkdownItOptions;
-  }>;
+  seq: number;
 };
 
-export const Cell: React.FC<CellProps> = ({
-  cell,
-  syntaxTheme,
-  language,
-  bgTransparent = true,
-  formulaOptions = {},
-  mdiOptions,
-  htmlFilter,
-  Markdown,
-}) => {
+export const Cell: React.FC<CellProps> = ({ cell, seq }) => {
+  const {
+    syntaxTheme,
+    language,
+    bgTransparent,
+    htmlFilter,
+    seqAsExecutionCount,
+    Markdown,
+  } = React.useContext(Context);
   const prismStyle = PrismStyles[syntaxTheme];
   const styleOverridden = {
     'code[class*="language-"]': {
@@ -59,7 +50,10 @@ export const Cell: React.FC<CellProps> = ({
           {cell.cell_type === "code" ? (
             <>
               In [
-              {cell.execution_count || cell.prompt_number || cell.auto_number}]:
+              {seqAsExecutionCount
+                ? seq
+                : cell.execution_count || cell.prompt_number || " "}
+              ]:
             </>
           ) : null}
         </div>
@@ -67,19 +61,16 @@ export const Cell: React.FC<CellProps> = ({
           {(() => {
             let source = "";
             if (cell.input) {
-              source = cell.input.join("");
+              source = stringify(cell.input);
             } else if (cell.source) {
-              source = cell.source.join("");
+              source = stringify(cell.source);
             }
             if (cell.cell_type === "markdown") {
               return (
-                <div className="text_cell_render border-box-sizing rendered_html">
-                  <Markdown
-                    text={embedAttachments(source, cell.attachments)}
-                    formulaOptions={formulaOptions}
-                    mdiOptions={mdiOptions}
-                  />
-                </div>
+                <Markdown
+                  className="text_cell_render border-box-sizing rendered_html"
+                  text={embedAttachments(source, cell.attachments)}
+                />
               );
             }
             if (cell.cell_type === "code") {
@@ -122,31 +113,41 @@ export const Cell: React.FC<CellProps> = ({
                     if (output.png) {
                       return (
                         <div className="output_png output_subarea">
-                          <img src={`data:image/png;base64,${output.png}`} alt="output png" />
+                          <img
+                            src={`data:image/png;base64,${output.png}`}
+                            alt="output png"
+                          />
                         </div>
                       );
                     }
                     if (output.jpeg) {
                       return (
                         <div className="output_jpeg output_subarea">
-                          <img src={`data:image/jpeg;base64,${output.jpeg}`} alt="output jpeg"  />
+                          <img
+                            src={`data:image/jpeg;base64,${output.jpeg}`}
+                            alt="output jpeg"
+                          />
                         </div>
                       );
                     }
                     if (output.gif) {
                       return (
                         <div className="output_gif output_subarea">
-                          <img src={`data:image/gif;base64,${output.gif}`} alt="output gif"  />
+                          <img
+                            src={`data:image/gif;base64,${output.gif}`}
+                            alt="output gif"
+                          />
                         </div>
                       );
                     }
                     if (output.svg) {
                       return (
-                        <div className="output_svg output_subarea">
-                          <img
-                            src={`data:image/svg+xml,${encodeURIComponent(output.svg)}`} alt="output svg"
-                          />
-                        </div>
+                        <div
+                          className="output_svg output_subarea"
+                          dangerouslySetInnerHTML={{
+                            __html: htmlFilter(output.svg),
+                          }}
+                        ></div>
                       );
                     }
                     if (output.text) {
@@ -154,7 +155,7 @@ export const Cell: React.FC<CellProps> = ({
                         <div
                           className={"output_subarea output_stdout output_text"}
                         >
-                          <pre>{output.text.join("")}</pre>
+                          <pre>{stringify(output.text)}</pre>
                         </div>
                       );
                     }
@@ -162,17 +163,14 @@ export const Cell: React.FC<CellProps> = ({
                   }
                   if (output.data["text/latex"]) {
                     return (
-                      <div className="output_latex output_subarea output_execute_result">
-                        <Markdown
-                          text={output.data["text/latex"].join("")}
-                          formulaOptions={formulaOptions}
-                          mdiOptions={mdiOptions}
-                        />
-                      </div>
+                      <Markdown
+                        className="output_latex output_subarea output_execute_result"
+                        text={stringify(output.data["text/latex"])}
+                      />
                     );
                   }
                   if (output.data["text/html"]) {
-                    const html = output.data["text/html"].join("");
+                    const html = stringify(output.data["text/html"]);
                     return (
                       <div
                         className="output_html rendered_html output_subarea"
@@ -186,7 +184,8 @@ export const Cell: React.FC<CellProps> = ({
                     return (
                       <div className="output_png output_subarea">
                         <img
-                          src={`data:image/png;base64,${output.data["image/png"]}`} alt="output png"
+                          src={`data:image/png;base64,${output.data["image/png"]}`}
+                          alt="output png"
                         />
                       </div>
                     );
@@ -195,7 +194,8 @@ export const Cell: React.FC<CellProps> = ({
                     return (
                       <div className="output_jpeg output_subarea">
                         <img
-                          src={`data:image/jpeg;base64,${output.data["image/jpeg"]}`} alt="output jpeg"
+                          src={`data:image/jpeg;base64,${output.data["image/jpeg"]}`}
+                          alt="output jpeg"
                         />
                       </div>
                     );
@@ -204,18 +204,20 @@ export const Cell: React.FC<CellProps> = ({
                     return (
                       <div className="output_gif output_subarea">
                         <img
-                          src={`data:image/gif;base64,${output.data["image/gif"]}`} alt="output gif"
+                          src={`data:image/gif;base64,${output.data["image/gif"]}`}
+                          alt="output gif"
                         />
                       </div>
                     );
                   }
                   if (output.data["image/svg+xml"]) {
                     return (
-                      <div className="output_svg output_subarea">
-                        <img
-                          src={`data:image/svg+xml,${encodeURIComponent(output.data["image/svg+xml"])}`} alt="output svg"
-                        />
-                      </div>
+                      <div
+                        className="output_svg output_subarea"
+                        dangerouslySetInnerHTML={{
+                          __html: htmlFilter(output.data["image/svg+xml"]),
+                        }}
+                      ></div>
                     );
                   }
                   if (output.data["text/plain"]) {
@@ -249,4 +251,11 @@ const embedAttachments = (
     source = source.replace(re, data);
   });
   return source;
+};
+
+const stringify = (output: string | string[]): string => {
+  if (Array.isArray(output)) {
+    return output.join("");
+  }
+  return output;
 };

@@ -1,5 +1,4 @@
 import React from "react";
-import "katex/dist/katex.min.css";
 
 import { IpynbRenderer } from "../src/index";
 import pca1 from "./pca1.ipynb";
@@ -18,7 +17,7 @@ export const cb = () => {
         ipynb={pca1}
         syntaxTheme="cb"
         mdiOptions={{ html: true, linkify: true }}
-        htmlFilter={(html) => "filtered"}
+        // htmlFilter={(html) => "filtered"}
       />
     </>
   );

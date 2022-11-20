@@ -4,9 +4,10 @@ import {
   FormulaOptionsForMathjax,
   MarkdownForMathjax,
 } from "./components/MarkdownForMathjax";
-import { BaseProps } from "./types";
-
+import { BaseProps, HtmlFilter } from "./types";
 import pkg from "../package.json";
+import { defaultHtmlFilter } from "./filters";
+import { Context } from "./context";
 
 console.debug(`react-ipynb-renderer@${pkg.version} is working.`);
 
@@ -22,28 +23,28 @@ export const IpynbRenderer: React.FC<Props> = React.memo(
     bgTransparent = true,
     formulaOptions = {},
     mdiOptions = {},
-    htmlFilter = (input: string) => input,
+    htmlFilter = defaultHtmlFilter,
+    seqAsExecutionCount = false,
   }) => {
-    const cells =
-      ipynb.cells || (ipynb.worksheets && ipynb.worksheets[0].cells) || [];
+    const cells = ipynb.cells || ipynb.worksheets?.[0]?.cells || [];
     return (
       <div className="react-ipynb-renderer-mathjax react-ipynb-renderer ipynb-renderer-root container">
-        {cells.map((cell, i) => {
-          cell.auto_number = i + 1;
-          return (
-            <Cell
-              key={i}
-              cell={cell}
-              syntaxTheme={syntaxTheme}
-              language={language}
-              bgTransparent={bgTransparent}
-              formulaOptions={formulaOptions}
-              mdiOptions={mdiOptions}
-              htmlFilter={htmlFilter}
-              Markdown={MarkdownForMathjax}
-            />
-          );
-        })}
+        <Context.Provider
+          value={{
+            syntaxTheme,
+            language,
+            bgTransparent,
+            mdiOptions,
+            formulaOptions,
+            seqAsExecutionCount,
+            htmlFilter,
+            Markdown: MarkdownForMathjax,
+          }}
+        >
+          {cells.map((cell, i) => {
+            return <Cell key={i} cell={cell} seq={i + 1} />;
+          })}
+        </Context.Provider>
       </div>
     );
   }

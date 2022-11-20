@@ -1,3 +1,4 @@
+import React from "react";
 import { Options as MarkdownItOptions } from "markdown-it";
 
 export type OutputType = {
@@ -75,4 +76,21 @@ export type BaseProps = {
   bgTransparent?: boolean;
   mdiOptions?: MarkdownItOptions;
   htmlFilter?: HtmlFilter;
+  seqAsExecutionCount?: boolean;
+};
+
+export type MarkdownProps = {
+  className: string;
+  text: string;
+};
+
+export type ContextType = {
+  syntaxTheme: SyntaxThemeType;
+  language: LanguageType;
+  bgTransparent: boolean;
+  Markdown: React.FC<MarkdownProps>;
+  mdiOptions: MarkdownItOptions;
+  htmlFilter: HtmlFilter;
+  formulaOptions: any;
+  seqAsExecutionCount: boolean;
 };
