@@ -22,10 +22,11 @@ export const IpynbRenderer: React.FC<Props> = React.memo(
     bgTransparent = true,
     formulaOptions = {},
     mdiOptions = {},
-    htmlFilter = (input: string) => input,
+    htmlFilter = (html: string) => html,
+    htmlFilterForMarkdown = (html: string) => html,
+    htmlFilterForLatex = (html: string) => html,
   }) => {
-    const cells =
-      ipynb.cells || (ipynb.worksheets && ipynb.worksheets[0].cells) || [];
+    const cells = ipynb.cells || ipynb.worksheets?.[0]?.cells || [];
     return (
       <div className="react-ipynb-renderer-mathjax react-ipynb-renderer ipynb-renderer-root container">
         {cells.map((cell, i) => {
@@ -40,6 +41,8 @@ export const IpynbRenderer: React.FC<Props> = React.memo(
               formulaOptions={formulaOptions}
               mdiOptions={mdiOptions}
               htmlFilter={htmlFilter}
+              htmlFilterForMarkdown={htmlFilterForMarkdown}
+              htmlFilterForLatex={htmlFilterForLatex}
               Markdown={MarkdownForMathjax}
             />
           );

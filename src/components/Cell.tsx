@@ -13,10 +13,13 @@ type CellProps = {
   formulaOptions?: any;
   mdiOptions: MarkdownItOptions;
   htmlFilter: HtmlFilter;
+  htmlFilterForMarkdown: HtmlFilter;
+  htmlFilterForLatex: HtmlFilter;
   Markdown: React.FC<{
     text: string;
     formulaOptions: any;
     mdiOptions: MarkdownItOptions;
+    htmlFilter: HtmlFilter;
   }>;
 };
 
@@ -28,6 +31,8 @@ export const Cell: React.FC<CellProps> = ({
   formulaOptions = {},
   mdiOptions,
   htmlFilter,
+  htmlFilterForMarkdown,
+  htmlFilterForLatex,
   Markdown,
 }) => {
   const prismStyle = PrismStyles[syntaxTheme];
@@ -78,6 +83,7 @@ export const Cell: React.FC<CellProps> = ({
                     text={embedAttachments(source, cell.attachments)}
                     formulaOptions={formulaOptions}
                     mdiOptions={mdiOptions}
+                    htmlFilter={htmlFilterForMarkdown}
                   />
                 </div>
               );
@@ -167,6 +173,7 @@ export const Cell: React.FC<CellProps> = ({
                           text={output.data["text/latex"].join("")}
                           formulaOptions={formulaOptions}
                           mdiOptions={mdiOptions}
+                          htmlFilter={htmlFilterForLatex}
                         />
                       </div>
                     );

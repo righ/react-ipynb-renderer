@@ -75,4 +75,6 @@ export type BaseProps = {
   bgTransparent?: boolean;
   mdiOptions?: MarkdownItOptions;
   htmlFilter?: HtmlFilter;
+  htmlFilterForMarkdown?: HtmlFilter;
+  htmlFilterForLatex?: HtmlFilter;
 };
