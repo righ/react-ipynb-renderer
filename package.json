@@ -1,6 +1,6 @@
 {
   "name": "react-ipynb-renderer",
-  "version": "1.2.0-0",
+  "version": "1.2.0-1",
   "description": "A react component that displays an ipynb file.",
   "main": "dist/index.js",
   "module": "dist/index.js",
