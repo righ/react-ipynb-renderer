@@ -78,3 +78,11 @@ export type BaseProps = {
   htmlFilterForMarkdown?: HtmlFilter;
   htmlFilterForLatex?: HtmlFilter;
 };
+
+export type BaseMarkdownProps = {
+  className: string;
+  text: string;
+  mdiOptions: MarkdownItOptions;
+  htmlFilter: HtmlFilter;
+  formulaOptions: any;
+};

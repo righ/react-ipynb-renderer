@@ -3,24 +3,19 @@ import { Prism } from "react-syntax-highlighter";
 import * as PrismStyles from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { Options as MarkdownItOptions } from "markdown-it";
 
-import { CellType, SyntaxThemeType, LanguageType, HtmlFilter } from "../types";
+import {CellType, SyntaxThemeType, LanguageType, HtmlFilter, BaseMarkdownProps} from "../types";
 
 type CellProps = {
   cell: CellType;
   syntaxTheme: SyntaxThemeType;
   language: LanguageType;
   bgTransparent: boolean;
-  formulaOptions?: any;
+  formulaOptions: any;
   mdiOptions: MarkdownItOptions;
   htmlFilter: HtmlFilter;
   htmlFilterForMarkdown: HtmlFilter;
   htmlFilterForLatex: HtmlFilter;
-  Markdown: React.FC<{
-    text: string;
-    formulaOptions: any;
-    mdiOptions: MarkdownItOptions;
-    htmlFilter: HtmlFilter;
-  }>;
+  Markdown: React.FC<BaseMarkdownProps>;
 };
 
 export const Cell: React.FC<CellProps> = ({
@@ -78,14 +73,13 @@ export const Cell: React.FC<CellProps> = ({
             }
             if (cell.cell_type === "markdown") {
               return (
-                <div className="text_cell_render border-box-sizing rendered_html">
-                  <Markdown
-                    text={embedAttachments(source, cell.attachments)}
-                    formulaOptions={formulaOptions}
-                    mdiOptions={mdiOptions}
-                    htmlFilter={htmlFilterForMarkdown}
-                  />
-                </div>
+                <Markdown
+                  className="text_cell_render border-box-sizing rendered_html"
+                  text={embedAttachments(source, cell.attachments)}
+                  formulaOptions={formulaOptions}
+                  mdiOptions={mdiOptions}
+                  htmlFilter={htmlFilterForMarkdown}
+                />
               );
             }
             if (cell.cell_type === "code") {
@@ -167,14 +161,13 @@ export const Cell: React.FC<CellProps> = ({
                   }
                   if (output.data["text/latex"]) {
                     return (
-                      <div className="output_latex output_subarea output_execute_result">
-                        <Markdown
-                          text={stringify(output.data["text/latex"])}
-                          formulaOptions={formulaOptions}
-                          mdiOptions={mdiOptions}
-                          htmlFilter={htmlFilterForLatex}
-                        />
-                      </div>
+                      <Markdown
+                        className="output_latex output_subarea output_execute_result"
+                        text={stringify(output.data["text/latex"])}
+                        formulaOptions={formulaOptions}
+                        mdiOptions={mdiOptions}
+                        htmlFilter={htmlFilterForLatex}
+                      />
                     );
                   }
                   if (output.data["text/html"]) {
@@ -192,7 +185,8 @@ export const Cell: React.FC<CellProps> = ({
                     return (
                       <div className="output_png output_subarea">
                         <img
-                          src={`data:image/png;base64,${output.data["image/png"]}`} alt="output png"
+                          src={`data:image/png;base64,${output.data["image/png"]}`}
+                          alt="output png"
                         />
                       </div>
                     );
@@ -201,7 +195,8 @@ export const Cell: React.FC<CellProps> = ({
                     return (
                       <div className="output_jpeg output_subarea">
                         <img
-                          src={`data:image/jpeg;base64,${output.data["image/jpeg"]}`} alt="output jpeg"
+                          src={`data:image/jpeg;base64,${output.data["image/jpeg"]}`}
+                          alt="output jpeg"
                         />
                       </div>
                     );
@@ -210,7 +205,8 @@ export const Cell: React.FC<CellProps> = ({
                     return (
                       <div className="output_gif output_subarea">
                         <img
-                          src={`data:image/gif;base64,${output.data["image/gif"]}`} alt="output gif"
+                          src={`data:image/gif;base64,${output.data["image/gif"]}`}
+                          alt="output gif"
                         />
                       </div>
                     );
@@ -256,7 +252,7 @@ const embedAttachments = (
   return source;
 };
 
-const stringify = (output: string | string[]) => {
+const stringify = (output: string | string[]): string => {
   if (Array.isArray(output)) {
     return output.join("");
   }
