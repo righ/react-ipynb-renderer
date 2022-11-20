@@ -72,9 +72,9 @@ export const Cell: React.FC<CellProps> = ({
           {(() => {
             let source = "";
             if (cell.input) {
-              source = cell.input.join("");
+              source = stringify(cell.input);
             } else if (cell.source) {
-              source = cell.source.join("");
+              source = stringify(cell.source);
             }
             if (cell.cell_type === "markdown") {
               return (
@@ -148,10 +148,9 @@ export const Cell: React.FC<CellProps> = ({
                     }
                     if (output.svg) {
                       return (
-                        <div className="output_svg output_subarea">
-                          <img
-                            src={`data:image/svg+xml,${encodeURIComponent(output.svg)}`} alt="output svg"
-                          />
+                        <div
+                          className="output_svg output_subarea"
+                          dangerouslySetInnerHTML={{__html: htmlFilter(output.svg)}}>
                         </div>
                       );
                     }
@@ -160,7 +159,7 @@ export const Cell: React.FC<CellProps> = ({
                         <div
                           className={"output_subarea output_stdout output_text"}
                         >
-                          <pre>{output.text.join("")}</pre>
+                          <pre>{stringify(output.text)}</pre>
                         </div>
                       );
                     }
@@ -170,7 +169,7 @@ export const Cell: React.FC<CellProps> = ({
                     return (
                       <div className="output_latex output_subarea output_execute_result">
                         <Markdown
-                          text={output.data["text/latex"].join("")}
+                          text={stringify(output.data["text/latex"])}
                           formulaOptions={formulaOptions}
                           mdiOptions={mdiOptions}
                           htmlFilter={htmlFilterForLatex}
@@ -179,7 +178,7 @@ export const Cell: React.FC<CellProps> = ({
                     );
                   }
                   if (output.data["text/html"]) {
-                    const html = output.data["text/html"].join("");
+                    const html = stringify(output.data["text/html"]);
                     return (
                       <div
                         className="output_html rendered_html output_subarea"
@@ -218,10 +217,9 @@ export const Cell: React.FC<CellProps> = ({
                   }
                   if (output.data["image/svg+xml"]) {
                     return (
-                      <div className="output_svg output_subarea">
-                        <img
-                          src={`data:image/svg+xml,${encodeURIComponent(output.data["image/svg+xml"])}`} alt="output svg"
-                        />
+                      <div
+                        className="output_svg output_subarea"
+                        dangerouslySetInnerHTML={{__html: htmlFilter(output.data["image/svg+xml"])}}>
                       </div>
                     );
                   }
@@ -257,3 +255,10 @@ const embedAttachments = (
   });
   return source;
 };
+
+const stringify = (output: string | string[]) => {
+  if (Array.isArray(output)) {
+    return output.join("");
+  }
+  return output;
+}

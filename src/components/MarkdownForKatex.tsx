@@ -4,6 +4,7 @@ import { KatexOptions } from "katex";
 import MarkdownIt, { Options as MarkdownItOptions } from "markdown-it";
 // @ts-ignore
 import mdit from "markdown-it-texmath";
+import {HtmlFilter} from "../types";
 
 export type FormulaOptionsForKatex = {
   texmath?: {
@@ -25,12 +26,14 @@ type MarkdownProps = {
   text: string;
   formulaOptions: FormulaOptionsForKatex;
   mdiOptions: MarkdownItOptions;
+  htmlFilter: HtmlFilter;
 };
 
 export const MarkdownForKatex: React.FC<MarkdownProps> = ({
   text,
   formulaOptions,
   mdiOptions,
+  htmlFilter,
 }) => {
   const mdi = new MarkdownIt(mdiOptions);
   mdi.use(mdit, {
@@ -38,9 +41,10 @@ export const MarkdownForKatex: React.FC<MarkdownProps> = ({
     delimiters: "dollars",
     ...formulaOptions.texmath,
   });
+  const html = mdi.render(replaceForKatex(text))
   return (
     <div
-      dangerouslySetInnerHTML={{ __html: mdi.render(replaceForKatex(text)) }}
+      dangerouslySetInnerHTML={{ __html: htmlFilter(html) }}
     ></div>
   );
 };
