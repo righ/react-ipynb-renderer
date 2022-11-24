@@ -1,10 +1,14 @@
 import React from "react";
+import ReactMarkdown from "react-markdown";
+import remarkMath from 'remark-math';
+import rehypeMathJax from 'rehype-mathjax';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from "rehype-raw";
 
-import MarkdownIt, { Options as MarkdownItOptions } from "markdown-it";
-// @ts-ignore
-import mdim from "markdown-it-mathjax3";
+
 import { MarkdownProps } from "../types";
 import { Context } from "../context";
+import {remarkLatexEnvironment} from "../markdown";
 
 export type FormulaOptionsForMathjax = {
   mathjax3?: {
@@ -23,13 +27,20 @@ export const MarkdownForMathjax: React.FC<MarkdownProps> = ({
     mdiOptions,
     htmlFilter,
   } = React.useContext(Context);
-  const mdi = new MarkdownIt(mdiOptions);
-  mdi.use(mdim, {
-    ...formulaOptions.mathjax3,
-  });
-  const html = mdi.render(text);
-  return <div
-    className={className}
-    dangerouslySetInnerHTML={{ __html: htmlFilter(html) }}
-  ></div>;
+
+  const displayMath = [
+    ["$$", "$$"],
+    ["\\[", "\\]"],
+    ["\\begin{equation}", "\\end{equation}"],
+  ]
+
+
+  return (<div className={className}>
+    <ReactMarkdown
+      remarkPlugins={[[remarkMath, {}], [remarkLatexEnvironment, {}], remarkGfm]}
+      rehypePlugins={[[rehypeMathJax, {tex: {displayMath}}], rehypeRaw]}
+    >
+      {htmlFilter(text)}
+    </ReactMarkdown>
+  </div>);
 };

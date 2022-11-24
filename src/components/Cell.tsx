@@ -1,4 +1,6 @@
 import React from "react";
+import Ansi from "ansi-to-react";
+
 import { Prism } from "react-syntax-highlighter";
 import * as PrismStyles from "react-syntax-highlighter/dist/cjs/styles/prism";
 
@@ -153,11 +155,17 @@ export const Cell: React.FC<CellProps> = ({ cell, seq }) => {
                     if (output.text) {
                       return (
                         <div
-                          className={"output_subarea output_stdout output_text"}
+                          className={`output_subarea output_text output_${output.output_type} output_${output.name} output-${output.name}`}
                         >
                           <pre>{stringify(output.text)}</pre>
                         </div>
                       );
+                    }
+                    if (output.traceback) {
+                      return <div className="output_subarea output_error">
+                        <Ansi>{stringify(output.traceback)}</Ansi>
+                      </div>
+
                     }
                     return null;
                   }
@@ -223,7 +231,7 @@ export const Cell: React.FC<CellProps> = ({ cell, seq }) => {
                   if (output.data["text/plain"]) {
                     return (
                       <div className="output_text output_subarea output_execute_result">
-                        <pre>{output.data["text/plain"]}</pre>
+                        <pre className={``}>{output.data["text/plain"]}</pre>
                       </div>
                     );
                   }

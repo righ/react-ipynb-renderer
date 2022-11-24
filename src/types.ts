@@ -2,6 +2,10 @@ import React from "react";
 import { Options as MarkdownItOptions } from "markdown-it";
 
 export type OutputType = {
+  name?: string;
+  ename?: string;
+  evalue?: string;
+  traceback?: string[];
   data?: {
     "text/plain"?: string[];
     "text/html"?: string[];

@@ -75,7 +75,12 @@
     "katex": "^0.13.18",
     "markdown-it": "^12.0.6",
     "markdown-it-texmath": "^1.0.0",
-    "react-syntax-highlighter": "^15.4.3"
+    "react-markdown": "^8.0.3",
+    "react-syntax-highlighter": "^15.4.3",
+    "rehype-katex": "^6.0.2",
+    "rehype-raw": "^6.1.1",
+    "remark-gfm": "^3.0.1",
+    "remark-math": "^5.1.1"
   },
   "files": [
     "dist/",
