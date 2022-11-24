@@ -1,7 +1,7 @@
 import React from "react";
 import { Cell } from "./components/Cell";
 import {
-  FormulaOptionsForKatex,
+  MarkdownOptionsForKatex,
   MarkdownForKatex,
 } from "./components/MarkdownForKatex";
 import { BaseProps } from "./types";
@@ -13,7 +13,7 @@ import { Context } from "./context";
 console.debug(`react-ipynb-renderer-katex@${pkg.version} is working.`);
 
 export type Props = BaseProps & {
-  formulaOptions?: FormulaOptionsForKatex;
+  markdownOptions?: MarkdownOptionsForKatex;
 };
 
 export const IpynbRenderer: React.FC<Props> = React.memo(
@@ -22,8 +22,7 @@ export const IpynbRenderer: React.FC<Props> = React.memo(
     syntaxTheme = "xonokai",
     language = "python",
     bgTransparent = true,
-    formulaOptions = {},
-    mdiOptions = {},
+    markdownOptions = {},
     htmlFilter = defaultHtmlFilter,
     seqAsExecutionCount = false,
   }) => {
@@ -35,8 +34,7 @@ export const IpynbRenderer: React.FC<Props> = React.memo(
             syntaxTheme,
             language,
             bgTransparent,
-            mdiOptions,
-            formulaOptions,
+            markdownOptions,
             seqAsExecutionCount,
             htmlFilter,
             Markdown: MarkdownForKatex,

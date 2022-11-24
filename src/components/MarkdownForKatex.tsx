@@ -1,6 +1,6 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
-import remarkMath from 'remark-math';
+import { default as defaultRemarkMath, Options as RemarkMathOptions } from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from "rehype-raw";
@@ -10,20 +10,10 @@ import { MarkdownProps } from "../types";
 import { Context } from "../context";
 import {remarkLatexEnvironment} from "../markdown";
 
-export type FormulaOptionsForKatex = {
-  texmath?: {
-    engine?: any;
-    // https://github.com/goessner/markdown-it-texmath#features
-    delimiters?:
-      | "dollars"
-      | "brackets"
-      | "doxygen"
-      | "gitlab"
-      | "julia"
-      | "kramdown"
-      | "beg_end";
-    katexOptions?: KatexOptions;
-  };
+export type MarkdownOptionsForKatex = {
+  remarkMath?: typeof defaultRemarkMath;
+  remarkMathOptions?: RemarkMathOptions;
+  katexOptions?: KatexOptions;
 };
 
 export const MarkdownForKatex: React.FC<MarkdownProps> = ({
@@ -31,14 +21,19 @@ export const MarkdownForKatex: React.FC<MarkdownProps> = ({
   text,
 }) => {
   const {
-    formulaOptions,
-    mdiOptions,
+    markdownOptions,
     htmlFilter,
   } = React.useContext(Context);
+  const {
+    remarkMath = defaultRemarkMath,
+    remarkMathOptions = {},
+    katexOptions = {},
+  } = markdownOptions as MarkdownOptionsForKatex;
+
   return (<div className={className}>
     <ReactMarkdown
-      remarkPlugins={[[remarkMath, {}], [remarkLatexEnvironment, {}],remarkGfm]}
-      rehypePlugins={[[rehypeKatex, {}], rehypeRaw]}
+      remarkPlugins={[[remarkMath, remarkMathOptions], [remarkLatexEnvironment, {}], remarkGfm]}
+      rehypePlugins={[[rehypeKatex, katexOptions], rehypeRaw]}
     >
       {htmlFilter(replaceForKatex(text))}
     </ReactMarkdown>
