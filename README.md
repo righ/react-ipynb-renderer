@@ -47,7 +47,6 @@ export const Component = () => {
   return (
     <IpynbRenderer
       ipynb={ipynb}
-      mdiOptions={{html: true, linkify: true}}
     />
   );
 };
@@ -70,7 +69,6 @@ export const Component = () => {
   return (
     <IpynbRenderer
       ipynb={ipynb}
-      mdiOptions={{html: true, linkify: true}}
     />
   );
 };

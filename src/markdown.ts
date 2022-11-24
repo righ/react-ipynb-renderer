@@ -6,7 +6,7 @@ type TextNode = {
   value: string;
   type: string;
   data: any;
-}
+};
 
 export const remarkLatexEnvironment: () => Transformer = () => {
   const transformer: Transformer = (tree: Node) => {
