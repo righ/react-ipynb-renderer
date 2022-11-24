@@ -1,10 +1,10 @@
 import React from "react";
 import { Cell } from "./components/Cell";
 import {
-  FormulaOptionsForMathjax,
+  MarkdownOptionsForMathjax,
   MarkdownForMathjax,
 } from "./components/MarkdownForMathjax";
-import { BaseProps, HtmlFilter } from "./types";
+import { BaseProps } from "./types";
 import pkg from "../package.json";
 import { defaultHtmlFilter } from "./filters";
 import { Context } from "./context";
@@ -12,7 +12,7 @@ import { Context } from "./context";
 console.debug(`react-ipynb-renderer@${pkg.version} is working.`);
 
 export type Props = BaseProps & {
-  formulaOptions?: FormulaOptionsForMathjax;
+  markdownOptions?: MarkdownOptionsForMathjax;
 };
 
 export const IpynbRenderer: React.FC<Props> = React.memo(
@@ -21,8 +21,7 @@ export const IpynbRenderer: React.FC<Props> = React.memo(
     syntaxTheme = "xonokai",
     language = "python",
     bgTransparent = true,
-    formulaOptions = {},
-    mdiOptions = {},
+    markdownOptions = {},
     htmlFilter = defaultHtmlFilter,
     seqAsExecutionCount = false,
   }) => {
@@ -34,8 +33,7 @@ export const IpynbRenderer: React.FC<Props> = React.memo(
             syntaxTheme,
             language,
             bgTransparent,
-            mdiOptions,
-            formulaOptions,
+            markdownOptions,
             seqAsExecutionCount,
             htmlFilter,
             Markdown: MarkdownForMathjax,

@@ -1,7 +1,10 @@
 import React from "react";
-import { Options as MarkdownItOptions } from "markdown-it";
 
 export type OutputType = {
+  name?: string;
+  ename?: string;
+  evalue?: string;
+  traceback?: string[];
   data?: {
     "text/plain"?: string[];
     "text/html"?: string[];
@@ -74,7 +77,6 @@ export type BaseProps = {
   syntaxTheme?: SyntaxThemeType;
   language?: LanguageType;
   bgTransparent?: boolean;
-  mdiOptions?: MarkdownItOptions;
   htmlFilter?: HtmlFilter;
   seqAsExecutionCount?: boolean;
 };
@@ -89,8 +91,7 @@ export type ContextType = {
   language: LanguageType;
   bgTransparent: boolean;
   Markdown: React.FC<MarkdownProps>;
-  mdiOptions: MarkdownItOptions;
   htmlFilter: HtmlFilter;
-  formulaOptions: any;
+  markdownOptions: any;
   seqAsExecutionCount: boolean;
 };
