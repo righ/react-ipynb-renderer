@@ -45,18 +45,22 @@ export const Cell: React.FC<CellProps> = ({ cell, seq }) => {
       background: "transparent",
     };
   }
+  if (!cell.outputs?.length) {
+    return null;
+  }
+
   return (
     <div className="cell border-box-sizing code_cell rendered">
       <div className="input">
         <div className="prompt input_prompt">
           {cell.cell_type === "code" ? (
-            <>
+            <span>
               In [
               {seqAsExecutionCount
                 ? seq
                 : cell.execution_count || cell.prompt_number || " "}
               ]:
-            </>
+            </span>
           ) : null}
         </div>
         <div className="inner_cell">
@@ -78,7 +82,16 @@ export const Cell: React.FC<CellProps> = ({ cell, seq }) => {
             if (cell.cell_type === "code") {
               return (
                 <div className="input_area">
-                  <div className="highlight hl-ipython3">
+                  <div
+                    className="highlight hl-ipython3"
+                    onDoubleClick={(e) => {
+                      const selection = window.getSelection();
+                      const range = document.createRange();
+                      range.selectNodeContents(e.currentTarget);
+                      selection?.removeAllRanges();
+                      selection?.addRange(range);
+                    }}
+                  >
                     {source && (
                       <Prism
                         language={language}
@@ -100,147 +113,146 @@ export const Cell: React.FC<CellProps> = ({ cell, seq }) => {
           })()}
         </div>
       </div>
-      {!cell.outputs?.length ? null : (
-        <div className="output_wrapper">
-          <div className="output">
-            {(cell.outputs || []).map((output, j) => (
-              <div className="output_area" key={j}>
-                <div className="prompt output_prompt">
-                  {output.execution_count && (
-                    <>Out [{output.execution_count}]:</>
-                  )}
-                </div>
-                {(() => {
-                  if (output.data == null) {
-                    if (output.png) {
-                      return (
-                        <div className="output_png output_subarea">
-                          <img
-                            src={`data:image/png;base64,${output.png}`}
-                            alt="output png"
-                          />
-                        </div>
-                      );
-                    }
-                    if (output.jpeg) {
-                      return (
-                        <div className="output_jpeg output_subarea">
-                          <img
-                            src={`data:image/jpeg;base64,${output.jpeg}`}
-                            alt="output jpeg"
-                          />
-                        </div>
-                      );
-                    }
-                    if (output.gif) {
-                      return (
-                        <div className="output_gif output_subarea">
-                          <img
-                            src={`data:image/gif;base64,${output.gif}`}
-                            alt="output gif"
-                          />
-                        </div>
-                      );
-                    }
-                    if (output.svg) {
-                      return (
-                        <div
-                          className="output_svg output_subarea"
-                          dangerouslySetInnerHTML={{
-                            __html: htmlFilter(output.svg),
-                          }}
-                        ></div>
-                      );
-                    }
-                    if (output.text) {
-                      return (
-                        <div
-                          className={`output_subarea output_text output_${output.output_type} output_${output.name} output-${output.name}`}
-                        >
-                          <pre>{stringify(output.text)}</pre>
-                        </div>
-                      );
-                    }
-                    if (output.traceback) {
-                      return <div className="output_subarea output_error">
-                        <Ansi>{stringify(output.traceback)}</Ansi>
-                      </div>
 
-                    }
-                    return null;
-                  }
-                  if (output.data["text/latex"]) {
-                    return (
-                      <Markdown
-                        className="output_latex output_subarea output_execute_result"
-                        text={stringify(output.data["text/latex"])}
-                      />
-                    );
-                  }
-                  if (output.data["text/html"]) {
-                    const html = stringify(output.data["text/html"]);
-                    return (
-                      <div
-                        className="output_html rendered_html output_subarea"
-                        dangerouslySetInnerHTML={{
-                          __html: htmlFilter(html),
-                        }}
-                      ></div>
-                    );
-                  }
-                  if (output.data["image/png"]) {
+      <div className="output_wrapper">
+        <div className="output">
+          {(cell.outputs || []).map((output, j) => (
+            <div className="output_area" key={j}>
+              <div className="prompt output_prompt">
+                {output.execution_count && (
+                  <>Out [{output.execution_count}]:</>
+                )}
+              </div>
+              {(() => {
+                if (output.data == null) {
+                  if (output.png) {
                     return (
                       <div className="output_png output_subarea">
                         <img
-                          src={`data:image/png;base64,${output.data["image/png"]}`}
+                          src={`data:image/png;base64,${output.png}`}
                           alt="output png"
                         />
                       </div>
                     );
                   }
-                  if (output.data["image/jpeg"]) {
+                  if (output.jpeg) {
                     return (
                       <div className="output_jpeg output_subarea">
                         <img
-                          src={`data:image/jpeg;base64,${output.data["image/jpeg"]}`}
+                          src={`data:image/jpeg;base64,${output.jpeg}`}
                           alt="output jpeg"
                         />
                       </div>
                     );
                   }
-                  if (output.data["image/gif"]) {
+                  if (output.gif) {
                     return (
                       <div className="output_gif output_subarea">
                         <img
-                          src={`data:image/gif;base64,${output.data["image/gif"]}`}
+                          src={`data:image/gif;base64,${output.gif}`}
                           alt="output gif"
                         />
                       </div>
                     );
                   }
-                  if (output.data["image/svg+xml"]) {
+                  if (output.svg) {
                     return (
                       <div
                         className="output_svg output_subarea"
                         dangerouslySetInnerHTML={{
-                          __html: htmlFilter(output.data["image/svg+xml"]),
+                          __html: htmlFilter(output.svg),
                         }}
                       ></div>
                     );
                   }
-                  if (output.data["text/plain"]) {
+                  if (output.text) {
                     return (
-                      <div className="output_text output_subarea output_execute_result">
-                        <pre className={``}>{output.data["text/plain"]}</pre>
+                      <div
+                        className={`output_subarea output_text output_${output.output_type} output_${output.name} output-${output.name}`}
+                      >
+                        <pre>{stringify(output.text)}</pre>
                       </div>
                     );
                   }
-                })()}
-              </div>
-            ))}
-          </div>
+                  if (output.traceback) {
+                    return <div className="output_subarea output_error">
+                      <Ansi>{stringify(output.traceback)}</Ansi>
+                    </div>
+
+                  }
+                  return null;
+                }
+                if (output.data["text/latex"]) {
+                  return (
+                    <Markdown
+                      className="output_latex output_subarea output_execute_result"
+                      text={stringify(output.data["text/latex"])}
+                    />
+                  );
+                }
+                if (output.data["text/html"]) {
+                  const html = stringify(output.data["text/html"]);
+                  return (
+                    <div
+                      className="output_html rendered_html output_subarea"
+                      dangerouslySetInnerHTML={{
+                        __html: htmlFilter(html),
+                      }}
+                    ></div>
+                  );
+                }
+                if (output.data["image/png"]) {
+                  return (
+                    <div className="output_png output_subarea">
+                      <img
+                        src={`data:image/png;base64,${output.data["image/png"]}`}
+                        alt="output png"
+                      />
+                    </div>
+                  );
+                }
+                if (output.data["image/jpeg"]) {
+                  return (
+                    <div className="output_jpeg output_subarea">
+                      <img
+                        src={`data:image/jpeg;base64,${output.data["image/jpeg"]}`}
+                        alt="output jpeg"
+                      />
+                    </div>
+                  );
+                }
+                if (output.data["image/gif"]) {
+                  return (
+                    <div className="output_gif output_subarea">
+                      <img
+                        src={`data:image/gif;base64,${output.data["image/gif"]}`}
+                        alt="output gif"
+                      />
+                    </div>
+                  );
+                }
+                if (output.data["image/svg+xml"]) {
+                  return (
+                    <div
+                      className="output_svg output_subarea"
+                      dangerouslySetInnerHTML={{
+                        __html: htmlFilter(output.data["image/svg+xml"]),
+                      }}
+                    ></div>
+                  );
+                }
+                if (output.data["text/plain"]) {
+                  return (
+                    <div className="output_text output_subarea output_execute_result">
+                      <pre className={``}>{output.data["text/plain"]}</pre>
+                    </div>
+                  );
+                }
+              })()}
+            </div>
+          ))}
         </div>
-      )}
+      </div>
     </div>
   );
 };

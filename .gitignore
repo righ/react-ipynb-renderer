@@ -107,3 +107,4 @@ typings/
 stories/
 storybook-static/
 .idea
+.DS_Store

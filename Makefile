@@ -69,6 +69,10 @@ build_js_katex:
 .PHONY: build_css
 build_css:
 	yarn
+	yarn run build-default-css
+	yarn run build-dark-css
+	yarn run build-darkbronco-css
+	yarn run build-dorkula-css
 	yarn run build-chesterish-css
 	yarn run build-grade3-css
 	yarn run build-gruvboxd-css
@@ -82,6 +86,10 @@ build_css:
 .PHONY: build_css_katex
 build_css_katex:
 	cd katex && yarn
+	cd katex && yarn run build-default-css
+	cd katex && yarn run build-dark-css
+	cd katex && yarn run build-darkbronco-css
+	cd katex && yarn run build-dorkula-css
 	cd katex && yarn run build-chesterish-css
 	cd katex && yarn run build-grade3-css
 	cd katex && yarn run build-gruvboxd-css
