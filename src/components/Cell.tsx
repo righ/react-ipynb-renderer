@@ -45,7 +45,7 @@ export const Cell: React.FC<CellProps> = ({ cell, seq }) => {
       background: "transparent",
     };
   }
-  if (!cell.outputs?.length) {
+  if (!cell.outputs?.length && !cell.source?.length) {
     return null;
   }
 
