@@ -69,11 +69,13 @@ export type LanguageType = "python" | "r" | "julia" | "haskell" | "ruby";
 
 export type HtmlFilter = (html: string) => string;
 
+export type IpynbType = {
+  cells: CellType[];
+  worksheets?: { cells: CellType[] }[];
+}
+
 export type BaseProps = {
-  ipynb: {
-    cells: CellType[];
-    worksheets?: { cells: CellType[] }[];
-  };
+  ipynb: IpynbType;
   syntaxTheme?: SyntaxThemeType;
   language?: LanguageType;
   bgTransparent?: boolean;
