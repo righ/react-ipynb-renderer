@@ -12,6 +12,7 @@ audit_fix:
 
 .PHONY: release_prepatch
 release_prepatch:
+	git stash
 	$(eval NEW_TAG := $(shell npm version prepatch))
 	git tag -d $(TAG)
 	cd katex && npm version prepatch
@@ -19,6 +20,7 @@ release_prepatch:
 
 .PHONY: release_preminor
 release_preminor:
+	git stash
 	$(eval NEW_TAG := $(shell npm version preminor))
 	git tag -d $(TAG)
 	cd katex && npm version preminor
@@ -26,6 +28,7 @@ release_preminor:
 
 .PHONY: release_prerelease
 release_prerelease:
+	git stash
 	$(eval NEW_TAG := $(shell npm version prerelease))
 	git tag -d $(TAG)
 	cd katex && npm version prerelease
@@ -33,6 +36,7 @@ release_prerelease:
 
 .PHONY: release_patch
 release_patch:
+	git stash
 	$(eval NEW_TAG := $(shell npm version patch))
 	git tag -d $(TAG)
 	cd katex && npm version patch
@@ -40,6 +44,7 @@ release_patch:
 
 .PHONY: release_minor
 release_minor:
+	git stash
 	$(eval NEW_TAG := $(shell npm version minor))
 	git tag -d $(TAG)
 	cd katex && npm version minor
@@ -47,6 +52,7 @@ release_minor:
 
 .PHONY: release_major
 release_major:
+	git stash
 	$(eval NEW_TAG := $(shell npm version major))
 	git tag -d $(TAG)
 	cd katex && npm version major
