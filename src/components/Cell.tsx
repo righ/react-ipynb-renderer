@@ -196,7 +196,7 @@ export const Cell: React.FC<CellProps> = ({ cell, seq }) => {
                     <div
                       className="output_html rendered_html output_subarea"
                       dangerouslySetInnerHTML={{
-                        __html: htmlFilter(html),
+                        __html: `<div>${htmlFilter(html)}</div>`,
                       }}
                     ></div>
                   );
