@@ -1,3 +1,5 @@
+![logo](https://github.com/righ/react-ipynb-renderer/raw/master/images/logo.png)
+
 [![NPM](https://nodei.co/npm/react-ipynb-renderer.png?mini=true)](https://www.npmjs.com/package/react-ipynb-renderer)
 [![NPM](https://nodei.co/npm/react-ipynb-renderer-katex.png?mini=true)](https://www.npmjs.com/package/react-ipynb-renderer-katex)
 
