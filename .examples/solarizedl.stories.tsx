@@ -1,180 +1,175 @@
-import React from "react";
-import "katex/dist/katex.min.css";
 
-import { IpynbRenderer } from "../src/index_katex";
-import pca1 from "./pca1.json";
-import matrix from "./matrix-3.json";
+import type { Meta, StoryObj } from "@storybook/react";
+
+import { IpynbRenderer } from "../src/index";
+import type { Ipynb } from "../src/index";
+import pca1 from "./ipynb/pca1.json";
 
 import "../src/styles/solarizedl.less";
 
-export default {
+const meta: Meta<typeof IpynbRenderer> = {
   title: "solarizedl",
+  component: IpynbRenderer,
+  parameters: {
+    // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
+    layout: "centered",
+  },
+  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
+  tags: ["autodocs"],
+  // More on argTypes: https://storybook.js.org/docs/api/argtypes
+  argTypes: {
+    ipynb: { control: "object" },
+    syntaxTheme: { control: "text" },
+  },
+};
+export default meta;
+type Story = StoryObj<typeof IpynbRenderer>;
+
+export const cb: Story = {
+  args: {
+    ipynb: pca1 as Ipynb,
+    syntaxTheme: "cb",
+  },
 };
 
-export const cb = () => {
-  return (
-    <>
-      <IpynbRenderer ipynb={pca1} syntaxTheme="cb" />
-    </>
-  );
+
+export const coy: Story = {
+  args: {
+    ipynb: pca1 as Ipynb,
+    syntaxTheme: "coy",
+  },
 };
 
-export const coy = () => {
-  return (
-    <>
-      <IpynbRenderer ipynb={pca1} syntaxTheme="coy" />
-    </>
-  );
+export const darcula: Story = {
+  args: {
+    ipynb: pca1 as Ipynb,
+    syntaxTheme: "darcula",
+  },
 };
 
-export const darcula = () => {
-  return (
-    <>
-      <IpynbRenderer ipynb={pca1} syntaxTheme="darcula" />
-    </>
-  );
+export const dark: Story = {
+  args: {
+    ipynb: pca1 as Ipynb,
+    syntaxTheme: "dark",
+  },
 };
 
-export const dark = () => {
-  return (
-    <>
-      <IpynbRenderer ipynb={pca1} syntaxTheme="dark" />
-    </>
-  );
+export const duotoneDark: Story = {
+  args: {
+    ipynb: pca1 as Ipynb,
+    syntaxTheme: "duotoneDark",
+  },
 };
 
-export const duotoneDark = () => {
-  return (
-    <>
-      <IpynbRenderer ipynb={pca1} syntaxTheme="duotoneDark" />
-    </>
-  );
+export const duotoneEarth: Story = {
+  args: {
+    ipynb: pca1 as Ipynb,
+    syntaxTheme: "duotoneEarth",
+  },
 };
 
-export const duotoneEarth = () => {
-  return (
-    <>
-      <IpynbRenderer ipynb={pca1} syntaxTheme="duotoneEarth" />
-    </>
-  );
+export const duotoneForest: Story = {
+  args: {
+    ipynb: pca1 as Ipynb,
+    syntaxTheme: "duotoneForest",
+  },
 };
 
-export const duotoneForest = () => {
-  return (
-    <>
-      <IpynbRenderer ipynb={pca1} syntaxTheme="duotoneForest" />
-    </>
-  );
+export const duotoneLight: Story = {
+  args: {
+    ipynb: pca1 as Ipynb,
+    syntaxTheme: "duotoneLight",
+  },
+}; 
+
+export const duotoneSea: Story = {
+  args: {
+    ipynb: pca1 as Ipynb,
+    syntaxTheme: "duotoneSea",
+  },
 };
 
-export const duotoneLight = () => {
-  return (
-    <>
-      <IpynbRenderer ipynb={pca1} syntaxTheme="duotoneLight" />
-    </>
-  );
+export const duotoneSpace: Story = {
+  args: {
+    ipynb: pca1 as Ipynb,
+    syntaxTheme: "duotoneSpace",
+  },
 };
 
-export const duotoneSea = () => {
-  return (
-    <>
-      <IpynbRenderer ipynb={pca1} syntaxTheme="duotoneSea" />
-    </>
-  );
+export const funky: Story = {
+  args: {
+    ipynb: pca1 as Ipynb,
+    syntaxTheme: "funky",
+  },
 };
 
-export const duotoneSpace = () => {
-  return (
-    <>
-      <IpynbRenderer ipynb={pca1} syntaxTheme="duotoneSpace" />
-    </>
-  );
+export const ghcolors: Story = {
+  args: {
+    ipynb: pca1 as Ipynb,
+    syntaxTheme: "ghcolors",
+  },
 };
 
-export const funky = () => {
-  return (
-    <>
-      <IpynbRenderer ipynb={pca1} syntaxTheme="funky" />
-    </>
-  );
+export const hopscotch: Story = {
+  args: {
+    ipynb: pca1 as Ipynb,
+    syntaxTheme: "hopscotch",
+  },
 };
 
-export const ghcolors = () => {
-  return (
-    <>
-      <IpynbRenderer ipynb={pca1} syntaxTheme="ghcolors" />
-    </>
-  );
+export const okaidia: Story = {
+  args: {
+    ipynb: pca1 as Ipynb,
+    syntaxTheme: "okaidia",
+  },
 };
 
-export const hopscotch = () => {
-  return (
-    <>
-      <IpynbRenderer ipynb={pca1} syntaxTheme="hopscotch" />
-    </>
-  );
+export const pojoaque: Story = {
+  args: {
+    ipynb: pca1 as Ipynb,
+    syntaxTheme: "pojoaque",
+  },
 };
 
-export const okaidia = () => {
-  return (
-    <>
-      <IpynbRenderer ipynb={pca1} syntaxTheme="okaidia" />
-    </>
-  );
+export const prism: Story = {
+  args: {
+    ipynb: pca1 as Ipynb,
+    syntaxTheme: "prism",
+  },
 };
 
-export const pojoaque = () => {
-  return (
-    <>
-      <IpynbRenderer ipynb={pca1} syntaxTheme="pojoaque" />
-    </>
-  );
+export const solarizedlight: Story = {
+  args: {
+    ipynb: pca1 as Ipynb,
+    syntaxTheme: "solarizedlight",
+  },
 };
 
-export const prism = () => {
-  return (
-    <>
-      <IpynbRenderer ipynb={pca1} syntaxTheme="prism" />
-    </>
-  );
+export const tomorrow: Story = {
+  args: {
+    ipynb: pca1 as Ipynb,
+    syntaxTheme: "tomorrow",
+  },
 };
 
-export const solarizedlight = () => {
-  return (
-    <>
-      <IpynbRenderer ipynb={pca1} syntaxTheme="solarizedlight" />
-    </>
-  );
+export const twilight: Story = {
+  args: {
+    ipynb: pca1 as Ipynb,
+    syntaxTheme: "twilight",
+  },
 };
 
-export const tomorrow = () => {
-  return (
-    <>
-      <IpynbRenderer ipynb={pca1} syntaxTheme="tomorrow" />
-    </>
-  );
+export const vscDarkPlus: Story = {
+  args: {
+    ipynb: pca1 as Ipynb,
+    syntaxTheme: "vscDarkPlus",
+  },
 };
 
-export const twilight = () => {
-  return (
-    <>
-      <IpynbRenderer ipynb={pca1} syntaxTheme="twilight" />
-    </>
-  );
+export const xonokai: Story = {
+  args: {
+    ipynb: pca1 as Ipynb,
+    syntaxTheme: "xonokai",
+  },
 };
 
-export const vscDarkPlus = () => {
-  return (
-    <>
-      <IpynbRenderer ipynb={pca1} syntaxTheme="vscDarkPlus" />
-    </>
-  );
-};
-
-export const xonokai = () => {
-  return (
-    <>
-      <IpynbRenderer ipynb={matrix} syntaxTheme="xonokai" />
-    </>
-  );
-};
