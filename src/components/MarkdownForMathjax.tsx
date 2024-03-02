@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useContext} from "react";
 import ReactMarkdown from "react-markdown";
 import { default as defaultRemarkMath, Options as RemarkMathOptions } from 'remark-math';
-import rehypeMathJax from 'rehype-mathjax';
+import rehypeMathJax from 'rehype-mathjax/svg';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from "rehype-raw";
 import { Options as MathJaxOptions } from 'rehype-mathjax/lib/create-plugin';
@@ -23,7 +23,7 @@ export const MarkdownForMathjax: React.FC<MarkdownProps> = ({
   const {
     markdownOptions,
     htmlFilter,
-  } = React.useContext(Context);
+  } = useContext(Context);
   const {
     remarkMath = defaultRemarkMath,
     remarkMathOptions = {},

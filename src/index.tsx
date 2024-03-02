@@ -5,11 +5,11 @@ import {
   MarkdownForMathjax,
 } from "./components/MarkdownForMathjax";
 import {BaseProps, IpynbType} from "./types";
-import pkg from "../package.json";
+import {version} from "./version";
 import { defaultHtmlFilter } from "./filters";
 import { Context } from "./context";
 
-console.debug(`react-ipynb-renderer@${pkg.version} is working.`);
+console.debug(`react-ipynb-renderer@${version} is working.`);
 
 export type Ipynb = IpynbType;
 

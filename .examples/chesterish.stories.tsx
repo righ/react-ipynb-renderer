@@ -1,11 +1,12 @@
 
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { IpynbRenderer } from "../src/index";
+import { IpynbRenderer } from "../dist/index_katex";
 import type { Ipynb } from "../src/index";
 import pca1 from "./ipynb/pca1.json";
 
 import "../src/styles/chesterish.less";
+import "katex/dist/katex.min.css";
 
 const meta: Meta<typeof IpynbRenderer> = {
   title: "chesterish",

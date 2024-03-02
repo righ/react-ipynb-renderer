@@ -6,21 +6,16 @@ jobs:
   release:
     # needs: test
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
+    #if: github.ref == 'refs/heads/master'
     name: npm upload
     steps:
       - uses: actions/checkout@v2
-      - name: setup
-        uses: actions/setup-node@v2.1.2
-        with:
-          node-version: "14"
 
-      - name: cache
-        uses: actions/cache@v2.1.1
-        with:
-          path: |
-            node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+
+      - name: Install dependencies
+        run: bun install
 
       - name: upload
         run: |
@@ -28,6 +23,6 @@ jobs:
           make build
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
           npm publish || true
-          unlink katex/README.md && cp README.md katex/README.md
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > katex/.npmrc
-          cd katex && npm publish || true
+          #unlink katex/README.md && cp README.md katex/README.md
+          #echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > katex/.npmrc
+          #cd katex && npm publish || true

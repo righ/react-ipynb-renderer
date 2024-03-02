@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext} from "react";
 import Ansi from "ansi-to-react";
 
 import { Prism } from "react-syntax-highlighter";
@@ -22,7 +22,7 @@ export const Cell: React.FC<CellProps> = ({ cell, seq }) => {
     htmlFilter,
     seqAsExecutionCount,
     Markdown,
-  } = React.useContext(Context);
+  } = useContext(Context);
   const prismStyle = PrismStyles[syntaxTheme];
   const styleOverridden = {
     'code[class*="language-"]': {

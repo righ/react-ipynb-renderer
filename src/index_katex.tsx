@@ -6,11 +6,11 @@ import {
 } from "./components/MarkdownForKatex";
 import { BaseProps } from "./types";
 
-import pkg from "../katex/package.json";
+import {version} from "./version";
 import { defaultHtmlFilter } from "./filters";
 import { Context } from "./context";
 
-console.debug(`react-ipynb-renderer-katex@${pkg.version} is working.`);
+console.debug(`react-ipynb-renderer-katex@${version} is working.`);
 
 export type Props = BaseProps & {
   markdownOptions?: MarkdownOptionsForKatex;

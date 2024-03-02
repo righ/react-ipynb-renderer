@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext} from "react";
 import ReactMarkdown from "react-markdown";
 import { default as defaultRemarkMath, Options as RemarkMathOptions } from 'remark-math';
 import rehypeKatex from 'rehype-katex';
@@ -23,7 +23,7 @@ export const MarkdownForKatex: React.FC<MarkdownProps> = ({
   const {
     markdownOptions,
     htmlFilter,
-  } = React.useContext(Context);
+  } = useContext(Context);
   const {
     remarkMath = defaultRemarkMath,
     remarkMathOptions = {},

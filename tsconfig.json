@@ -13,6 +13,7 @@
     "allowJs": true,
     "jsx": "react",
     "sourceMap": true,
+    "rootDir": "./src",
     "baseUrl": "./src/",
     "outDir": "./dist/",
     "strict": true,
@@ -24,7 +25,9 @@
   },
   "exclude": [
     "node_modules",
-    "*.stories.tsx"
+    "*.stories.tsx",
+    "plugins",
+    "katex"
   ],
   "include": [
     "**/*.ts",

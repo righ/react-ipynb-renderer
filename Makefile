@@ -1,10 +1,18 @@
 TAG = $$(git describe --tags --abbrev=0)
 
+.PHONY: setup-for-mac
+setup-for-mac:
+	# https://bun.sh/docs/installation
+	curl -fsSL https://bun.sh/install | bash
+
+.PHONY: clean
+clean:
+	rm -rf dist || true
 
 .PHONY: init
 init:
 	git submodule update --init --recursive
-	npm install yarn -g
+	bun i
 
 .PHONY: audit_fix
 audit_fix:
@@ -66,18 +74,23 @@ analyze:
 analyze_katex:
 	cd katex && yarn && yarn run analyze
 
+.PHONY: version
+version:
+	bun run version
+
 .PHONY: build
-build: build_js build_css build_js_katex build_css_katex
+build: version build_js build_css
+#build: version build_js build_css build_js_katex build_css_katex
 
 .PHONY: build_js
 build_js:
-	yarn && yarn run build
+	bun run build-js
 
 .PHONY: build_js_katex
 build_js_katex:
-	mv src/index.tsx src/index.tsx.tmp
-	cd katex && yarn && yarn run build
-	mv src/index.tsx.tmp src/index.tsx
+	mv package.json package.json.tmp
+	cp katex/package.json . && bun run build-js
+	mv package.json.tmp package.json
 
 .PHONY: build_css
 build_css:
