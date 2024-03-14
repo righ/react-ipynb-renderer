@@ -7,7 +7,7 @@
   "module": "dist/index_katex.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-js": "bun build ./src/index_katex.tsx --minify -e react --outdir ./dist --outfile index_katex.js",
+    "build-js": "bun build ./src/index_katex.tsx -e react --outdir ./dist --outfile index_katex.js",
     "analyze": "rm -rf ./dist && webpack --analyze",
     "build-default-css": "lessc --clean-css ../src/styles/default.less ./dist/styles/default.css",
     "build-dark-css": "lessc --clean-css ../src/styles/dark.less ./dist/styles/dark.css",

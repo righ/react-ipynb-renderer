@@ -85,6 +85,7 @@ build: version build_js build_css
 .PHONY: build_js
 build_js:
 	bun run build-js
+	bun run build-type
 
 .PHONY: build_js_katex
 build_js_katex:

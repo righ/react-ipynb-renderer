@@ -7,7 +7,7 @@
   "module": "dist/index.js",
   "scripts": {
     "version": "echo \"export const version=$(jq '.version' package.json);\" > src/version.ts",
-    "build-js": "bun build ./src/index.tsx --minify -e react --outdir ./dist",
+    "build-js": "bun build ./src/index.tsx -e react --outdir ./dist",
     "build-type": "bun run tsc -d --declarationMap --emitDeclarationOnly --sourceMap",
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",
