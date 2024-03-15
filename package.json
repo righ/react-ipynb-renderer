@@ -1,13 +1,13 @@
 {
   "name": "react-ipynb-renderer",
   "homepage": "https://docs.walkframe.com/products/react-ipynb-renderer/",
-  "version": "2.1.5-alpha.4",
+  "version": "2.1.5-alpha.5",
   "description": "A react component that displays an ipynb file.",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "scripts": {
     "version": "echo \"export const version=$(jq '.version' package.json);\" > src/version.ts",
-    "build-js": "bun build ./src/index.tsx -e react --outdir ./dist",
+    "build-js": "bun build ./src/index.tsx --outdir ./dist",
     "build-type": "bun run tsc -d --declarationMap --emitDeclarationOnly --sourceMap",
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",

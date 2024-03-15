@@ -1,7 +1,7 @@
 
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { IpynbRenderer } from "../dist/index_katex";
+import { IpynbRenderer } from "../dist/index";
 import type { Ipynb } from "../src/index";
 import pca1 from "./ipynb/pca1.json";
 
