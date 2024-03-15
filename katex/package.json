@@ -50,7 +50,7 @@
     "@storybook/react": "^8.0.0",
     "@storybook/react-webpack5": "^8.0.0",
     "@storybook/test": "^8.0.0",
-    "@types/dompurify": "^2.4.0",
+    "@types/dompurify": "^3.0.5",
     "@types/katex": "^0.16.7",
     "@types/node": "^15.12.1",
     "@types/react": "^16.9.49",
@@ -74,8 +74,9 @@
     "ts-loader": "8.2.0",
     "typescript": "^5.4.2",
     "typescript-declaration-webpack-plugin": "^0.2.2",
+    "webpack": "^5.90.3",
     "webpack-bundle-analyzer": "^4.4.2",
-    "webpack-cli": "^4.7.0"
+    "webpack-cli": "^5.1.4"
   },
   "peerDependencies": {
     "react": ">=16.9.0",
