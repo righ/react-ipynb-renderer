@@ -1,7 +1,7 @@
-![logo](https://github.com/righ/react-ipynb-renderer/raw/master/images/logo.png)
-
 [![NPM](https://nodei.co/npm/react-ipynb-renderer.png?mini=true)](https://www.npmjs.com/package/react-ipynb-renderer)
 [![NPM](https://nodei.co/npm/react-ipynb-renderer-katex.png?mini=true)](https://www.npmjs.com/package/react-ipynb-renderer-katex)
+
+<img src="https://github.com/righ/react-ipynb-renderer/raw/master/images/logo.png" alt="image" width="400" height="auto" />
 
 | solarizedl and duotone forest themes                                                                                          | monokai and xonokai themes                                                                                  |
 | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
