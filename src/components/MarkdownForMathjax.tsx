@@ -16,10 +16,7 @@ export type MarkdownOptionsForMathjax = {
   mathjaxOptions?: MathJaxOptions;
 };
 
-export const MarkdownForMathjax: React.FC<MarkdownProps> = ({
-  className,
-  text,
-}) => {
+export function MarkdownForMathjax({ className, text }: MarkdownProps) {
   const {
     markdownOptions,
     htmlFilter,

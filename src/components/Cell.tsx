@@ -12,7 +12,7 @@ type CellProps = {
   seq: number;
 };
 
-export const Cell: React.FC<CellProps> = ({ cell, seq }) => {
+export function Cell({ cell, seq }: CellProps) {
   const {
     syntaxTheme,
     language,

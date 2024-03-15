@@ -17,8 +17,8 @@ export type Props = BaseProps & {
   markdownOptions?: MarkdownOptionsForMathjax;
 };
 
-export const IpynbRenderer: React.FC<Props> = React.memo(
-  ({
+export const IpynbRenderer = React.memo(
+  function ({
     ipynb,
     syntaxTheme = "xonokai",
     language = "python",
@@ -26,7 +26,7 @@ export const IpynbRenderer: React.FC<Props> = React.memo(
     markdownOptions = {},
     htmlFilter = defaultHtmlFilter,
     seqAsExecutionCount = false,
-  }) => {
+  }: Props) {
     const cells = ipynb.cells || ipynb.worksheets?.[0]?.cells || [];
     return (
       <div className="react-ipynb-renderer-mathjax react-ipynb-renderer ipynb-renderer-root container">

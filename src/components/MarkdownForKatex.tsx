@@ -16,10 +16,7 @@ export type MarkdownOptionsForKatex = {
   katexOptions?: KatexOptions;
 };
 
-export const MarkdownForKatex: React.FC<MarkdownProps> = ({
-  className,
-  text,
-}) => {
+export function MarkdownForKatex({ className, text }: MarkdownProps) {
   const {
     markdownOptions,
     htmlFilter,
