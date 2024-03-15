@@ -6,7 +6,7 @@ jobs:
   release:
     # needs: test
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
+    #if: github.ref == 'refs/heads/master'
     name: npm upload
     steps:
       - uses: actions/checkout@v2
