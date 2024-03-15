@@ -5,6 +5,12 @@ module.exports = {
   mode: "production",
   resolve: {
     extensions: [".js", ".ts", ".tsx"],
+    alias: {
+      // https://github.com/facebook/react/issues/20235
+      // https://github.com/facebook/create-react-app/issues/11769
+      "react/jsx-dev-runtime": "react/jsx-dev-runtime.js",
+      "react/jsx-runtime": "react/jsx-runtime.js",
+    },
   },
   externals: {
     react: "commonjs react",
@@ -26,14 +32,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(ts|tsx)$/,
+        test: /\.(js|ts|tsx)$/,
         use: ["ts-loader?configFile=tsconfig.json"],
         exclude: [/node_modules/, /.examples/],
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|svg)$/,
-        loader: "file-loader?name=./font/[name].[ext]",
-        exclude: [/.examples/],
       },
     ],
   },

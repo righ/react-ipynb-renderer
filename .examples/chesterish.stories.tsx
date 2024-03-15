@@ -1,6 +1,6 @@
 import React from "react";
 
-import { IpynbRenderer } from "../src/index";
+import { IpynbRenderer } from "../src/index_katex";
 import pca1 from "./pca1.ipynb";
 import matrix from "./matrix-3.ipynb";
 
@@ -16,7 +16,6 @@ export const cb = () => {
       <IpynbRenderer
         ipynb={pca1}
         syntaxTheme="cb"
-        mdiOptions={{ html: true, linkify: true }}
         // htmlFilter={(html) => "filtered"}
       />
     </>

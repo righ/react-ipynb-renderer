@@ -108,3 +108,5 @@ stories/
 storybook-static/
 .idea
 .DS_Store
+
+*storybook.log
