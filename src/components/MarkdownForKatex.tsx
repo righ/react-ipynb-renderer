@@ -6,7 +6,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from "rehype-raw";
 import { KatexOptions } from "katex";
 
-import { MarkdownProps } from "../types";
+import type { MarkdownProps } from "../types";
 import { Context } from "../context";
 import {remarkLatexEnvironment} from "../markdown";
 

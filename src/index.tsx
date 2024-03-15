@@ -1,15 +1,15 @@
 import React from "react";
+import type { MarkdownOptionsForMathjax, } from "./components/MarkdownForMathjax";
+import type {BaseProps, IpynbType} from "./types";
 import { Cell } from "./components/Cell";
-import {
-  MarkdownOptionsForMathjax,
-  MarkdownForMathjax,
-} from "./components/MarkdownForMathjax";
-import {BaseProps, IpynbType} from "./types";
-import {version} from "./version";
+import { MarkdownForMathjax } from "./components/MarkdownForMathjax";
+import { version } from "./version";
 import { defaultHtmlFilter } from "./filters";
 import { Context } from "./context";
 
 console.debug(`react-ipynb-renderer@${version} is working.`);
+
+export const CellDebug = Cell;
 
 export type Ipynb = IpynbType;
 

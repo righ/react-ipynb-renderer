@@ -1,12 +1,10 @@
 import React from "react";
-import { Cell } from "./components/Cell";
-import {
-  MarkdownOptionsForKatex,
-  MarkdownForKatex,
-} from "./components/MarkdownForKatex";
-import { BaseProps } from "./types";
+import type { BaseProps } from "./types";
+import type { MarkdownOptionsForKatex } from "./components/MarkdownForKatex";
 
-import {version} from "./version";
+import { Cell } from "./components/Cell";
+import { MarkdownForKatex } from "./components/MarkdownForKatex";
+import { version } from "./version";
 import { defaultHtmlFilter } from "./filters";
 import { Context } from "./context";
 

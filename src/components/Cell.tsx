@@ -1,12 +1,10 @@
-import React, { useContext} from "react";
+import React, { useContext } from "react";
 import Ansi from "ansi-to-react";
 
 import { Prism } from "react-syntax-highlighter";
 import * as PrismStyles from "react-syntax-highlighter/dist/cjs/styles/prism";
 
-import {
-  CellType,
-} from "../types";
+import type { CellType } from "../types";
 import { Context } from "../context";
 
 type CellProps = {
