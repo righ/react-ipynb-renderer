@@ -1,6 +1,7 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import { default as defaultRemarkMath, Options as RemarkMathOptions } from 'remark-math';
+// @ts-expect-error
 import rehypeMathJax from 'rehype-mathjax';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from "rehype-raw";
