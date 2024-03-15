@@ -1,4 +1,4 @@
-import React, { useContext} from "react";
+import React from "react";
 import ReactMarkdown from "react-markdown";
 import { default as defaultRemarkMath, Options as RemarkMathOptions } from 'remark-math';
 import rehypeMathJax from 'rehype-mathjax/svg';
@@ -20,7 +20,7 @@ export function MarkdownForMathjax({ className, text }: MarkdownProps) {
   const {
     markdownOptions,
     htmlFilter,
-  } = useContext(Context);
+  } = React.useContext(Context);
   const {
     remarkMath = defaultRemarkMath,
     remarkMathOptions = {},
