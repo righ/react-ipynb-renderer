@@ -1,7 +1,6 @@
 import React from "react";
 
 import { IpynbRenderer as IpynbRendererMathjax } from "../src/index";
-import { IpynbRenderer as IpynbRendererKatex } from "../src/index_katex";
 import testfile from "./ipynb/test.ipynb";
 
 import "../src/styles/onedork.less";
@@ -27,11 +26,3 @@ export const mathjax = () => {
   );
 };
 
-export const katex = () => {
-  return (
-    <>
-      <IpynbRendererKatex 
-        ipynb={testfile} syntaxTheme="coy" />
-    </>
-  );
-};
