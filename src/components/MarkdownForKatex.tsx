@@ -1,20 +1,23 @@
 import React from "react";
-import ReactMarkdown from "react-markdown";
-import { default as defaultRemarkMath, Options as RemarkMathOptions } from 'remark-math';
+import type { Options as RemarkMathOptions } from 'remark-math';
+import { default as defaultRemarkMath } from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from "rehype-raw";
-import { KatexOptions } from "katex";
+import type { KatexOptions } from "katex";
 
-import { MarkdownProps } from "../types";
+import type { MarkdownProps } from "../types";
 import { Context } from "../context";
-import {remarkLatexEnvironment} from "../markdown";
+import { remarkLatexEnvironment } from "../markdown";
+import type { PluggableList } from "react-markdown/lib";
 
 export type MarkdownOptionsForKatex = {
   remarkMath?: typeof defaultRemarkMath;
   remarkMathOptions?: RemarkMathOptions;
   katexOptions?: KatexOptions;
 };
+
+const ReactMarkdown = React.lazy(() => import("react-markdown"));
 
 export const MarkdownForKatex: React.FC<MarkdownProps> = ({
   className,
@@ -30,13 +33,25 @@ export const MarkdownForKatex: React.FC<MarkdownProps> = ({
     katexOptions = {},
   } = markdownOptions as MarkdownOptionsForKatex;
 
+  const [rehypePlugins, setRehypePlugins] = React.useState<PluggableList>([]);
+  React.useEffect(() => {
+    if (typeof window !== "undefined") { // for SSR
+      (async () => {
+        const rehypeKatex = await import('rehype-katex') as any;
+        setRehypePlugins([[rehypeKatex, katexOptions], rehypeRaw]);
+      })();
+    }
+  }, []);
+
   return (<div className={className}>
-    <ReactMarkdown
-      remarkPlugins={[[remarkMath, remarkMathOptions], [remarkLatexEnvironment, {}], remarkGfm]}
-      rehypePlugins={[[rehypeKatex, katexOptions], rehypeRaw]}
-    >
-      {htmlFilter(replaceForKatex(text))}
-    </ReactMarkdown>
+    <React.Suspense fallback={<></>}>
+      <ReactMarkdown
+        remarkPlugins={[[remarkMath, remarkMathOptions], [remarkLatexEnvironment, {}], remarkGfm]}
+        rehypePlugins={rehypePlugins}
+      >
+        {htmlFilter(replaceForKatex(text))}
+      </ReactMarkdown>
+    </React.Suspense>
   </div>);
 };
 

@@ -54,25 +54,6 @@ export const Component = () => {
 };
 ```
 
-#### How to use this on Next.js
-
-```jsx
-import dynamic from 'next/dynamic';
-const IpynbRenderer = dynamic(() => import('react-ipynb-renderer').then((mod) => mod.IpynbRenderer), {
-  ssr: false
-});
-// import ipynb file as json
-import ipynb from "./test.ipynb";
-
-export const Component = () => {
-  return (
-    <IpynbRenderer
-      ipynb={ipynb}
-    />
-  );
-};
-```
-
 ### Using react-ipynb-renderer-katex
 
 ```jsx
