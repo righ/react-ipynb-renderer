@@ -38,7 +38,7 @@ export const MarkdownForMathjax: React.FC<MarkdownProps> = ({
       (async () => {
         // @ts-expect-error
         const rehypeMathjax = await import('rehype-mathjax');
-        setRehypePlugins([[rehypeMathjax, mathjaxOptions], rehypeRaw]);
+        setRehypePlugins([[rehypeMathjax.default, mathjaxOptions], rehypeRaw]);
       })();
     }
   }, []);

@@ -1,7 +1,6 @@
 import React from "react";
 import type { Options as RemarkMathOptions } from 'remark-math';
 import { default as defaultRemarkMath } from 'remark-math';
-import rehypeKatex from 'rehype-katex';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from "rehype-raw";
 import type { KatexOptions } from "katex";
@@ -38,7 +37,7 @@ export const MarkdownForKatex: React.FC<MarkdownProps> = ({
     if (typeof window !== "undefined") { // for SSR
       (async () => {
         const rehypeKatex = await import('rehype-katex') as any;
-        setRehypePlugins([[rehypeKatex, katexOptions], rehypeRaw]);
+        setRehypePlugins([[rehypeKatex.default, katexOptions], rehypeRaw]);
       })();
     }
   }, []);

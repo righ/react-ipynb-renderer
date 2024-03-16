@@ -17,13 +17,14 @@ module.exports = {
     "react-dom": "commonjs react-dom",
   },
   entry: {
-    home: "../src/index_katex.tsx",
+    index: "../src/index_katex.tsx",
   },
   output: {
     libraryTarget: "umd",
     globalObject: "this",
-    filename: "index.js",
+    filename: "[name].js",
     path: path.resolve(__dirname, "dist"),
+    publicPath: "/dist/",
   },
   plugins: [new TypescriptDeclarationPlugin({})],
   optimization: {
@@ -34,7 +35,7 @@ module.exports = {
       {
         test: /\.(js|ts|tsx)$/,
         use: ["ts-loader?configFile=tsconfig.json"],
-        exclude: [/node_modules/, /.examples/],
+        exclude: [/node_modules/, /.examples/, /.storybook/],
       },
     ],
   },
