@@ -30,6 +30,7 @@ export const remarkLatexEnvironment: () => Transformer = () => {
         });
       });
     } finally {
+      // eslint-disable-next-line no-unsafe-finally
       return tree;
     }
   };

@@ -30,8 +30,8 @@ export const MarkdownForMathjax: React.FC<MarkdownProps> = ({ className, text })
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
       // for SSR
-      (async () => {
-        // @ts-expect-error
+      void (async () => {
+        // @ts-expect-error rehype-mathjax is not typed
         const rehypeMathjax = await import('rehype-mathjax');
         setRehypePlugins([[rehypeMathjax.default, mathjaxOptions], rehypeRaw]);
       })();

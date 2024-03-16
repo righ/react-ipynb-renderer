@@ -30,7 +30,7 @@ export const MarkdownForKatex: React.FC<MarkdownProps> = ({ className, text }) =
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
       // for SSR
-      (async () => {
+      void (async () => {
         const rehypeKatex = (await import('rehype-katex')) as any;
         setRehypePlugins([[rehypeKatex.default, katexOptions], rehypeRaw]);
       })();
