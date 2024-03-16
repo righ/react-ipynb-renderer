@@ -14,7 +14,7 @@ export const mathjax = () => {
   return (
     <>
       <IpynbRendererMathjax
-        rootRef={ref}
+        ref={ref}
         onLoad={() => {
           console.log("loaded cb chesterish", ref);
         }}

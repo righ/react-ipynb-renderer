@@ -15,7 +15,7 @@ export const cb = () => {
   return (
     <>
       <IpynbRenderer
-        rootRef={ref}
+        ref={ref}
         onLoad={() => {
           console.log("loaded cb chesterish", ref);
         }}

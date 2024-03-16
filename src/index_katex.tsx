@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef, Ref } from 'react';
 
 import type { BaseProps, IpynbType } from './types';
 import type { MarkdownOptionsForKatex } from './components/MarkdownForKatex';
@@ -15,7 +15,7 @@ export type Props = BaseProps & {
   markdownOptions?: MarkdownOptionsForKatex;
 };
 
-export const IpynbRenderer = React.memo(function ({
+function Component({
   ipynb,
   syntaxTheme = 'xonokai',
   language = 'python',
@@ -23,13 +23,12 @@ export const IpynbRenderer = React.memo(function ({
   markdownOptions = {},
   htmlFilter = defaultHtmlFilter,
   seqAsExecutionCount = false,
-  rootRef,
   onLoad = () => {},
-}: Props) {
+}: Props, ref: Ref<HTMLDivElement>) {
   React.useEffect(onLoad, []);
   const cells = ipynb.cells || ipynb.worksheets?.[0]?.cells || [];
   return (
-    <div className="react-ipynb-renderer-katex react-ipynb-renderer ipynb-renderer-root container" ref={rootRef}>
+    <div className="react-ipynb-renderer-katex react-ipynb-renderer ipynb-renderer-root container" ref={ref}>
       <Context.Provider
         value={{
           syntaxTheme,
@@ -48,4 +47,6 @@ export const IpynbRenderer = React.memo(function ({
       </Context.Provider>
     </div>
   );
-});
+}
+
+export const IpynbRenderer = React.memo(forwardRef<HTMLDivElement, Props>(Component));
