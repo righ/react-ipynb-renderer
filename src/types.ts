@@ -81,6 +81,8 @@ export type BaseProps = {
   bgTransparent?: boolean;
   htmlFilter?: HtmlFilter;
   seqAsExecutionCount?: boolean;
+  rootRef?: React.MutableRefObject<HTMLDivElement | null>;
+  onLoad?: () => void;
 };
 
 export type MarkdownProps = {

@@ -11,9 +11,14 @@ export default {
 };
 
 export const cb = () => {
+  const ref = React.useRef<HTMLDivElement>(null);
   return (
     <>
       <IpynbRenderer
+        rootRef={ref}
+        onLoad={() => {
+          console.log("loaded cb chesterish", ref);
+        }}
         ipynb={pca1}
         syntaxTheme="cb"
         // htmlFilter={(html) => "filtered"}
