@@ -11,13 +11,6 @@ jobs:
         with:
           submodules: recursive
 
-      - name: debug
-        run: |
-          pwd
-          ls src/
-          ls src/styles/
-          ls src/styles/jupyter-themes/
-
       - name: setup python
         uses: actions/setup-python@v4
         with:

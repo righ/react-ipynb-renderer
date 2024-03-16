@@ -1,5 +1,6 @@
 [![NPM](https://nodei.co/npm/react-ipynb-renderer.png?mini=true)](https://www.npmjs.com/package/react-ipynb-renderer)
 [![NPM](https://nodei.co/npm/react-ipynb-renderer-katex.png?mini=true)](https://www.npmjs.com/package/react-ipynb-renderer-katex)
+![e2e workflow](https://github.com/righ/react-ipynb-renderer/actions/workflows/e2e.yaml/badge.svg?branch=master)
 
 <img src="https://github.com/righ/react-ipynb-renderer/raw/master/images/logo.png" alt="image" width="400" height="auto" />
 
