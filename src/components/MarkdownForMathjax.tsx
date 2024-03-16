@@ -32,7 +32,7 @@ export const MarkdownForMathjax: React.FC<MarkdownProps> = ({
     mathjaxOptions = {},
   } = markdownOptions as MarkdownOptionsForMathjax;
 
-  const [rehypePlugins, setRehypePlugins] = React.useState<PluggableList>([]);
+  const [rehypePlugins, setRehypePlugins] = React.useState<PluggableList>([rehypeRaw]);
   React.useEffect(() => {
     if (typeof window !== "undefined") { // for SSR
       (async () => {

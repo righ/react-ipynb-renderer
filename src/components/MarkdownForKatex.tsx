@@ -32,7 +32,7 @@ export const MarkdownForKatex: React.FC<MarkdownProps> = ({
     katexOptions = {},
   } = markdownOptions as MarkdownOptionsForKatex;
 
-  const [rehypePlugins, setRehypePlugins] = React.useState<PluggableList>([]);
+  const [rehypePlugins, setRehypePlugins] = React.useState<PluggableList>([rehypeRaw]);
   React.useEffect(() => {
     if (typeof window !== "undefined") { // for SSR
       (async () => {
