@@ -1,3 +1,4 @@
-declare module '*.ipynb' {
-  const ipynb: { cells: any[] };
+declare module "*.ipynb" {
+  const content: any;
+  export default content;
 }

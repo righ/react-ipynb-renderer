@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require("path");
 const TypescriptDeclarationPlugin = require("typescript-declaration-webpack-plugin");
 
@@ -17,7 +18,7 @@ module.exports = {
     "react-dom": "commonjs react-dom",
   },
   entry: {
-    home: "../src/index_katex.tsx",
+    index: "../src/index_katex.tsx",
   },
   output: {
     libraryTarget: "umd",
@@ -25,16 +26,27 @@ module.exports = {
     filename: "index.js",
     path: path.resolve(__dirname, "dist"),
   },
-  plugins: [new TypescriptDeclarationPlugin({})],
+  plugins: [
+    new TypescriptDeclarationPlugin({}),
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 1,
+    }),
+  ],
   optimization: {
     minimize: true,
+    splitChunks: {
+      cacheGroups: {
+        default: false,
+      },
+    },
+    runtimeChunk: false,
   },
   module: {
     rules: [
       {
         test: /\.(js|ts|tsx)$/,
         use: ["ts-loader?configFile=tsconfig.json"],
-        exclude: [/node_modules/, /.examples/],
+        exclude: [/node_modules/, /.examples/, /.storybook/],
       },
     ],
   },

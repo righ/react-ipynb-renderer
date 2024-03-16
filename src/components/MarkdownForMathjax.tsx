@@ -1,15 +1,14 @@
-import React from "react";
-import ReactMarkdown from "react-markdown";
-import { default as defaultRemarkMath, Options as RemarkMathOptions } from 'remark-math';
-// @ts-expect-error
-import rehypeMathJax from 'rehype-mathjax';
+import React from 'react';
+import type { Options as RemarkMathOptions } from 'remark-math';
+import { default as defaultRemarkMath } from 'remark-math';
 import remarkGfm from 'remark-gfm';
-import rehypeRaw from "rehype-raw";
+import rehypeRaw from 'rehype-raw';
 import { Options as MathJaxOptions } from 'rehype-mathjax/lib/create-plugin';
 
-import { MarkdownProps } from "../types";
-import { Context } from "../context";
-import { remarkLatexEnvironment } from "../markdown";
+import type { MarkdownProps } from '../types';
+import { Context } from '../context';
+import { remarkLatexEnvironment } from '../markdown';
+import type { PluggableList } from 'react-markdown/lib';
 
 export type MarkdownOptionsForMathjax = {
   remarkMath?: typeof defaultRemarkMath;
@@ -17,26 +16,38 @@ export type MarkdownOptionsForMathjax = {
   mathjaxOptions?: MathJaxOptions;
 };
 
-export const MarkdownForMathjax: React.FC<MarkdownProps> = ({
-  className,
-  text,
-}) => {
-  const {
-    markdownOptions,
-    htmlFilter,
-  } = React.useContext(Context);
+const ReactMarkdown = React.lazy(() => import('react-markdown'));
+
+export const MarkdownForMathjax: React.FC<MarkdownProps> = ({ className, text }) => {
+  const { markdownOptions, htmlFilter } = React.useContext(Context);
   const {
     remarkMath = defaultRemarkMath,
     remarkMathOptions = {},
     mathjaxOptions = {},
   } = markdownOptions as MarkdownOptionsForMathjax;
 
-  return (<div className={className}>
-    <ReactMarkdown
-      remarkPlugins={[[remarkMath, remarkMathOptions], [remarkLatexEnvironment, {}], remarkGfm]}
-      rehypePlugins={[[rehypeMathJax, mathjaxOptions], rehypeRaw]}
-    >
-      {htmlFilter(text)}
-    </ReactMarkdown>
-  </div>);
+  const [rehypePlugins, setRehypePlugins] = React.useState<PluggableList>([rehypeRaw]);
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // for SSR
+      void (async () => {
+        // @ts-expect-error rehype-mathjax is not typed
+        const rehypeMathjax = await import('rehype-mathjax');
+        setRehypePlugins([[rehypeMathjax.default, mathjaxOptions], rehypeRaw]);
+      })();
+    }
+  }, []);
+
+  return (
+    <div className={className}>
+      <React.Suspense fallback={<></>}>
+        <ReactMarkdown
+          remarkPlugins={[[remarkMath, remarkMathOptions], [remarkLatexEnvironment, {}], remarkGfm]}
+          rehypePlugins={rehypePlugins}
+        >
+          {htmlFilter(text)}
+        </ReactMarkdown>
+      </React.Suspense>
+    </div>
+  );
 };

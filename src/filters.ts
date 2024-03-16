@@ -1,7 +1,7 @@
-import * as DOMPurify from 'dompurify';
-import {HtmlFilter} from "./types";
+import { sanitize } from 'dompurify';
+import type { HtmlFilter } from './types';
 
 export const defaultHtmlFilter: HtmlFilter = (html) => {
-  const cleaned = DOMPurify.sanitize(html);
+  const cleaned = sanitize(html);
   return cleaned;
-}
+};

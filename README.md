@@ -1,5 +1,6 @@
 [![NPM](https://nodei.co/npm/react-ipynb-renderer.png?mini=true)](https://www.npmjs.com/package/react-ipynb-renderer)
 [![NPM](https://nodei.co/npm/react-ipynb-renderer-katex.png?mini=true)](https://www.npmjs.com/package/react-ipynb-renderer-katex)
+![e2e workflow](https://github.com/righ/react-ipynb-renderer/actions/workflows/e2e.yaml/badge.svg?branch=master)
 
 <img src="https://github.com/righ/react-ipynb-renderer/raw/master/images/logo.png" alt="image" width="400" height="auto" />
 
@@ -42,25 +43,6 @@ import { IpynbRenderer } from "react-ipynb-renderer";
 
 // Jupyter theme
 import "react-ipynb-renderer/dist/styles/monokai.css";
-// import ipynb file as json
-import ipynb from "./test.ipynb";
-
-export const Component = () => {
-  return (
-    <IpynbRenderer
-      ipynb={ipynb}
-    />
-  );
-};
-```
-
-#### How to use this on Next.js
-
-```jsx
-import dynamic from 'next/dynamic';
-const IpynbRenderer = dynamic(() => import('react-ipynb-renderer').then((mod) => mod.IpynbRenderer), {
-  ssr: false
-});
 // import ipynb file as json
 import ipynb from "./test.ipynb";
 

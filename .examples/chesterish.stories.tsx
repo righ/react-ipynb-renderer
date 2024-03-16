@@ -1,8 +1,8 @@
 import React from "react";
 
 import { IpynbRenderer } from "../src/index_katex";
-import pca1 from "./pca1.ipynb";
-import matrix from "./matrix-3.ipynb";
+import pca1 from "./ipynb/pca1.ipynb";
+import matrix from "./ipynb/matrix-3.ipynb";
 
 import "../src/styles/chesterish.less";
 
@@ -11,9 +11,14 @@ export default {
 };
 
 export const cb = () => {
+  const ref = React.useRef<HTMLDivElement>(null);
   return (
     <>
       <IpynbRenderer
+        rootRef={ref}
+        onLoad={() => {
+          console.log("loaded cb chesterish", ref);
+        }}
         ipynb={pca1}
         syntaxTheme="cb"
         // htmlFilter={(html) => "filtered"}

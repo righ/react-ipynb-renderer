@@ -1,0 +1,48 @@
+name: e2e
+on:
+  push:
+
+jobs:
+  run-e2e-tests:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+      - name: setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18.18.2"
+
+      - name: cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+
+      - name: install
+        run: |
+          yarn install
+          npx playwright install --with-deps
+
+      - name: build
+        run: yarn run storybook:build
+
+      - name: run server
+        run: |
+          python -m http.server 6006 --directory "${{ github.workspace }}/storybook-static" &
+
+      - name: e2e test
+        run: yarn e2e:ci
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: playwright-results
+          path: test-results

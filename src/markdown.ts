@@ -1,5 +1,5 @@
-import { Transformer } from 'unified';
-import { Node } from 'unist';
+import type { Transformer } from 'unified';
+import type { Node } from 'unist';
 import { visit } from 'unist-util-visit';
 
 type TextNode = {
@@ -14,22 +14,23 @@ export const remarkLatexEnvironment: () => Transformer = () => {
       visit(tree, 'paragraph', (node) => {
         visit(node, 'text', (textNode: TextNode) => {
           if (
-            textNode.value.match(RegExp('^\\s*\\\\begin\{[a-z]+\}', 'm')) &&
-            textNode.value.match(RegExp('\\\\end\{[a-z]+\}\\s*$', 'm'))
+            textNode.value.match(RegExp('^\\s*\\\\begin{[a-z]+}', 'm')) &&
+            textNode.value.match(RegExp('\\\\end{[a-z]+}\\s*$', 'm'))
           ) {
             textNode.type = 'math';
-            textNode.value = textNode.value.replace(/\\\s*$/gm, "\\\\\\");
+            textNode.value = textNode.value.replace(/\\\s*$/gm, '\\\\\\');
             textNode.data = {
-              hChildren: [{type: 'text', value: textNode.value}],
-              hName: "div",
+              hChildren: [{ type: 'text', value: textNode.value }],
+              hName: 'div',
               hProperties: {
                 className: ['math', 'math-inline'],
-              }
-            }
+              },
+            };
           }
         });
-      })
+      });
     } finally {
+      // eslint-disable-next-line no-unsafe-finally
       return tree;
     }
   };
