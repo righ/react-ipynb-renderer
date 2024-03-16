@@ -1,5 +1,5 @@
-import { Transformer } from 'unified';
-import { Node } from 'unist';
+import type { Transformer } from 'unified';
+import type { Node } from 'unist';
 import { visit } from 'unist-util-visit';
 
 type TextNode = {

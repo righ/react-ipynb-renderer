@@ -1,17 +1,16 @@
 import React from "react";
-import { Cell } from "./components/Cell";
-import {
-  MarkdownOptionsForKatex,
-  MarkdownForKatex,
-} from "./components/MarkdownForKatex";
-import { BaseProps } from "./types";
 
+import type { BaseProps, IpynbType } from "./types";
+import type { MarkdownOptionsForKatex } from "./components/MarkdownForKatex";
 import pkg from "../katex/package.json";
+import { MarkdownForKatex } from "./components/MarkdownForKatex";
+import { Cell } from "./components/Cell";
 import { defaultHtmlFilter } from "./filters";
 import { Context } from "./context";
 
 console.debug(`react-ipynb-renderer-katex@${pkg.version} is working.`);
 
+export type Ipynb = IpynbType;
 export type Props = BaseProps & {
   markdownOptions?: MarkdownOptionsForKatex;
 };

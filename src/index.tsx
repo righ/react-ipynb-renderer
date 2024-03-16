@@ -1,11 +1,10 @@
 import React from "react";
-import { Cell } from "./components/Cell";
-import {
-  MarkdownOptionsForMathjax,
-  MarkdownForMathjax,
-} from "./components/MarkdownForMathjax";
-import {BaseProps, IpynbType} from "./types";
+
+import type { MarkdownOptionsForMathjax } from "./components/MarkdownForMathjax";
+import type {BaseProps, IpynbType} from "./types";
 import pkg from "../package.json";
+import { Cell } from "./components/Cell";
+import { MarkdownForMathjax } from "./components/MarkdownForMathjax";
 import { defaultHtmlFilter } from "./filters";
 import { Context } from "./context";
 
