@@ -1,8 +1,8 @@
 import React from "react";
 
 import { IpynbRenderer } from "../src/index";
-import pca1 from "./pca1.ipynb";
-import matrix from "./matrix-3.ipynb";
+import pca1 from "./ipynb/pca1.ipynb";
+import matrix from "./ipynb/matrix-3.ipynb";
 
 import "../src/styles/onedork.less";
 

@@ -81,17 +81,16 @@ export const Cell: React.FC<CellProps> = ({ cell, seq }) => {
                     }}
                   >
                     {source && (
-                      <React.Suspense fallback={<></>}>
-                        <Prism
-                          language={language}
-                          style={{ ...prismStyle, ...styleOverridden }}
-                          customStyle={{
-                            backgroundColor: 'transparent',
-                          }}
-                        >
-                          {source}
-                        </Prism>
-                      </React.Suspense>
+                      // @ts-expect-error Prisma is not assignable to ReactNode
+                      <Prism
+                        language={language}
+                        style={{ ...prismStyle, ...styleOverridden }}
+                        customStyle={{
+                          backgroundColor: 'transparent',
+                        }}
+                      >
+                        {source}
+                      </Prism>
                     )}
                   </div>
                 </div>
