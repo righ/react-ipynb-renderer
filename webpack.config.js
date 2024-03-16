@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require("path");
 const TypescriptDeclarationPlugin = require("typescript-declaration-webpack-plugin");
 
@@ -22,13 +23,23 @@ module.exports = {
   output: {
     libraryTarget: "umd",
     globalObject: "this",
-    filename: "[name].js",
+    filename: "index.js",
     path: path.resolve(__dirname, "dist"),
-    publicPath: './',
   },
-  plugins: [new TypescriptDeclarationPlugin({})],
+  plugins: [
+    new TypescriptDeclarationPlugin({}),
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 1,
+    }),
+  ],
   optimization: {
     minimize: true,
+    splitChunks: {
+      cacheGroups: {
+        default: false,
+      },
+    },
+    runtimeChunk: false,
   },
   module: {
     rules: [
