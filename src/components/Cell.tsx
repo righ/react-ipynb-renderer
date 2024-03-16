@@ -1,5 +1,6 @@
 import React from "react";
 import Ansi from "ansi-to-react";
+import { Prism } from "react-syntax-highlighter";
 
 import * as PrismStyles from "react-syntax-highlighter/dist/cjs/styles/prism";
 
@@ -12,11 +13,6 @@ type CellProps = {
   cell: CellType;
   seq: number;
 };
-
-const Prism = React.lazy(() => {
-  const mod = import("react-syntax-highlighter");
-  return mod.then((m) => ({ default: m.Prism }));
-});
 
 export const Cell: React.FC<CellProps> = ({ cell, seq }) => {
   const {
