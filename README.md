@@ -5,6 +5,7 @@ This is a library to easily draw ipynb in a React application.
 [![e2e workflow](https://github.com/righ/react-ipynb-renderer/actions/workflows/e2e.yaml/badge.svg?branch=master)](https://github.com/righ/react-ipynb-renderer/actions/workflows/e2e.yaml)
 [![License](https://img.shields.io/npm/l/react-ipynb-renderer)](https://github.com/righ/react-ipynb-renderer/blob/main/LICENSE)
 ![downloads](https://img.shields.io/npm/dm/react-ipynb-renderer?style=flat-square)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Frigh%2Freact-ipynb-renderer.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Frigh%2Freact-ipynb-renderer?ref=badge_shield)
 
 <p align="center">
   <img 
@@ -96,3 +97,7 @@ export const Component = () => {
 
 - https://docs.walkframe.com/products/react-ipynb-renderer/
 - https://www.npmjs.com/package/react-ipynb-renderer
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Frigh%2Freact-ipynb-renderer.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Frigh%2Freact-ipynb-renderer?ref=badge_large)
