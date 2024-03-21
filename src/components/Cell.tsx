@@ -2,7 +2,7 @@ import React from 'react';
 import Ansi from 'ansi-to-react';
 import { Prism } from 'react-syntax-highlighter';
 
-import * as PrismStyles from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import * as PrismStyles from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 import { CellType } from '../types';
 import { Context } from '../context';

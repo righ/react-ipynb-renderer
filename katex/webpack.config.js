@@ -46,7 +46,7 @@ module.exports = {
       {
         test: /\.(js|ts|tsx)$/,
         use: ["ts-loader?configFile=tsconfig.json"],
-        exclude: [/node_modules/, /.examples/, /.storybook/],
+        exclude: [/node_modules/, /.examples/, /.storybook/, /e2e/],
       },
     ],
   },
