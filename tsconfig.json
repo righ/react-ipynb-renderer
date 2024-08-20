@@ -24,7 +24,8 @@
   },
   "exclude": [
     "node_modules",
-    "*.stories.tsx"
+    "*.stories.tsx",
+    "*.spec.ts",
   ],
   "include": [
     "**/*.ts",

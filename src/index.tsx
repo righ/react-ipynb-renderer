@@ -2,13 +2,10 @@ import React, { forwardRef, Ref } from 'react';
 
 import type { BaseProps, IpynbType } from './types';
 import type { MarkdownOptionsForMathjax } from './components/MarkdownForMathjax';
-import pkg from '../package.json';
 import { Cell } from './components/Cell';
 import { MarkdownForMathjax } from './components/MarkdownForMathjax';
 import { defaultHtmlFilter } from './filters';
 import { Context } from './context';
-
-console.debug(`react-ipynb-renderer@${pkg.version} is working.`);
 
 export type Ipynb = IpynbType;
 export type Props = BaseProps & {
