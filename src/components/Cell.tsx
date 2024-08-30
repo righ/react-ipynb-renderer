@@ -1,5 +1,5 @@
 import React from 'react';
-import Ansi from 'ansi-to-react';
+import Anser from "anser";
 import { Prism } from 'react-syntax-highlighter';
 
 import * as PrismStyles from 'react-syntax-highlighter/dist/esm/styles/prism';
@@ -154,8 +154,17 @@ export const Cell: React.FC<CellProps> = ({ cell, seq }) => {
                   }
                   if (output.traceback) {
                     return (
-                      <div className="output_subarea output_error">
-                        <Ansi>{stringify(output.traceback)}</Ansi>
+                      <div 
+                        className="output_subarea output_error"
+                        dangerouslySetInnerHTML={{
+                        __html: htmlFilter(
+                          Anser.ansiToHtml(
+                            Anser.escapeForHtml(
+                              stringify(output.traceback)
+                            ),
+                          ),
+                        ),
+                      }}>  
                       </div>
                     );
                   }
