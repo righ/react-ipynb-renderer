@@ -1,4 +1,4 @@
-import { sanitize } from 'dompurify';
+import { sanitize } from 'isomorphic-dompurify';
 import type { HtmlFilter } from './types';
 
 export const defaultHtmlFilter: HtmlFilter = (html) => {
