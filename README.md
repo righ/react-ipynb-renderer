@@ -95,7 +95,7 @@ export const Component = () => {
 
 # Links
 
-- https://docs.walkframe.com/products/react-ipynb-renderer/
+- https://docs.walkframe.com/react-ipynb-renderer
 - https://www.npmjs.com/package/react-ipynb-renderer
 
 
