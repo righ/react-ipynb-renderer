@@ -34,7 +34,7 @@ jobs:
           pnpm install
           make build
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
-          pnpm publish || true
+          pnpm publish --no-git-checks || true
           unlink katex/README.md && cp README.md katex/README.md
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > katex/.npmrc
-          cd katex && pnpm publish || true
+          cd katex && pnpm publish --no-git-checks || true
