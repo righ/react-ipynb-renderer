@@ -76,7 +76,7 @@ build_js:
 .PHONY: build_js_katex
 build_js_katex:
 	mv src/index.tsx src/index.tsx.tmp
-	cd katex && pnpm run build
+	cd katex && pnpm install && pnpm run build
 	mv src/index.tsx.tmp src/index.tsx
 
 .PHONY: build_css
