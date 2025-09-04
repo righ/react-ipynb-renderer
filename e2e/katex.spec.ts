@@ -1,15 +1,16 @@
 import { test, expect } from '@playwright/test';
 
-test('test', async ({ page }) => {
+test('test katex', async ({ page }) => {
   await page.goto('http://localhost:6006/iframe.html?id=test--katex&viewMode=story');
-  const cells = await page.locator('.cell').all();
+  await page.waitForLoadState('networkidle');
   
+  const cells = await page.locator('.cell').all();
   expect(cells).toHaveLength(9);
 
   {
     expect(await cells[0].locator('.input_prompt').textContent()).toContain('In [1]:');
     expect(await cells[0].locator('pre').textContent()).toContain('import matplotlib.pyplot as plt');
-    expect(await cells[0].locator('.output_area').innerHTML()).toContain('<img src="data:image/png;base64,iVBORw0');
+    expect(await cells[0].locator('.output_area').innerHTML()).toContain('<img alt="output png" src="data:image/png;base64,iVBORw0');
   }
 
   {
@@ -57,14 +58,15 @@ test('test', async ({ page }) => {
     expect(await cells[5].locator('pre').textContent()).toContain('from IPython.display import Latex');
     expect(await cells[5].locator('.output_area').textContent()).toContain('The mass-energy equivalence is described by the famous equation');
     
-    const katex = cells[5].locator('.output_area').locator('.katex').first();
+    const katex = cells[5].locator('.output_area').locator('.katex-html').first();
+    const html = await katex.innerHTML();
     // E = mc^2
-    expect(await katex.innerHTML()).toContain('<span class="mord mathnormal" style="margin-right: 0.05764em;">E</span>');
-    expect(await katex.innerHTML()).toContain('<span class="mspace" style="margin-right: 0.2778em;"></span>');
-    expect(await katex.innerHTML()).toContain('<span class="mrel">=</span>');
-    expect(await katex.innerHTML()).toContain('<span class="mord mathnormal">m</span>');
-    expect(await katex.innerHTML()).toContain('<span class="mord mathnormal">c</span>');
-    expect(await katex.innerHTML()).toContain('<span class="mord mtight">2</span>');
+    expect(html).toContain('<span class="mord mathnormal" style="margin-right:0.05764em;">E</span>');
+    expect(html).toContain('<span class="mspace" style="margin-right:0.2778em;"></span>');
+    expect(html).toContain('<span class="mrel">=</span>');
+    expect(html).toContain('<span class="mord mathnormal">m</span>');
+    expect(html).toContain('<span class="mord mathnormal">c</span>');
+    expect(html).toContain('<span class="mord mtight">2</span>');
 
     expect(await cells[5].locator('.output_area').textContent()).toContain('discovered in 1905 by Albert Einstein.');
     // c

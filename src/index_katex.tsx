@@ -7,6 +7,10 @@ import { MarkdownForKatex } from './components/MarkdownForKatex';
 import { defaultHtmlFilter } from './filters';
 import { Context } from './context';
 
+// Export only Katex-specific Markdown component
+export { MarkdownForKatex as Markdown } from './components/MarkdownForKatex';
+export type { MarkdownOptionsForKatex } from './components/MarkdownForKatex';
+
 export type Ipynb = IpynbType;
 export type Props = BaseProps & {
   markdownOptions?: MarkdownOptionsForKatex;

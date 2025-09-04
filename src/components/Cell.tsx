@@ -81,7 +81,7 @@ export const Cell: React.FC<CellProps> = ({ cell, seq }) => {
                     }}
                   >
                     {source && (
-                      // @ts-expect-error Prisma is not assignable to ReactNode
+                      
                       <Prism
                         language={language}
                         style={{ ...prismStyle, ...styleOverridden }}

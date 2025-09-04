@@ -7,6 +7,10 @@ import { MarkdownForMathjax } from './components/MarkdownForMathjax';
 import { defaultHtmlFilter } from './filters';
 import { Context } from './context';
 
+// Export MathJax-specific Markdown component for direct use
+export { MarkdownForMathjax as Markdown } from './components/MarkdownForMathjax';
+export type { MarkdownOptionsForMathjax } from './components/MarkdownForMathjax';
+
 export type Ipynb = IpynbType;
 export type Props = BaseProps & {
   markdownOptions?: MarkdownOptionsForMathjax;
