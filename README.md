@@ -54,6 +54,37 @@ $ npm install --save react-ipynb-renderer-katex
 # Usage
 Just pass an ipynb json object to `IpynbRenderer` component.
 
+## Using ipynb as a string
+If you have an ipynb file as a string, you can parse it using `JSON.parse()`:
+
+```jsx
+import { IpynbRenderer } from "react-ipynb-renderer";
+
+// Jupyter theme
+import "react-ipynb-renderer/dist/styles/monokai.css";
+
+export const Component = () => {
+  const ipynbString = `{
+    "cells": [
+      {
+        "cell_type": "markdown",
+        "metadata": {},
+        "source": ["# Hello World"]
+      }
+    ],
+    "metadata": {},
+    "nbformat": 4,
+    "nbformat_minor": 4
+  }`;
+  
+  const ipynb = JSON.parse(ipynbString);
+  
+  return (
+    <IpynbRenderer ipynb={ipynb} />
+  );
+};
+```
+
 ## Simplest example
 
 ### Using react-ipynb-renderer
