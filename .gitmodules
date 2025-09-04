@@ -1,4 +1,4 @@
 
 [submodule "src/styles/jupyter-themes"]
 	path = src/styles/jupyter-themes
-	url = git@github.com:righ/jupyter-themes.git
+	url = https://github.com/righ/jupyter-themes.git
