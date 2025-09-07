@@ -41,30 +41,6 @@ const config = {
     // Add support for .ipynb files
     config.assetsInclude = ['**/*.ipynb'];
     
-    // Fix Storybook React entry resolution
-    config.build = config.build || {};
-    config.build.rollupOptions = config.build.rollupOptions || {};
-    config.build.rollupOptions.external = config.build.rollupOptions.external || [];
-    
-    // Add Storybook React to external dependencies
-    if (Array.isArray(config.build.rollupOptions.external)) {
-      config.build.rollupOptions.external.push(
-        '@storybook/react',
-        '@storybook/react/dist/entry-preview.mjs',
-        '@storybook/react/dist/entry-preview-docs.mjs'
-      );
-    }
-    
-    // Alternative approach: optimizeDeps configuration
-    config.optimizeDeps = config.optimizeDeps || {};
-    config.optimizeDeps.exclude = config.optimizeDeps.exclude || [];
-    config.optimizeDeps.exclude.push('@storybook/react');
-    
-    // Fix for development server - ensure proper resolution
-    config.resolve = config.resolve || {};
-    config.resolve.dedupe = config.resolve.dedupe || [];
-    config.resolve.dedupe.push('@storybook/react');
-    
     // Return the altered config
     return config;
   },
