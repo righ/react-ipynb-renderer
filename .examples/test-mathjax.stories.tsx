@@ -1,7 +1,7 @@
 import React from "react";
 
 import { IpynbRenderer as IpynbRendererMathjax } from "../src/index";
-import testfile from "./ipynb/test.ipynb";
+import testfile from "./ipynb/test.json";
 
 import "../src/styles/onedork.less";
 

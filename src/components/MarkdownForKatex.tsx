@@ -1,53 +1,73 @@
 import React from 'react';
-import type { Options as RemarkMathOptions } from 'remark-math';
-import { default as defaultRemarkMath } from 'remark-math';
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
 import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
+import remarkRehype from 'remark-rehype';
 import rehypeRaw from 'rehype-raw';
+import rehypeStringify from 'rehype-stringify';
 import type { KatexOptions } from 'katex';
+// Import KaTeX CSS
+import 'katex/dist/katex.min.css';
+import type { Options as RemarkMathOptions } from 'remark-math';
 
 import type { MarkdownProps } from '../types';
 import { Context } from '../context';
 import { remarkLatexEnvironment } from '../markdown';
-import type { PluggableList } from 'react-markdown/lib';
 
 export type MarkdownOptionsForKatex = {
-  remarkMath?: typeof defaultRemarkMath;
   remarkMathOptions?: RemarkMathOptions;
   katexOptions?: KatexOptions;
 };
 
-const ReactMarkdown = React.lazy(() => import('react-markdown'));
-
 export const MarkdownForKatex: React.FC<MarkdownProps> = ({ className, text }) => {
-  const { markdownOptions, htmlFilter } = React.useContext(Context);
-  const {
-    remarkMath = defaultRemarkMath,
-    remarkMathOptions = {},
-    katexOptions = {},
-  } = markdownOptions as MarkdownOptionsForKatex;
+  const { htmlFilter, markdownOptions } = React.useContext(Context);
+  const [html, setHtml] = React.useState<string>('');
+  const [isLoading, setIsLoading] = React.useState(true);
 
-  const [rehypePlugins, setRehypePlugins] = React.useState<PluggableList>([rehypeRaw]);
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
       // for SSR
       void (async () => {
-        const rehypeKatex = (await import('rehype-katex')) as any;
-        setRehypePlugins([[rehypeKatex.default, katexOptions], rehypeRaw]);
+        try {
+          const rehypePlugin = (await import('rehype-katex')).default;
+          const { remarkMathOptions = {}, katexOptions = {} } = markdownOptions as MarkdownOptionsForKatex;
+          
+          const processor = unified()
+            .use(remarkParse as any)
+            .use(remarkMath, remarkMathOptions)
+            .use(remarkLatexEnvironment)
+            .use(remarkGfm)
+            .use(remarkRehype, { allowDangerousHtml: true })
+            .use(rehypePlugin as any, katexOptions)
+            .use(rehypeRaw)
+            .use(rehypeStringify as any, { allowDangerousHtml: true });
+
+          const processedText = replaceForKatex(text);
+          const result = await processor.process(htmlFilter(processedText));
+          setHtml(String(result));
+        } catch (error) {
+          console.error('Error processing markdown:', error);
+          const processedText = replaceForKatex(text);
+          setHtml(htmlFilter(processedText));
+        } finally {
+          setIsLoading(false);
+        }
       })();
+    } else {
+      setIsLoading(false);
     }
-  }, []);
+  }, [text, htmlFilter, markdownOptions]);
+
+  if (isLoading) {
+    return <div className={className}></div>;
+  }
 
   return (
-    <div className={className}>
-      <React.Suspense fallback={<></>}>
-        <ReactMarkdown
-          remarkPlugins={[[remarkMath, remarkMathOptions], [remarkLatexEnvironment, {}], remarkGfm]}
-          rehypePlugins={rehypePlugins}
-        >
-          {htmlFilter(replaceForKatex(text))}
-        </ReactMarkdown>
-      </React.Suspense>
-    </div>
+    <div 
+      className={className}
+      dangerouslySetInnerHTML={{ __html: html }}
+    />
   );
 };
 

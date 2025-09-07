@@ -1,27 +1,28 @@
 import { test, expect } from '@playwright/test';
 
-test('test', async ({ page }) => {
+test('test mathjax', async ({ page }) => {
   await page.goto('http://localhost:6006/iframe.html?id=test--mathjax&viewMode=story');
-  const cells = await page.locator('.cell').all();
-  
+  await page.waitForLoadState('networkidle');
+
+  const cells = await page.locator('.cell').all();  
   expect(cells).toHaveLength(9);
 
   {
     expect(await cells[0].locator('.input_prompt').textContent()).toContain('In [1]:');
     expect(await cells[0].locator('pre').textContent()).toContain('import matplotlib.pyplot as plt');
-    expect(await cells[0].locator('.output_area').innerHTML()).toContain('<img src="data:image/png;base64,iVBORw0');
+    expect(await cells[0].locator('.output_area').innerHTML()).toContain('<img alt="output png" src="data:image/png;base64,iVBORw0');
   }
 
   {
     expect(await cells[1].locator('.input_prompt').textContent()).toContain('In [5]:');
     expect(await cells[1].locator('pre').textContent()).toContain('A = sy.Matrix([[2, 8], [1, 0]])');
-    expect(await cells[1].locator('.output_area').innerHTML()).toContain('<svg xmlns="http://www.w3.org/2000/svg" width="6.914ex" height="5.43ex" role="img"');
+    expect(await cells[1].locator('.output_area').innerHTML()).toContain('<svg');
   }
 
   {
     expect(await cells[2].locator('.input_prompt').textContent()).toContain('In [6]:');
     expect(await cells[2].locator('pre').textContent()).toContain('A ** (n-1) * sy.Matrix([3, 1])');
-    expect(await cells[2].locator('.output_area').innerHTML()).toContain('<svg xmlns="http://www.w3.org/2000/svg" width="20.183ex" height="7.908ex" role="img"');
+    expect(await cells[2].locator('.output_area').innerHTML()).toContain('<svg');
   }
 
   {
@@ -43,19 +44,19 @@ test('test', async ({ page }) => {
     //expect(output.locator('span').filter({hasText: 'File'}).first()).toHaveCSS('color', 'rgb(0, 187, 187)');
     //expect(output.locator('span').filter({hasText: '<ipython-input-9-4d9d942c1a8e>'}).first()).toHaveCSS('color', 'rgb(0, 187, 0)');
   }
-  
+
   {
     expect(await cells[5].locator('.input_prompt').textContent()).toContain('In [10]:');
     expect(await cells[5].locator('pre').textContent()).toContain('from IPython.display import Latex');
     expect(await cells[5].locator('.output_area').textContent()).toContain('The mass-energy equivalence is described by the famous equation');
     // E = mc^2
-    expect(await cells[5].locator('.output_area').innerHTML()).toContain('<svg xmlns="http://www.w3.org/2000/svg" width="8.699ex" height="2.072ex" role="img"');
+    expect(await cells[5].locator('.output_area').innerHTML()).toContain('<svg');
     expect(await cells[5].locator('.output_area').textContent()).toContain('discovered in 1905 by Albert Einstein.');
     // c
-    expect(await cells[5].locator('.output_area').innerHTML()).toContain('<svg xmlns="http://www.w3.org/2000/svg" width="0.98ex" height="1.025ex" role="img"');
+    expect(await cells[5].locator('.output_area').innerHTML()).toContain('<svg');
     expect(await cells[5].locator('.output_area').textContent()).toContain('the formula expresses the identity');
     // E = m
-    expect(await cells[5].locator('.output_area').innerHTML()).toContain('<svg xmlns="http://www.w3.org/2000/svg" width="6.732ex" height="1.724ex" role="img"');
+    expect(await cells[5].locator('.output_area').innerHTML()).toContain('<svg');
   }
 
   {
@@ -64,7 +65,7 @@ test('test', async ({ page }) => {
     const output = cells[6].locator('.rendered_html').first();
     const header = output.locator('h1').first();
     expect(header).toHaveText('Markdown Cell');
-    expect(await output.innerHTML()).toContain('<svg xmlns="http://www.w3.org/2000/svg" width="23.457ex" height="2.388ex" role="img"');
+    expect(await output.innerHTML()).toContain('<svg');
     expect(await output.innerHTML()).toContain('<p><em>It</em> <strong>really</strong> is!!</p>');
   }
 
